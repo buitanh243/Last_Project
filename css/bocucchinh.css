@@ -1,0 +1,132 @@
+
+
+.login-btn {
+    border: 1px solid ghostwhite;
+    background-color: ghostwhite;
+    color: gray;
+    margin: 10px;
+}
+
+.btn-outline-success {
+    border: 0px solid ghostwhite;
+ }
+.btn-outline-success:hover {
+   border: 0px solid ghostwhite;
+   background-color: ghostwhite;
+}
+
+.fa-magnifying-glass {
+    color: gray;
+   }
+
+.fa-magnifying-glass:hover {
+  color: red;
+}
+
+.user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#backtop-btn {
+    display: none;
+    position: fixed;
+    border: 1px solid gray;
+    bottom: 20px; 
+    right: 20px;
+    margin: 5px;
+    z-index: 999;
+    cursor: pointer;
+    color: white;
+    background-color: gray;
+    padding: 3px 10px 3px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media only screen and (min-height: 300px) {
+    #backtop-btn {
+      display: block;
+}
+}
+
+.footer-container{
+    background-color: #333333;
+    padding: 3rem 0 3rem 0;
+}
+.footer{
+    width: 60%;
+    height: auto;
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.footer-heading{
+    display: flex;
+    flex-direction: column;
+    margin-right: 4rem;
+}
+
+.footer-heading h2{
+    margin-bottom: 0.5rem;
+}
+.footer-heading a{
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.footer-heading a:hover {
+    color: red;
+    transition: 0.3s ease-out;
+}
+
+.footer-right{
+    font-size: 22px;
+    margin-top: 20px;
+    line-height: 21px;
+    text-align: center;
+}
+
+.footer-right p{
+    color: #fff;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 24px;
+}
+
+.footer-1 a {
+    text-decoration: none;
+}
+
+.footer-2{
+   display: grid;
+   grid-template-areas: 
+   "aa aa aa aa"
+   "ff tt ee pp";
+   place-items: center;
+   height: 10vh; 
+}
+.he2 {
+    grid-area: aa;
+}
+
+.fa-facebook-square {
+    grid-area: ff;
+}
+
+.fa-twitter{
+    grid-area: tt;
+}
+
+.fa-envelope {
+    grid-area: ee;
+}
+
+.fa-square-phone{
+    grid-area: pp;
+}
