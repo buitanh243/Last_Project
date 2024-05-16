@@ -5,6 +5,9 @@
     background-color: ghostwhite;
     color: gray;
     margin: 10px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
 }
 
 .btn-outline-success {
@@ -29,40 +32,22 @@
     align-items: center;
 }
 
-#backtop-btn {
-    display: none;
-    position: fixed;
-    border: 1px solid gray;
-    bottom: 20px; 
-    right: 20px;
-    margin: 5px;
-    z-index: 999;
-    cursor: pointer;
-    color: white;
-    background-color: gray;
-    padding: 3px 10px 3px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-@media only screen and (min-height: 300px) {
-    #backtop-btn {
-      display: block;
-}
-}
 
 .footer-container{
-    background-color: #333333;
+    background-color: gray;
     padding: 3rem 0 3rem 0;
+    display: flex;
+    flex-direction: column;
 }
 .footer{
     width: 60%;
     height: auto;
-    background-color: #333;
+    background-color: gray;
     color: #fff;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     margin: 0 auto;
 }
 
@@ -80,27 +65,36 @@
     margin-bottom: 0.5rem;
 }
 
-.footer-heading a:hover {
-    color: red;
-    transition: 0.3s ease-out;
+
+.footer-heading a:hover, .nav-link:hover,.login-btn:hover {
+    color: orangered;
+
 }
 
 .footer-right{
-    font-size: 22px;
-    margin-top: 20px;
-    line-height: 21px;
+    font-size: 15px;
+    margin-top: 60px;
+    /* line-height: 21px; */
     text-align: center;
-}
-
-.footer-right p{
+    margin-right: 60px;
     color: #fff;
     font-weight: 300;
     font-size: 22px;
     line-height: 24px;
 }
 
+.footer-2 i:hover {
+    transform: scale(2.1);
+    transition: 0.2s ease-out;
+}
 .footer-1 a {
     text-decoration: none;
+    font-size: 20px;
+}
+
+.footer-2 i {
+    margin-top: 10px;
+    font-size: 30px;
 }
 
 .footer-2{
@@ -130,3 +124,69 @@
 .fa-square-phone{
     grid-area: pp;
 }
+
+/* Nut back-top */
+.button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 0px 4px rgba(180, 160, 255, 0.253);
+    cursor: pointer;
+    transition-duration: 0.3s;
+    overflow: hidden;
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 999; 
+  }
+  
+  .svgIcon {
+    width: 12px;
+    transition-duration: 0.3s;
+  }
+  
+  .svgIcon path {
+    fill: white;
+  }
+  
+  .button:hover {
+    width: 140px;
+    border-radius: 50px;
+    transition-duration: 0.3s;
+    background-color: gray;
+    align-items: center;
+  }
+  
+  .button:hover .svgIcon {
+    transition-duration: 0.3s;
+    transform: translateY(-200%);
+  }
+  
+  .button::before {
+    position: absolute;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    content: "Trở lại đầu trang";
+    color: white;
+    font-size: 0px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 100%; 
+    height: 100%; 
+}
+  
+  .button:hover::before {
+    font-size: 13px;
+    opacity: 1;
+    bottom: unset;
+    transition-duration: 0.3s;
+  }
+

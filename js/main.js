@@ -18,7 +18,7 @@ function scrollToTop() {
   
 // hiện nút back top
   window.addEventListener('scroll', function() {
-    var backToTopButton = document.getElementById('backtop-btn');
+    var backToTopButton = document.getElementById('back-top-btn');
     
     if (window.pageYOffset > 200) {
       backToTopButton.style.display = 'block';
@@ -26,3 +26,6 @@ function scrollToTop() {
       backToTopButton.style.display = 'none';
     }
   });
+
+
+  

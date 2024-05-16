@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HT Computer - Sản phẩm</title>
+    <title>HT Computer - Trang chủ</title>
     <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -11,8 +11,10 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="/css/sanpham.css">
-        <script src="./js/sanpham.js" defer></script> 
+        <link rel="stylesheet" href="./css/trangchu.css">
+        <script src="./js/main.js" defer></script>
+        <link rel="icon" href="./Pic/favicon.ico" type="image/x-icon">
+ 
 </head>
 <body>
    
@@ -26,25 +28,27 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+                    <a class="nav-link" style=" color: orangered;" aria-current="page" href="index.html">Trang chủ</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Giới thiệu</a>
                   </li>
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Danh mục sản phẩm
+                        Sản phẩm
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="#">Bán chạy</a></li>
-                      <li><a class="dropdown-item" href="#">Sản phẩm mới</a></li>
+                      <li><a class="dropdown-item" href="sanpham.html">Bán chạy</a></li>
+                      <li><a class="dropdown-item" href="sanpham.html">Sản phẩm mới</a></li>
+                      <li><a class="dropdown-item" href="sanpham.html">Danh mục sản phẩm</a></li>
                       <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#"></a></li>
+                      <li><a class="dropdown-item" href="#">Khuyến mãi</a></li>
                     </ul>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link " href="#" tabindex="-1" aria-disabled="true">Liên hệ</a>
                   </li>
+
                 </ul>
                 <form class="d-flex">
                   <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm">
@@ -53,8 +57,8 @@
                 
                <div class="user">
                 <button class="login-btn"><i class="fa-solid fa-cart-shopping"></i></button>
-                <button class="login-btn">ĐĂNG NHẬP</button>
-                <button class="login-btn">ĐĂNG KÝ</button>
+                <a class="login-btn" href="./login.html">ĐĂNG NHẬP</a>
+                <a class="login-btn" href="./login.html">ĐĂNG KÝ</a>
         
                </div>
               </div>
@@ -64,14 +68,20 @@
         
    
     </header>
-
     <main>
-        <button onclick="scrollToTop()" id="backtop-btn" ><i class="fa-solid fa-up-long"></i></button>
-    
-        
+      
     </main>
 
     <footer class="footer-container">
+      <!-- <button onclick="scrollToTop()" id="backtop-btn" ><i class="fa-solid fa-up-long"></i></button> -->
+      <button class="button" onclick="scrollToTop()" id="back-top-btn">
+        <svg class="svgIcon" viewBox="0 0 384 512">
+          <path
+            d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"
+          ></path>
+        </svg>
+      </button>
+      
         <div class="footer">
           <div class="footer-heading footer-1">
             <h2>Chính sách</h2>
@@ -86,6 +96,7 @@
             <a href=""><i class="far fa-envelope"></i> </a>
             <a href=""><i class="fa-solid fa-square-phone"></i></a>
           </div>
+         
         </div>
         <div class="footer-right">
           <p>&copy;2024 Bản Quyền thuộc về BHT</p>
