@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thêm sản phẩm</title>
+    <?php 
+            include_once __DIR__ .'/../../css/style.php';
+            include_once __DIR__ .'/../style.php'; //css backend
+    ?>
+    <link rel="icon" href="/./Pic/favicon.ico" type="image/x-icon">
 </head>
 <body>
     <?php 
@@ -33,9 +38,9 @@
         }
     ?>
 
-        <form action="" method="post" name="themmoi" >  
-              <div><label for="">Tên sản phẩm </label><input type="text" name="sp_ten"> </div>
-              <div><label for="">Số lượng </label><input type="number" name="sp_soluong" min="1"> </div>
+        <form  action="" method="post" name="themmoi" >  
+              <div><label for="">Tên sản phẩm </label><input class="form-control" type="text" name="sp_ten"> </div>
+              <div><label for="">Số lượng </label><input class="form-control" type="number" name="sp_soluong" min="1"> </div>
               <div><label for="">Giá </label><input type="number" name="sp_gia"> </div>
               <div><label for="">Mô tả ngắn </label><input type="text" name="sp_motangan"> </div>
 

@@ -7,8 +7,8 @@
     // Lấy trạng thái active từ LocalStorage
     const activeItemId = localStorage.getItem('activeItemId');
     if (activeItemId !== null) {
-      $('#itemList .list-group-item').removeClass('active text-white');
-      $('#itemList .list-group-item[data-id="' + activeItemId + '"]').addClass('active text-white');
+      $('#itemList .list-group-item').removeClass('active text-white bg-dark border-0 ');
+      $('#itemList .list-group-item[data-id="' + activeItemId + '"]').addClass('active text-white bg-dark boder-0');
     }
 
     // Thêm sự kiện click cho các liên kết trong danh sách

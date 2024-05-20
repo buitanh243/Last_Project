@@ -16,18 +16,18 @@
         $id = $_GET['id'];
 
         //du lieu cu
-        $sql = "SELECT lsp_ten,lsp_mota,lsp_id
-            FROM loaisanpham
-                WHERE lsp_id = '$id';";
+        $sql = "SELECT nsx_ten,nsx_mota,nsx_id
+            FROM nhasanxuat
+                WHERE nsx_id = '$id';";
         $data = mysqli_query($conn,$sql);
 
-        $arrlsp = [];
+        $arrnsx = [];
 
         while ($row = mysqli_fetch_array($data,MYSQLI_ASSOC)) {
-            $arrlsp[] = array (
-                'lsp_id' => $row['lsp_id'],
-                'lsp_ten' => $row['lsp_ten'],
-                'lsp_mota' => $row['lsp_mota'],
+            $arrnsx[] = array (
+                'nsx_id' => $row['nsx_id'],
+                'nsx_ten' => $row['nsx_ten'],
+                'nsx_mota' => $row['nsx_mota'],
             );
         }
 
@@ -38,19 +38,19 @@
          <form class="container align-items-center bg-light m-5 p-5 rounded border " action="" method="post" name="themmoi" >  
               <div class="row">
                 <div class="col-3"></div>
-                <h3 class="col-5">Chỉnh sửa loại sản phẩm</h3>
+                <h3 class="col-5">Chỉnh sửa nhà sản xuất</h3>
               </div>
              <div class="row">
               <div class="col-3"></div>
               <div class="col-3">
-              <?php foreach($arrlsp as $lsp): ?>
-                  <label class="mt-5  p-1" for="">Tên loại sản phẩm </label>
-                  <input class="form-control mt-2" value="<?= $lsp['lsp_ten']?>" type="text" name="lsp_ten"> 
+              <?php foreach($arrnsx as $nsx): ?>
+                  <label class="mt-5  p-1" for="">Tên nhà sản xuất </label>
+                  <input class="form-control mt-2" value="<?= $nsx['nsx_ten']?>" type="text" name="nsx_ten"> 
                 </div>
               
                 <div class="col-4">
                   <label class="mt-5  p-1" for="">Mô tả </label>
-                  <input class="form-control mt-2" type="text" value="<?= $lsp['lsp_mota']?>" name="lsp_mota"> 
+                  <input class="form-control mt-2" type="text" value="<?= $nsx['nsx_mota']?>" name="nsx_mota"> 
                 </div>
                 <?php endforeach; ?>
              </div>
@@ -66,10 +66,10 @@
               if(isset($_POST['save'])) {
                 include_once __DIR__.'/../../connect/connect.php';
                 
-                $lsp_ten = $_POST['lsp_ten'];
-                $lsp_mota = $_POST['lsp_mota'];
+                $nsx_ten = $_POST['nsx_ten'];
+                $nsx_mota = $_POST['nsx_mota'];
 
-                $sql_edit = "UPDATE loaisanpham SET lsp_ten = '$lsp_ten',lsp_mota = '$lsp_mota' WHERE lsp_id = '$id';";
+                $sql_edit = "UPDATE nhasanxuat SET nsx_ten = '$nsx_ten',nsx_mota = '$nsx_mota' WHERE nsx_id = '$id';";
                 echo '<script>location.href = "index.php";</script>';
       
                 mysqli_query($conn,$sql_edit);

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loại sản phẩm</title>
+  <title>nhà sản xuất</title>
   <?php
   include_once __DIR__ . '/../../css/style.php';
   include_once __DIR__ . '/../style.php'; //css backend
@@ -17,17 +17,17 @@
   <?php
   include_once __DIR__ . '/../../connect/connect.php';
 
-  $sql = "SELECT * FROM loaisanpham;";
+  $sql = "SELECT * FROM nhasanxuat;";
 
   $data = mysqli_query($conn, $sql);
 
-  $arrLSP = [];
+  $arrnsx = [];
 
   while ($row = mysqli_fetch_array($data, MYSQLI_ASSOC)) {
-    $arrLSP[] = array(
-      'lsp_id' => $row['lsp_id'],
-      'lsp_ten' => $row['lsp_ten'],
-      'lsp_mota' => $row['lsp_mota'],
+    $arrnsx[] = array(
+      'nsx_id' => $row['nsx_id'],
+      'nsx_ten' => $row['nsx_ten'],
+      'nsx_mota' => $row['nsx_mota'],
     );
   }
 
@@ -45,7 +45,7 @@
         <div class="col-9">
           <div class="row">
             <div class="col-4 border rounded bg-secondary text-white">
-              Tên loại sản phẩm
+              Tên nhà sản xuất
             </div>
             <div class="col-6 border rounded bg-secondary text-white ">
               Mô tả
@@ -53,18 +53,18 @@
             <div class="col-2"></div>
           </div>
 
-          <?php foreach ($arrLSP as $lsp): ?>
+          <?php foreach ($arrnsx as $nsx): ?>
             <div class="row ">
               
               <div class="col-4 bg-light mt-2">
-                <?= $lsp['lsp_ten'] ?>
+                <?= $nsx['nsx_ten'] ?>
               </div>
               <div class="col-6 bg-light mt-2">
-                <?= $lsp['lsp_mota'] ?>
+                <?= $nsx['nsx_mota'] ?>
               </div>
               <div class="col-2">
-                  <a href="./edit.php?id=<?= $lsp['lsp_id']?>" ><i class="fa-solid fa-pen-to-square"></i></a>
-                  <a href="./delete.php?id=<?= $lsp['lsp_id']?>"><i class="fa-solid fa-trash text-danger"></i></a>
+                  <a href="./edit.php?id=<?= $nsx['nsx_id']?>" ><i class="fa-solid fa-pen-to-square"></i></a>
+                  <a href="./delete.php?id=<?= $nsx['nsx_id']?>"><i class="fa-solid fa-trash text-danger"></i></a>
               </div>
             </div>
           <?php endforeach; ?>
@@ -72,7 +72,7 @@
           <div class="row">
             
             <div class="col-4  p-2 ">
-              <a href="./add.php" class="btn btn-secondary text-white"><i class="fa-solid fa-plus"></i> Thêm loại sản phẩm</a>
+              <a href="./add.php" class="btn btn-secondary text-white"><i class="fa-solid fa-plus"></i> Thêm nhà sản xuất</a>
             </div>
             <div class="col-3  p-2">
 
