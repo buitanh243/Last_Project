@@ -3,10 +3,7 @@
 
     $id = $_GET['id'];
     
-    
-
-
-    $sql = " DELETE FROM sanpham WHERE sp_id=$id; ";
+    $sql = " DELETE FROM gopy WHERE gopy_id=$id; ";
 
     mysqli_query($conn,$sql);
 

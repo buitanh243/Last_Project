@@ -35,7 +35,7 @@
 
 <main>
 
-         <form class="container align-items-center bg-light m-5 p-5 rounded border " action="" method="post" name="themmoi" >  
+         <form class="container align-items-center bg-light m-5 p-5 rounded border " action="" method="post" name="themmoi" id="themmoi" >  
               <div class="row">
                 <div class="col-3"></div>
                 <h3 class="col-5">Chỉnh sửa nhà sản xuất</h3>
@@ -45,18 +45,18 @@
               <div class="col-3">
               <?php foreach($arrnsx as $nsx): ?>
                   <label class="mt-5  p-1" for="">Tên nhà sản xuất </label>
-                  <input class="form-control mt-2" value="<?= $nsx['nsx_ten']?>" type="text" name="nsx_ten"> 
+                  <input class="form-control mt-2" value="<?= $nsx['nsx_ten']?>" type="text" name="nsx_ten" id="nsx_ten"> 
                 </div>
               
                 <div class="col-4">
                   <label class="mt-5  p-1" for="">Mô tả </label>
-                  <input class="form-control mt-2" type="text" value="<?= $nsx['nsx_mota']?>" name="nsx_mota"> 
+                  <input class="form-control mt-2" type="text" value="<?= $nsx['nsx_mota']?>" name="nsx_mota" id="nsx_mota"> 
                 </div>
                 <?php endforeach; ?>
              </div>
             <div class="row">
               <div class="col-3 ms-1"></div>
-              <input class="btn btn-primary text-white m-2 col-auto " type="submit" value="Lưu" name="save" >
+              <input class="btn btn-primary text-white m-2 col-auto " type="submit" value="Lưu" name="save" id="save" >
               <input class="btn btn-danger text-white m-2 col-auto" type="submit" value="Huỷ" name="exit" >
             </div>
         </form>
@@ -78,9 +78,11 @@
               if(isset($_POST['exit'])) {
                 echo '<script>location.href = "index.php";</script>';
               }
-            ?>
-          
-       
+            ?>       
     </main>
+    <?php
+  include_once __DIR__ . '/../js/js.php';
+  include_once __DIR__ . '/../../js/js.php';
+  ?>
 </body>
 </html>

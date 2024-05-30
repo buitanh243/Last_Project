@@ -44,10 +44,10 @@
         </div>
         <div class="col-9">
           <div class="row">
-            <div class="col-4 border rounded bg-secondary text-white">
+            <div class="col-4 border rounded bg-secondary bg-gradient text-white">
               Tên nhà sản xuất
             </div>
-            <div class="col-6 border rounded bg-secondary text-white ">
+            <div class="col-6 border rounded bg-secondary bg-gradient text-white ">
               Mô tả
             </div>
             <div class="col-2"></div>
@@ -63,8 +63,8 @@
                 <?= $nsx['nsx_mota'] ?>
               </div>
               <div class="col-2">
-                  <a href="./edit.php?id=<?= $nsx['nsx_id']?>" ><i class="fa-solid fa-pen-to-square"></i></a>
-                  <a href="./delete.php?id=<?= $nsx['nsx_id']?>"><i class="fa-solid fa-trash text-danger"></i></a>
+                  <a href="./edit.php?id=<?= $nsx['nsx_id']?>" class="btn btn-warning btn-sm mt-1" ><i class="fa-solid fa-pen-to-square"></i></a>
+                  <a href="#" id="" data-id="<?= $nsx['nsx_id']?>"  class="btn btn-danger btn-sm mt-1 btn-delete" ><i class="fa-solid fa-trash"></i></a>
               </div>
             </div>
           <?php endforeach; ?>
@@ -72,7 +72,7 @@
           <div class="row">
             
             <div class="col-4  p-2 ">
-              <a href="./add.php" class="btn btn-secondary text-white"><i class="fa-solid fa-plus"></i> Thêm nhà sản xuất</a>
+              <a href="./add.php" class="btn btn-info text-white"><i class="fa-solid fa-plus"></i> Thêm nhà sản xuất</a>
             </div>
             <div class="col-3  p-2">
 
@@ -81,7 +81,6 @@
           </div>
         </div>
 
-
       </div>
 
     </div>
@@ -89,7 +88,10 @@
   </main>
   <?php
   include_once __DIR__ . '/../js/js.php';
+  include_once __DIR__ . '/../../js/js.php';
   ?>
+
+
 </body>
 
 </html>

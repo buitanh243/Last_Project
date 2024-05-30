@@ -12,7 +12,7 @@
 </head>
 <body>
 
-        <form class="container align-items-center bg-light m-5 p-5 rounded border " action="" method="post" name="themmoi" >  
+        <form class="container align-items-center bg-light m-5 p-5 rounded border " action="" method="post" name="themmoi" id="themmoi" >  
               <div class="row">
                 <div class="col-3"></div>
                 <h3 class="col-4">Thêm nhà sản xuất</h3>
@@ -20,16 +20,16 @@
              <div class="row">
               <div class="col-3"></div>
               <div class="col-3">
-                  <label class="mt-5  p-1" for="">Tên nhà sản xuất </label><input class="form-control mt-2" type="text" name="nsx_ten"> 
+                  <label class="mt-5  p-1" for="">Tên nhà sản xuất (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label><input class="form-control mt-2" type="text" name="nsx_ten" id="nsx_ten"> 
                 </div>
               
                 <div class="col-4">
-                  <label class="mt-5  p-1" for="">Mô tả </label><input class="form-control mt-2" type="text" name="nsx_mota"> 
+                  <label class="mt-5  p-1" for="">Mô tả </label><input class="form-control mt-2" type="text" name="nsx_mota" id="nsx_mota"> 
                 </div>
              </div>
             <div class="row">
               <div class="col-3 ms-1"></div>
-              <input class="btn btn-primary text-white m-2 col-auto " type="submit" value="Lưu" name="save" >
+              <input class="btn btn-primary text-white m-2 col-auto " type="submit" value="Lưu" name="save" id="save">
               <input class="btn btn-danger text-white m-2 col-auto" type="submit" value="Huỷ" name="exit" >
             </div>
         </form>
@@ -51,5 +51,9 @@
           echo '<script>location.href = "index.php";</script>';
         }
     ?>
+    <?php
+  include_once __DIR__ . '/../js/js.php';
+  include_once __DIR__ . '/../../js/js.php';
+  ?>
 </body>
 </html>
