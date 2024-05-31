@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thêm hình sản phẩm</title>
+  <title>Sửa hình sản phẩm</title>
   <?php
   include_once __DIR__ . '/../../css/style.php';
   include_once __DIR__ . '/../style.php'; //css backend
@@ -125,7 +125,7 @@
     ";
 
     mysqli_query($conn, $sql_url);
-    //echo '<script>location.href = "index.php";</script>';
+    echo '<script>location.href = "index.php";</script>';
   }
 
   if (isset($_POST['exit'])) {
