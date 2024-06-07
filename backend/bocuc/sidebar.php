@@ -20,7 +20,6 @@
   <a class="list-group-item" data-id="3" href="\Last_Project\backend\khuyenmai\">Danh sách khuyến mãi</a>
   <a class="list-group-item" data-id="4" href="\Last_Project\backend\gopy\">Danh sách góp ý</a>
   <a class="list-group-item" data-id="5" href="\Last_Project\backend\hinhsanpham\">Danh sách hình sản phẩm</a>
-
 </ul>
               
 </body>

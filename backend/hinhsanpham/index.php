@@ -44,6 +44,8 @@
 
   ?>
   <main>
+  <?php include_once __DIR__ . '/../bocuc/header.php'; ?>
+
     <div class="container mt-5">
 
       <div class="row">
@@ -51,7 +53,6 @@
           <?php include_once __DIR__ . '/../bocuc/sidebar.php'; ?>
         </div>
         <div class="col-9">
-          <h3 for="">Danh mục hình sản phẩm</h3>
           <div class="row">
             <label class="col-3 border rounded bg-secondary bg-gradient text-white" for="">Tên sản phẩm </label>
             <label class="col-3 border rounded bg-secondary bg-gradient text-white" for="">Giá </label>

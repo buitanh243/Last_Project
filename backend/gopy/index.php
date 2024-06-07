@@ -37,7 +37,7 @@
 
   ?>
   <main>
-
+  <?php include_once __DIR__ . '/../bocuc/header.php'; ?> 
     <div class="container mt-5">
       <div class="row">
         <div class="col-3">

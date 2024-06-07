@@ -8,6 +8,7 @@
 
   <?php
   include_once __DIR__ . '/css/style.php';
+  include_once __DIR__ . '/css/trangchu.php';
   ?>
 
   <link rel="icon" href="./Pic/favicon.ico" type="image/x-icon">
@@ -17,7 +18,7 @@
 
   <?php
   include_once __DIR__ . '/bocucchinh/headder.php';
-  include_once __DIR__ . '/css/trangchu.php';
+
   ?>
   <?php
 
@@ -141,6 +142,7 @@
         </div>
       </div>
     </div>
+    
   </main>
 
 
