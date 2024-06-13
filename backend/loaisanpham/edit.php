@@ -73,9 +73,10 @@
       $lsp_mota = $_POST['lsp_mota'];
 
       $sql_edit = "UPDATE loaisanpham SET lsp_ten = '$lsp_ten',lsp_mota = '$lsp_mota' WHERE lsp_id = '$id';";
-      echo '<script>location.href = "index.php";</script>';
-
       mysqli_query($conn, $sql_edit);
+
+      echo '<script>location.href = "./../popup.php?name=loaisanpham";</script>';
+
     }
 
     if (isset($_POST['exit'])) {

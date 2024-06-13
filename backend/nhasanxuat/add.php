@@ -42,9 +42,8 @@
           $nsx_motangan = $_POST['nsx_mota'];
 
           $sql = "INSERT INTO nhasanxuat (nsx_ten, nsx_mota) VALUES ('$nsx_ten','$nsx_motangan');";
-          echo '<script>location.href = "index.php";</script>';
-
           mysqli_query($conn,$sql);
+          echo '<script>location.href = "./../popup.php?name=nhasanxuat";</script>';
         }
        
         if(isset($_POST['exit'])) {

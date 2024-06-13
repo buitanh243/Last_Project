@@ -99,7 +99,13 @@
         $upload_file = $upload_dir . $hsp_url;
 
         if (move_uploaded_file($_FILES['hsp_url']['tmp_name'], $upload_file)) {
-          echo 'Tải lên thành công!';
+          $sp_id = $_POST['sp_id'];
+
+          $sql_url = "INSERT INTO hinhsanpham (sp_id, hsp_url) VALUES ('$sp_id', '$hsp_url')";
+      
+      
+          mysqli_query($conn, $sql_url);
+          echo '<script>location.href = "./../popup.php?name=hinhsanpham";</script>';
         } else {
           echo 'Lỗi khi tải tệp lên';
         }
@@ -107,13 +113,7 @@
     } else {
       echo 'Không có tệp nào được gửi lên';
     }
-    $sp_id = $_POST['sp_id'];
-
-    $sql_url = "INSERT INTO hinhsanpham (sp_id, hsp_url) VALUES ('$sp_id', '$hsp_url')";
-
-
-    mysqli_query($conn, $sql_url);
-    echo '<script>location.href = "index.php";</script>';
+   
   }
 
   if (isset($_POST['exit'])) {

@@ -69,10 +69,11 @@
                 $nsx_ten = $_POST['nsx_ten'];
                 $nsx_mota = $_POST['nsx_mota'];
 
-                $sql_edit = "UPDATE nhasanxuat SET nsx_ten = '$nsx_ten',nsx_mota = '$nsx_mota' WHERE nsx_id = '$id';";
-                echo '<script>location.href = "index.php";</script>';
-      
+                $sql_edit = "UPDATE nhasanxuat SET nsx_ten = '$nsx_ten',nsx_mota = '$nsx_mota' WHERE nsx_id = '$id';";   
                 mysqli_query($conn,$sql_edit);
+
+                echo '<script>location.href = "./../popup.php?name=nhasanxuat";</script>';
+
               }
              
               if(isset($_POST['exit'])) {

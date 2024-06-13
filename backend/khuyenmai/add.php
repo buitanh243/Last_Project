@@ -60,9 +60,10 @@
     $km_mota = $_POST['km_mota'];
 
     $sql = "INSERT INTO khuyenmai (km_ten,km_sta,km_end,km_mota) VALUES ('$km_ten','$km_sta','$km_end','$km_mota');";
-    echo '<script>location.href = "index.php";</script>';
-
     mysqli_query($conn, $sql);
+
+    echo '<script>location.href = "./../popup.php?name=khuyenmai";</script>';
+
   }
 
   if (isset($_POST['exit'])) {

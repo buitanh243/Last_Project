@@ -125,7 +125,7 @@
     ";
 
     mysqli_query($conn, $sql_url);
-    echo '<script>location.href = "index.php";</script>';
+    echo '<script>location.href = "./../popup.php?name=hinhsanpham";</script>';
   }
 
   if (isset($_POST['exit'])) {

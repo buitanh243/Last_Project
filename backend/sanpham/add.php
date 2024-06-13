@@ -177,13 +177,9 @@
 
         $sql = "INSERT INTO sanpham (sp_ten, sp_soluong, sp_gia, sp_giacu, sp_ngaynhaphang, sp_motangan, sp_mota_chitiet, lsp_id, nsx_id, km_id) 
          VALUES ('$sp_ten', $sp_soluong, $sp_gia, $sp_giacu, '$sp_ngaynhaphang', '$sp_motangan', '$sp_mota_chitiet', $lsp_id, $nsx_id, $km_id);";
-
         mysqli_query($conn, $sql);
-        echo '<script>
-        setTimeout(function() {
-            location.href = "index.php";
-        }, 1000); 
-        </script>';
+        echo '<script>location.href = "./../popup.php?name=sanpham";</script>';
+       
     }
     if (isset($_POST['exit'])) {
         echo '<script>location.href = "index.php";</script>';

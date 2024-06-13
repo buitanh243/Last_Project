@@ -207,7 +207,7 @@
 
             $sql_edit = "UPDATE sanpham SET sp_ten = '$sp_ten', sp_soluong = $sp_soluong, sp_gia = $sp_gia, sp_giacu = $sp_giacu, sp_motangan = '$sp_motangan', sp_mota_chitiet = '$sp_mota_chitiet', lsp_id = $lsp_id, nsx_id = $nsx_id, sp_ngaynhaphang = '$sp_ngaynhaphang', sp_ngaycapnhat = '$sp_ngaycapnhat', km_id = $km_id WHERE sp_id = $id;";
             mysqli_query($conn, $sql_edit);
-            echo '<script>setTimeout(function() { location.href = "index.php"; }, 300);</script>';
+            echo '<script>location.href = "./../popup.php?name=sanpham";</script>';
         }
 
         if (isset($_POST['exit'])) {

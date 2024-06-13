@@ -40,19 +40,19 @@
             <div class="row">
                 <div class="col-md-6 text-center">
                     <h2>Theo dõi và liên lạc</h2>
-                    <div class="d-flex justify-content-center">
-                        <a class="text-white me-3 social-icon" href=""><i class="fab fa-facebook-square fa-2x"></i></a>
-                        <a class="text-white me-3 social-icon" href=""><i class="fab fa-twitter fa-2x"></i></a>
-                        <a class="text-white me-3 social-icon" href=""><i class="far fa-envelope fa-2x"></i></a>
+                    <div class="d-flex justify-content-center mt-5 ">
+                        <a class="social-icon text-white me-3 " href=""><i class="fab fa-facebook-square fa-2x"></i></a>
+                        <a class="social-icon text-white me-3 " href=""><i class="fab fa-twitter fa-2x"></i></a>
+                        <a class="social-icon text-white me-3 " href=""><i class="far fa-envelope fa-2x"></i></a>
                         <a class="text-white social-icon" href=""><i class="fa-solid fa-square-phone fa-2x"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6 text-center">
                     <h2>Chính sách và dịch vụ</h2>
                     <ul class="list-unstyled">
-                        <li><a class="text-white footer-link" href="">CHÍNH SÁCH BẢO MẬT</a></li>
-                        <li><a class="text-white footer-link" href="">CHÍNH SÁCH ĐỔI TRẢ</a></li>
-                        <li><a class="text-white footer-link" href="">ĐIỀU KHOẢN DỊCH VỤ</a></li>
+                        <li><a class="footer-link text-white " href="">CHÍNH SÁCH BẢO MẬT</a></li>
+                        <li><a class="footer-link text-white " href="">CHÍNH SÁCH ĐỔI TRẢ</a></li>
+                        <li><a class="footer-link text-white " href="">ĐIỀU KHOẢN DỊCH VỤ</a></li>
                     </ul>
                 </div>
             </div>

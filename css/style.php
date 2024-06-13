@@ -63,10 +63,4 @@
         height: 100%;
     }
 
-    .button:hover::before {
-        font-size: 13px;
-        opacity: 1;
-        bottom: unset;
-        transition-duration: 0.3s;
-    }
 </style>

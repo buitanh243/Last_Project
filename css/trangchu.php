@@ -8,7 +8,6 @@
     position: relative;
     width: 100%;
     height: 100%;
-    margin-left: 20px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -281,6 +280,18 @@
   }
 
   /* The san pham */
+  .km {
+    display: flex;
+    justify-content: center;
+  }
+  .col-card {
+    margin: 15px;
+    width: 270px;
+  }
+
+  /* .card {
+    border-radius: 20px;
+  } */
 
   .card::after {
     content: "Thêm vào giỏ hàng";
@@ -332,5 +343,7 @@
   .card-img-top {
     width: 100%;
     height: 150px;
+    /* border-radius: 20px 20px 0 0; */
+
   }
 </style>

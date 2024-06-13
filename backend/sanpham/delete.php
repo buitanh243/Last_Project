@@ -10,5 +10,5 @@
 
     mysqli_query($conn,$sql);
 
-    echo '<script>location.href="index.php"</script>';
+    echo '<script>location.href = "./../popup.php?name=sanpham";</script>';
 ?>

@@ -16,8 +16,8 @@ if ($rowMuonXoa) {
     }
 
     $sql = "DELETE FROM hinhsanpham WHERE hsp_id = $id";
-    echo '<script>location.href="index.php"</script>';
     mysqli_query($conn, $sql);
+    echo '<script>location.href = "./../popup.php?name=hinhsanpham";</script>';
     
 } 
 ?>

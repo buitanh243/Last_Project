@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,26 +19,42 @@
 
   <?php
   include_once __DIR__ . '/bocucchinh/headder.php';
-
   ?>
   <?php
 
   include_once __DIR__ . '/connect/connect.php';
 
-  $sql = "SELECT hsp.* ,sp_ten,sp_gia,sp_giacu,sp_motangan FROM hinhsanpham AS hsp 
-   LEFT JOIN sanpham AS sp ON hsp.sp_id = sp.sp_id;";
+  $sql = "SELECT sp.*, km_ten, hsp_url FROM sanpham AS sp 
+  JOIN khuyenmai AS km ON sp.km_id = km.km_id
+  JOIN hinhsanpham AS hsp ON sp.sp_id = hsp.sp_id
+ ;";
 
   $result = mysqli_query($conn, $sql);
 
-  $arrHSP = [];
-
+  $arrSPKM = [];
   while ($row = mysqli_fetch_assoc($result)) {
     $arrHSP[] = array(
-      'hsp_url' => $row['hsp_url'],
+      "sp_id" => $row["sp_id"],
       'sp_ten' => $row['sp_ten'],
       'sp_gia' => $row['sp_gia'],
       'sp_giacu' => $row['sp_giacu'],
       'sp_motangan' => $row['sp_motangan'],
+      'km_ten' => $row['km_ten'],
+      'hsp_url' => $row['hsp_url'],
+
+    );
+  }
+
+  $sql_sp = "SELECT hsp_url,sp_id FROM hinhsanpham
+   ;";
+
+  $result_SP = mysqli_query($conn, $sql_sp);
+
+  $arrSP = [];
+  while ($row = mysqli_fetch_assoc($result_SP)) {
+    $arrSP[] = array(
+      "sp_id" => $row["sp_id"],
+      'hsp_url' => $row['hsp_url'],
     );
   }
   ?>
@@ -88,10 +105,17 @@
         </div>
       </div>
       <div class="row mt-3">
-        <div class="col-sm-3"><img class="ct_t4" src="./Pic/Slide-show head/chuong-trinh-thang-04-2.png" alt=""></div>
-        <div class="col-sm-3"><img class="ct_t4" src="./Pic/Slide-show head/chuong-trinh-thang-04-3.png" alt=""></div>
-        <div class="col-sm-3"><img class="ct_t4" src="./Pic/Slide-show head/chuong-trinh-thang-04-4.png" alt=""></div>
-        <div class="col-sm-3"><img class="ct_t4" src="./Pic/Slide-show head/chuong-trinh-thang-04-6.png" alt=""></div>
+        <?php
+        $count = 0;
+        foreach ($arrSP as $row) :
+          if ($count == 4) {
+            break;
+          }
+        ?>
+          <div class="col-sm-3"><img class="ct_t4" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt=""></div>
+        <?php
+          $count++;
+        endforeach; ?>
       </div>
       <div class="row">
         <button class="btn-uudai" type="button">
@@ -106,43 +130,46 @@
           </div>
         </button>
       </div>
-      <div class="container">
+      <div class="container km bg-secondary mt-3 rounded">
 
         <div class="row mt-3">
           <?php
           $count = 0;
           foreach ($arrHSP as $row) :
-            if ($count >= 4) {
+            if ($count == 4) {
               break;
             }
           ?>
-          <!-- Nên tìm sản phẩm có khuyến mãi thôi -->
-            <div class="col-sm-3">
+            <div class="col-sm-3 col-card">
               <div class="card">
                 <img class="card-img-top" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Cool Chair">
                 <div class="card-body">
-                  <h5 class="card-title text-center bg-light text-uppercase"><b><?= $row['sp_ten'] ?></b></h5>
-                  <div class="row text-center bg-light  border">
-                    <span class="price col-6"><b>Giá: <br><?= number_format($row['sp_gia'], 0, '.', ',') ?>&#8363;</b></span>
+                  <h6 class="card-title text-center bg-light text-uppercase"><b><?= $row['sp_ten'] ?></b></h6>
+                  <div class="row text-center bg-light  border mb-3">
+                    <span class="price col-6 text-danger "><b>Giá: <br><?= number_format($row['sp_gia'], 0, '.', ',') ?>&#8363;</b></span>
                     <span class="price col-6 text-muted"><i>Giá cũ: <br> <s><?= empty($row['sp_giacu']) ? 'Rỗng' : number_format($row['sp_giacu'], 0, '.', ',') . '₫' ?></s></i></span>
                   </div>
-                  <p class="card-text mt-3"><b>Mô tả ngắn: </b><?= $row['sp_motangan'] ?></p>
+                  <b>Khuyến mãi: </b><label class="badge bg-primary" for=""><?= $row['km_ten'] ?></label>
+                  <br><b class="card-text mt-3 text-secondary">Mô tả ngắn: </b><label class="" for=""><?= $row['sp_motangan'] ?></label>
+
+                  <br>
+                  <p class="mt-3"><a href="chitet_sanpham.php?id=<?= $row['sp_id'] ?>">Xem chi tiết</a></p>
                 </div>
               </div>
             </div>
-
           <?php
+            $count++;
           endforeach;
           ?>
         </div>
-
-        <div class="row">
-          <div class="col-sm"><img src="./Pic/Slide-show head/Galax-GeForce-RTX-4070-EX-Gamer-Series.jpg" alt="" class="img-row"></div>
-          <div class="col-sm"><img src="./Pic/Slide-show head/man-hinh-asus-proart-tang-ao.jpg" alt="" class="img-row"></div>
-        </div>
       </div>
+      <div class="row">
+        <div class="col-sm"><img src="./Pic/Slide-show head/Galax-GeForce-RTX-4070-EX-Gamer-Series.jpg" alt="" class="img-row"></div>
+        <div class="col-sm"><img src="./Pic/Slide-show head/man-hinh-asus-proart-tang-ao.jpg" alt="" class="img-row"></div>
+      </div>
+
     </div>
-    
+
   </main>
 
 

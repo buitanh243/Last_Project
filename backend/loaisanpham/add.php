@@ -47,10 +47,10 @@
     $lsp_mota = $_POST['lsp_mota'];
 
     $sql = "INSERT INTO loaisanpham (lsp_ten, lsp_mota) VALUES ('$lsp_ten','$lsp_mota');";
+    mysqli_query($conn, $sql);
     
-    if(mysqli_query($conn, $sql)) {
-        echo '<script>setTimeout(function(){ location.href = "index.php"; }, 300);</script>';
-    }
+    echo '<script>location.href = "./../popup.php?name=loaisanpham";</script>';
+
   }
 
   if (isset($_POST['exit'])) {

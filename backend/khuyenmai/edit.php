@@ -95,9 +95,10 @@
       $km_end = $_POST['km_end'];
 
       $sql_edit = "UPDATE khuyenmai SET km_ten = '$km_ten',km_mota = '$km_mota', km_end = '$km_end', km_sta = '$km_sta' WHERE km_id = '$id';";
-      echo '<script>location.href = "index.php";</script>';
-
       mysqli_query($conn, $sql_edit);
+
+      echo '<script>location.href = "./../popup.php?name=khuyenmai";</script>';
+
     }
 
     if (isset($_POST['exit'])) {
