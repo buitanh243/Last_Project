@@ -64,10 +64,10 @@ session_start();
             <h4>Bán chạy</h4>
             <div class="row mt-3">
                 <?php
-                $count = 0; // Biến đếm số lượng sản phẩm trên mỗi dòng
+                $count = 0; 
                 foreach ($arrHSP as $row) :
-                    if ($count % 5 == 0 && $count != 0) : // Kiểm tra nếu đã đủ 5 sản phẩm
-                        echo '</div><div class="row mt-3">'; // Kết thúc dòng hiện tại và bắt đầu dòng mới
+                    if ($count % 5 == 0 && $count != 0) : 
+                        echo '</div><div class="row mt-3">'; 
                     endif;
                     $count++;
                 ?>
@@ -81,7 +81,7 @@ session_start();
                                     <span class="text-muted"><i>Giá cũ: <br><s><?= empty($row['sp_giacu']) ? 'Rỗng' : number_format($row['sp_giacu'], 0, '.', ',') . '₫' ?></s></i></span>
                                 </div>
                                 <b class="card-text text-secondary">Mô tả: </b><label><?= $row['sp_motangan'] ?></label>
-                                <p class="text-center mt-2"><a href="chitet_sanpham.php?id=<?= $row['sp_id'] ?>">Xem chi tiết</a></p>
+                                <p class="text-center mt-2"><a href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>">Xem chi tiết</a></p>
                             </div>
                         </div>
                     </div>

@@ -59,7 +59,8 @@
         .content-text p {
             font-size: 13px;
             line-height: 1.6;
-            margin-bottom: 10px; 
+            margin-bottom: 10px;
+            text-align: justify; 
         }
 
         .intro {
@@ -75,5 +76,9 @@
             padding: 20px;
             height: 200px;
             color: #555;
+        }
+
+        .intro-col p {
+            text-align: justify;
         }
     </style>

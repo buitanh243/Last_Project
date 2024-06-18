@@ -35,7 +35,7 @@ session_start();
 
   $arrSPKM = [];
   while ($row = mysqli_fetch_assoc($result)) {
-    $arrHSP[] = array(
+    $arrSPKM[] = array(
       "sp_id" => $row["sp_id"],
       'sp_ten' => $row['sp_ten'],
       'sp_gia' => $row['sp_gia'],
@@ -99,9 +99,8 @@ session_start();
             </div>
             <div class="card__content">
               <p class="card__title">Khuyến Mãi</p>
-              <p class="card__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua.</p>
-              <a class="card__button" href="#">Xem thêm</a>
+              <p class="card__text">Chương trình khuyến mãi hấp dẫn với giảm giá lên đến 50%, tặng quà kèm và miễn phí vận chuyển toàn quốc.</p>
+              <a class="card__button" href="./khuyenmai.php">Xem thêm</a>
             </div>
           </div>
         </div>
@@ -114,7 +113,7 @@ session_start();
             break;
           }
         ?>
-          <div class="col-sm-3"><img class="ct_t4" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt=""></div>
+          <a href="chitiet_sanpham.php?id=<?= $row['sp_id']?>" class="col-sm-3"><img class="ct_t4" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt=""></a>
         <?php
           $count++;
         endforeach; ?>
@@ -137,7 +136,7 @@ session_start();
         <div class="row mt-3 justify-content-center">
           <?php
           $count = 0;
-          foreach ($arrHSP as $row) :
+          foreach ($arrSPKM as $row) :
             if ($count == 5) {
               break;
             }
@@ -155,7 +154,7 @@ session_start();
                   <br>
                   <b class="card-text mt-3 text-secondary">Mô tả ngắn: </b><label class="" for=""><?= $row['sp_motangan'] ?></label>
                   <br>
-                  <p class="mt-2 text-center"><a href="chitet_sanpham.php?id=<?= $row['sp_id'] ?>">Xem chi tiết</a></p>
+                  <p class="mt-2 text-center"><a href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>">Xem chi tiết</a></p>
                 </div>
               </div>
             </div>
@@ -165,9 +164,17 @@ session_start();
           ?>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm"><img src="./Pic/Slide-show head/Galax-GeForce-RTX-4070-EX-Gamer-Series.jpg" alt="" class="img-row"></div>
-        <div class="col-sm"><img src="./Pic/Slide-show head/man-hinh-asus-proart-tang-ao.jpg" alt="" class="img-row"></div>
+      <div class="row ">
+      <?php
+        $count = 0;
+        foreach ($arrSP as $row) :
+          if ($count == 2) {
+            break;
+          }
+        ?>
+        <a href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>" class="col-sm"><img class="product-bt" src="./uploads/<?=$row['hsp_url']?>" alt="" class="img-row"></a>        <?php
+          $count++;
+        endforeach; ?>
       </div>
 
     </div>

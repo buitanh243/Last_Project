@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Header</title>
-    <?php include_once __DIR__ . '/../css/style.php';
-    ?>
+    <?php include_once __DIR__ . '/../css/style.php'; ?>
     <style>
         .hover-effect {
             transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
@@ -68,10 +67,10 @@
         .login-btn {
             font-weight: 600;
         }
-        
+
         #user-btn {
             border: 2px solid gray;
-            border-radius: 15px; 
+            border-radius: 15px;
             padding: 3px 10px;
             background-color: #f0f0f0;
             text-align: center;
@@ -120,17 +119,24 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item hover-effect" href="/Last_Project/sanpham.php">Bán chạy</a></li>
-                                <li><a class="dropdown-item hover-effect" href="/Last_Project/sanpham.php">Sản phẩm mới</a></li>
                                 <li><a class="dropdown-item hover-effect" href="/Last_Project/sanpham.php">Danh mục sản phẩm</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item hover-effect" href="#">Khuyến mãi</a></li>
+                                <li><a class="dropdown-item hover-effect" href="/Last_Project/khuyenmai.php">Khuyến mãi</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link hover-effect" href="#" tabindex="-1" aria-disabled="true">Liên hệ</a>
                         </li>
+                        <?php
+                        if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
+                        ?>
+                            <li class="nav-item">
+                                <a class="nav-link hover-effect" href="/Last_Project/gopy-kh.php" tabindex="-1" aria-disabled="true">Góp ý</a>
+                            </li>
+                        <?php
+                        } ?>
                     </ul>
                     <div class="d-flex ms-auto align-items-center">
                         <form class="d-flex">
@@ -149,21 +155,16 @@
                         } else {
                         ?>
                             <a class="login-btn hover-effect ms-3" id="user-btn" href="/Last_Project/user/user.php"><i class="fa-regular fa-user"></i></a>
-
                             <form action="/Last_Project/Xuly/xuly-logout.php" name="dangxuat" id="dangxuat"><button class="login-btn hover-effect" type="submit" name="logout" id="logout">ĐĂNG XUẤT</button></form>
                         <?php
-                        }
-
-                        ?>
+                        } ?>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
 
-    <?php
-    include_once __DIR__ . '/../js/js.php';
-    ?>
+    <?php include_once __DIR__ . '/../js/js.php'; ?>
 </body>
 
 </html>

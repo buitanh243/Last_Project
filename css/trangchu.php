@@ -354,4 +354,10 @@
   .card-text {
     height: 20px;
   }
+
+  .product-bt {
+    margin-top: 20px;
+    height: 400px;
+    width: 630px;
+  }
 </style>
