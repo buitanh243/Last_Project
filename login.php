@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,15 +57,19 @@
 						<div class="group">
 							<label for="pass-register" class="label">Mật khẩu</label>
 							<input id="pass-register" type="password" class="input" data-type="password" name="password" required>
+							<div id="password-error" class="error-message"></div>
 						</div>
 						<div class="group">
 							<label for="pass-confirm" class="label">Nhập lại mật khẩu</label>
 							<input id="pass-confirm" type="password" class="input" data-type="password_confirm" name="password_confirm" required>
+							<div id="password-confirm-error" class="error-message"></div> 
 						</div>
 						<div class="group">
 							<label for="email-register" class="label">Email</label>
 							<input id="email-register" type="text" class="input" name="email" required>
+							<div id="email-error" class="error-message"></div>
 						</div>
+
 						<div class="group">
 							<input type="submit" class="button-form" value="Đăng ký" name="register">
 						</div>
@@ -96,8 +99,58 @@
 			} else if (tab === 'register') {
 				document.getElementById('tab-2').checked = true;
 			}
+
+			const passInput = document.getElementById('pass-register');
+			const passConfirmInput = document.getElementById('pass-confirm');
+			const passwordError = document.getElementById('password-error');
+			const passwordConfirmError = document.getElementById('password-confirm-error');
+
+			const emailInput = document.getElementById('email-register');
+			const emailError = document.getElementById('email-error');
+
+			function validatePasswords() {
+				const passValue = passInput.value;
+				const passConfirmValue = passConfirmInput.value;
+
+				const passPattern = /^(?=.*[A-Z]).{8,}$/;
+
+				if (!passPattern.test(passValue)) {
+					passInput.classList.add('input-error');
+					passwordError.textContent = 'Mật khẩu phải ít nhất 8 ký tự và chứa ít nhất một chữ hoa';
+				} else {
+					passInput.classList.remove('input-error');
+					passwordError.textContent = '';
+				}
+
+				if (passValue === passConfirmValue) {
+					passConfirmInput.classList.remove('input-error');
+					passwordConfirmError.textContent = '';
+				} else {
+					passConfirmInput.classList.add('input-error');
+					passwordConfirmError.textContent = 'Mật khẩu không khớp';
+				}
+			}
+
+			function validateEmail() {
+				const emailValue = emailInput.value;
+				const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+				if (emailPattern.test(emailValue)) {
+					emailInput.classList.remove('input-error');
+					emailError.textContent = '';
+				} else {
+					emailInput.classList.add('input-error');
+					emailError.textContent = 'Email không hợp lệ';
+				}
+			}
+
+			passConfirmInput.addEventListener('input', validatePasswords);
+			passInput.addEventListener('input', validatePasswords);
+			emailInput.addEventListener('input', validateEmail);
 		}
 	</script>
+
+
 
 </body>
 

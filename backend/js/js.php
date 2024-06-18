@@ -56,6 +56,27 @@ include_once __DIR__ . '/../../js/js.php';
     });
   });
 
+  $(document).ready(function() {
+    //Nho tim cac doi tuong co id btn-delete
+
+    $('.btn-delete-all').click(function() {
+
+      Swal.fire({
+        title: "Bạn chắc chắn muốn xoá chứ?",
+        text: "Lưu ý! Sẽ không thể khôi phục!",
+        icon: "Cảnh bảo",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Đồng ý",
+        cancelButtonText: "Huỷ"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          location.href = "delete-all.php?";
+        }
+      });
+    });
+  });
 
   //Kiểm tra xem người dùng có nhập đủ các trường hay chưa
   document.getElementById('themmoi').addEventListener('submit', function(event) {

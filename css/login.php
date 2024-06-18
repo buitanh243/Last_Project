@@ -202,4 +202,8 @@
     transition: transform 0.3s ease;
 }
 
+.error-message {
+    font-size: 14px;
+    color: red;
+}
 </style>

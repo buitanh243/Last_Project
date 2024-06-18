@@ -37,7 +37,7 @@
 
   ?>
   <main>
-  <?php include_once __DIR__ . '/../bocuc/header.php'; ?> 
+    <?php include_once __DIR__ . '/../bocuc/header.php'; ?>
     <div class="container mt-5">
       <div class="row">
         <div class="col-3">
@@ -50,14 +50,14 @@
             <div class="col-3 border rounded bg-secondary bg-gradient text-white">
               Tên khách hàng
             </div>
-          
+
             <div class="col-3 border rounded bg-secondary bg-gradient text-white ">
               Nội dung
             </div>
             <div class="col-2"></div>
           </div>
 
-          <?php foreach ($arrgopy as $gopy): ?>
+          <?php foreach ($arrgopy as $gopy) : ?>
             <div class="row ">
               <div class="col-3 bg-light mt-2">
                 <?= $gopy['kh_ten'] ?>
@@ -66,23 +66,23 @@
                 <?= $gopy['gopy_noidung'] ?>
               </div>
               <div class="col-2">
-                  <a href="./delete.php?id=<?= $gopy['gopy_id']?> " class="btn btn-danger mt-1"><i class="fa-solid fa-trash"></i></a>
+                <a href="#" data-id="<?= $gopy['gopy_id']?>" class=" btn-delete btn btn-danger mt-1"><i class="fa-solid fa-trash"></i></a>
               </div>
             </div>
           <?php endforeach; ?>
 
           <div class="row">
             <div class="col-3 p-2">
-            <a href="./add.php" class="btn btn-danger text-white btn-delete" id="btn-delete-all"><i class="fa-solid fa-trash" ></i> Xoá tất cả</a>
+              
+                <a class="btn-delete-all btn btn-danger text-white btn-delete"><i class="fa-solid fa-trash"></i> Xoá tất cả</a>
             </div>
           </div>
         </div>
 
-
       </div>
 
     </div>
-
+   
   </main>
   <?php
   include_once __DIR__ . '/../js/js.php';

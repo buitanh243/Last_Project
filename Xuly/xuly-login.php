@@ -26,19 +26,18 @@ if (isset($_POST['login'])) {
 }
 
 if (isset($_POST['register'])) {
-    $sql = "SELECT * FROM taikhoan WHERE username = '$username' OR email = '$email' ;";
-    $result = mysqli_query($conn, $sql);
+        $sql = "SELECT * FROM taikhoan WHERE username = '$username' OR email = '$email' ;";
+        $result = mysqli_query($conn, $sql);
 
-    if (mysqli_num_rows($result) > 0) {
-        echo '<script>
+        if (mysqli_num_rows($result) > 0) {
+            echo '<script>
             location.href="popup-login.php?name=False";
         </script>';
-    } else {
-        $sql_register = "INSERT INTO taikhoan (username,password,email) VALUE ('$username','$password','$email');";
-        mysqli_query($conn, $sql_register);
-        echo '<script>
+        } else {
+            $sql_register = "INSERT INTO taikhoan (username,password,email) VALUE ('$username','$password','$email');";
+            mysqli_query($conn, $sql_register);
+            echo '<script>
             location.href="popup-login.php?name=True";
         </script>';
-    }
+        }
 }
-?>

@@ -30,6 +30,7 @@ include_once __DIR__ . '/../js/js.php';
         if (name === "user") {
             showSuccessMessage("Lưu lại thành công", "/Last_Project/user/user.php");
         }
+
     }
 
     function showSuccessMessage(title, redirectUrl) {
