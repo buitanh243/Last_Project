@@ -54,15 +54,15 @@
         </div>
         <div class="col-9">
           <div class="row">
-            <label class="col-3 border rounded bg-secondary bg-gradient text-white" for="">Tên sản phẩm </label>
-            <label class="col-3 border rounded bg-secondary bg-gradient text-white" for="">Giá </label>
-            <label class="col-3 border rounded bg-secondary bg-gradient text-white" for="">Hình sản phẩm </label>
+            <label class="col-3 border rounded bg-secondary bg-gradient text-white text-center" for="">Tên sản phẩm </label>
+            <label class="col-3 border rounded bg-secondary bg-gradient text-white text-center" for="">Giá </label>
+            <label class="col-3 border rounded bg-secondary bg-gradient text-white text-center" for="">Hình sản phẩm </label>
           </div>
           <?php foreach ($arrHSP as $hsp): ?>
-            <div class="row mt-2 ">
-              <div class="col-3 bg-light p-1"><?= $hsp['sp_ten'] ?></div>
-              <div class="col-3 bg-light p-1"><?= number_format($hsp['sp_gia'], 0, '.', ',')  ?></div>
-              <div class="col-3 bg-light p-1"><img class="img-product" src="\Last_Project\uploads\<?= $hsp['hsp_url'] ?>" alt=""></div>
+            <div class="row mt-3 ">
+              <div class="col-3 bg-light p-1 pt-5 text-center"><b><?= $hsp['sp_ten'] ?></b></div>
+              <div class="col-3 bg-light p-1 pe-3 pt-5 text-end"><i><?= number_format($hsp['sp_gia'], 0, '.', ',')  ?>&#8363;</i></div>
+              <div class="col-3 bg-light p-1 "><img class="img-product" src="\Last_Project\uploads\<?= $hsp['hsp_url'] ?>" alt=""></div>
               <div class="col-2">
                   <a href="./edit.php?id=<?= $hsp['hsp_id']?>" class="btn btn-warning btn-sm mt-1" ><i class="fa-solid fa-pen-to-square"></i></a>
                   <a href="#" class="btn btn-danger btn-sm mt-1 btn-delete" data-id="<?= $hsp['hsp_id']?>"><i class="fa-solid fa-trash"></i></a>

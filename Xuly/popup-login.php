@@ -18,9 +18,17 @@ include_once __DIR__ . '/../js/js.php';
         }
 
         if (name === "False") {
-            showErrorMessage("Đăng ký thất bại", "Tài khoản hoặc mật khẩu đã tồn tại!", "/Last_Project/login.php?tab=register");
+            showErrorMessage("Đăng ký thất bại", "Tài khoản hoặc email đã tồn tại!", "/Last_Project/login.php?tab=register");
         } else if (name === "True") {
             showSuccessMessage("Đăng ký thành công", "/Last_Project/login.php?tab=login");
+        }
+
+        if (name === "logout") {
+            showSuccessMessage("Đăng xuất thành công", "/Last_Project/login.php");
+        }
+
+        if (name === "user") {
+            showSuccessMessage("Lưu lại thành công", "/Last_Project/user/user.php");
         }
     }
 

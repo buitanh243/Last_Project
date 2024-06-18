@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +35,6 @@
             border: none;
             text-decoration: none;
             color: gray;
-            background-color: lightcyan;
             margin-left: 10px;
         }
 
@@ -70,6 +68,30 @@
         .login-btn {
             font-weight: 600;
         }
+        
+        #user-btn {
+            border: 2px solid gray;
+            border-radius: 15px; 
+            padding: 3px 10px;
+            background-color: #f0f0f0;
+            text-align: center;
+            display: inline-block;
+        }
+
+        #user-btn:hover {
+            border: black;
+            transform: scale(1.1);
+        }
+
+        .gio-hang {
+            border: 1px solid gray;
+            border-radius: 5px;
+            margin: 10px;
+        }
+
+        .gio-hang:hover {
+            border: 2px solid black;
+        }
     </style>
 </head>
 
@@ -79,7 +101,7 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
-                    <img src="./Pic/logo.png" alt="Logo">
+                    <img src="/Last_Project/Pic/logo.png" alt="Logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -87,7 +109,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link hover-effect" aria-current="page" href="index.php">Trang chủ</a>
+                            <a class="nav-link hover-effect" aria-current="page" href="/Last_Project/index.php">Trang chủ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link hover-effect" href="\Last_Project\gioithieu.php">Giới thiệu</a>
@@ -97,9 +119,9 @@
                                 Sản phẩm
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item hover-effect" href="sanpham.html">Bán chạy</a></li>
-                                <li><a class="dropdown-item hover-effect" href="sanpham.html">Sản phẩm mới</a></li>
-                                <li><a class="dropdown-item hover-effect" href="sanpham.html">Danh mục sản phẩm</a></li>
+                                <li><a class="dropdown-item hover-effect" href="/Last_Project/sanpham.php">Bán chạy</a></li>
+                                <li><a class="dropdown-item hover-effect" href="/Last_Project/sanpham.php">Sản phẩm mới</a></li>
+                                <li><a class="dropdown-item hover-effect" href="/Last_Project/sanpham.php">Danh mục sản phẩm</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -117,20 +139,28 @@
                                 <a href="/ketquatimkiem.html"><i class="fa-solid fa-magnifying-glass"></i></a>
                             </button>
                         </form>
-                        <button class="login-btn hover-effect"><i class="fa-solid fa-cart-shopping"></i></button>
-                        
+                        <button class="gio-hang login-btn hover-effect"><i class="fa-solid fa-cart-shopping"></i></button>
+                        <?php
+                        if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
+                        ?>
                             <a class="login-btn hover-effect" href="/Last_Project/login.php?tab=login">ĐĂNG NHẬP</a>
                             <a class="login-btn hover-effect" href="/Last_Project/login.php?tab=register">ĐĂNG KÝ</a>
-                       
-                
-                            <button class="login-btn hover-effect" type="submit" name="logout" id="logout">ĐĂNG XUẤT</button>
-                            
+                        <?php
+                        } else {
+                        ?>
+                            <a class="login-btn hover-effect ms-3" id="user-btn" href="/Last_Project/user/user.php"><i class="fa-regular fa-user"></i></a>
 
+                            <form action="/Last_Project/Xuly/xuly-logout.php" name="dangxuat" id="dangxuat"><button class="login-btn hover-effect" type="submit" name="logout" id="logout">ĐĂNG XUẤT</button></form>
+                        <?php
+                        }
+
+                        ?>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
+
     <?php
     include_once __DIR__ . '/../js/js.php';
     ?>

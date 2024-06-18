@@ -77,9 +77,9 @@
               </div>
               <div class="row mt-2">
                 <div class="col-3 border bg-secondary bg-gradient text-white rounded text-center">Giá bán:</div>
-                <div class="col-3"><?= number_format($sp['sp_gia'], 0, '.', ',') ?></div>
+                <div class="col-3"><?= number_format($sp['sp_gia'], 0, '.', ',') ?>&#8363;</div>
                 <div class="col-3 border bg-secondary bg-gradient text-white rounded text-center">Giá cũ:</div>
-                <div class="col-3"><?= empty($sp['sp_giacu']) ? '(Rỗng)' : number_format($sp['sp_giacu'], 0, '.', ',') ?>
+                <div class="col-3"><?= empty($sp['sp_giacu']) ? '(Rỗng)' : number_format($sp['sp_giacu'], 0, '.', ',') . '&#8363;' ?>
                 </div>
               </div>
               <div class="row mt-2">

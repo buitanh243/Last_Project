@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -132,28 +134,28 @@
       </div>
       <div class="container km bg-secondary mt-3 rounded">
 
-        <div class="row mt-3">
+        <div class="row mt-3 justify-content-center">
           <?php
           $count = 0;
           foreach ($arrHSP as $row) :
-            if ($count == 4) {
+            if ($count == 5) {
               break;
             }
           ?>
-            <div class="col-sm-3 col-card">
+            <div class="col col-card">
               <div class="card">
                 <img class="card-img-top" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Cool Chair">
                 <div class="card-body">
-                  <h6 class="card-title text-center bg-light text-uppercase"><b><?= $row['sp_ten'] ?></b></h6>
+                  <h6 class="card-title text-center text-uppercase"><b><?= $row['sp_ten'] ?></b></h6>
                   <div class="row text-center bg-light  border mb-3">
                     <span class="price col-6 text-danger "><b>Giá: <br><?= number_format($row['sp_gia'], 0, '.', ',') ?>&#8363;</b></span>
                     <span class="price col-6 text-muted"><i>Giá cũ: <br> <s><?= empty($row['sp_giacu']) ? 'Rỗng' : number_format($row['sp_giacu'], 0, '.', ',') . '₫' ?></s></i></span>
                   </div>
-                  <b>Khuyến mãi: </b><label class="badge bg-primary" for=""><?= $row['km_ten'] ?></label>
-                  <br><b class="card-text mt-3 text-secondary">Mô tả ngắn: </b><label class="" for=""><?= $row['sp_motangan'] ?></label>
-
+                  <b>Khuyến mãi: </b><label class="badge bg-primary mb-1" for=""><?= $row['km_ten'] ?></label>
                   <br>
-                  <p class="mt-3"><a href="chitet_sanpham.php?id=<?= $row['sp_id'] ?>">Xem chi tiết</a></p>
+                  <b class="card-text mt-3 text-secondary">Mô tả ngắn: </b><label class="" for=""><?= $row['sp_motangan'] ?></label>
+                  <br>
+                  <p class="mt-2 text-center"><a href="chitet_sanpham.php?id=<?= $row['sp_id'] ?>">Xem chi tiết</a></p>
                 </div>
               </div>
             </div>

@@ -13,7 +13,7 @@ if (isset($_POST['login'])) {
 
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
-        //$_SESSION['username'] = $username;
+        $_SESSION['username'] = $username;
         echo '<script>
                 location.href="popup-login.php?status=True";
             </script>';

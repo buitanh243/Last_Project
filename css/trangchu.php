@@ -117,7 +117,6 @@
     z-index: 2;
     font-family: 'Avalors Personal Use';
     font-size: 180%;
-    /* Chỉnh kích thước font về 80% */
     letter-spacing: 5px;
     color: #FFFFFF;
     text-shadow: 0 0 4px white;
@@ -275,75 +274,84 @@
 
   .img-row:hover {
     transform: scale(1.2);
-    /* Scale lên 120% */
     transition: transform 0.3s ease;
   }
 
   /* The san pham */
-  .km {
-    display: flex;
-    justify-content: center;
-  }
   .col-card {
-    margin: 15px;
-    width: 270px;
+    width: calc(20% - 10px); 
+    margin: 20px 0 20px 0;
+    height: 390px;
   }
 
-  /* .card {
-    border-radius: 20px;
-  } */
+  .card {
+    position: relative;
+    height: 100%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    overflow: hidden; 
+    transition: transform 0.2s;
+  }
+
+  .card:hover {
+    transform: translateY(-5px); 
+  }
 
   .card::after {
     content: "Thêm vào giỏ hàng";
-    padding: 3px 3px 3px 1.25em;
+    padding: 10px;
+    
     position: absolute;
     left: 0;
-    bottom: -60px;
-    background: gray;
+    bottom: -50px;
+    background: rgba(0, 0, 0, 0.8);
     color: #fff;
-    height: 2.5em;
-    width: 90%;
-    transition: all 80ms;
-    font-weight: 600;
-    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+    transition: all 0.3s ease;
     opacity: 0;
   }
-
 
   .card:hover::after {
     bottom: 0;
     opacity: 1;
-  }
-
-  .card:active {
-    transform: scale(0.98);
+    cursor: pointer;
   }
 
   .card:active::after {
     content: "Đã thêm vào giỏ hàng !";
+    background: rgba(0, 128, 0, 0.8);
     height: 3.125em;
   }
 
-  .text {
-    max-width: 55px;
+  .card-body {
+    padding: 15px;
   }
 
-  .image-card {
-    width: 100%;
-  }
-
-  span {
-    width: 100%;
-  }
-
-  .card {
-    height: 400px;
+  .card-title {
+    height: 30px;
+    font-size: 15px;
+    margin-bottom: 10px;
   }
 
   .card-img-top {
+    margin: 5px;
     width: 100%;
-    height: 150px;
-    /* border-radius: 20px 20px 0 0; */
+    height: 110px;
+    object-fit: cover; 
+    border-bottom: 1px solid #ddd; 
+  }
 
+  .price {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+  }
+
+  .price span {
+    flex: 1;
+  }
+
+  .card-text {
+    height: 20px;
   }
 </style>
