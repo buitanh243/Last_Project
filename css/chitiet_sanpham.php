@@ -64,4 +64,16 @@
         .mota_chitiet {
             text-align: justify;
         }
+
+        .quantity {
+            width: 60px;
+            border-radius: 5px;
+            border: 2px solid gray ;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            opacity: 1;
+        }
+
     </style>

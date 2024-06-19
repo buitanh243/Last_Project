@@ -15,7 +15,7 @@ session_start();
     ?>
 
     <link rel="icon" href="./Pic/favicon.ico" type="image/x-icon">
-   
+    
 </head>
 
 <body>
@@ -85,69 +85,73 @@ session_start();
 
     <main>
         <div class="container">
-        <?php if (!empty($arrSPKM)) : ?>
-            <?php foreach ($arrSPKM as $row) : ?>
-                <div class="product row">
-                    <div class="col">
-                        <img class="img-sp" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Ảnh sản phẩm">
-                    </div>
-                    <div class="col">
-                        <h1 class="mt-5"><?= $row['sp_ten'] ?></h1>
-                        <div class="row row-price">
-                            <span class="price col text-danger"><i><?= number_format($row['sp_gia'], 0, '.', ',') ?>&#8363;</i></span>
-                            <span class="price col text-muted"> <s><?= empty($row['sp_giacu']) ? 'Chưa cập nhật' : number_format($row['sp_giacu'], 0, '.', ',') . '₫' ?></s></i></span>
+            <?php if (!empty($arrSPKM)) : ?>
+                <?php foreach ($arrSPKM as $row) : ?>
+                    <div class="product row">
+                        <div class="col">
+                            <img class="img-sp" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Ảnh sản phẩm">
                         </div>
-                        <div class="row">
-                            <span class="col"><b>Loại sản phẩm:</b> <?= $row['lsp_ten'] ?></span>
-                            <span class="col"><b>Nhà sản xuất:</b> <?= $row['nsx_ten'] ?></span>
-                        </div>
-                        <div class="km-col row mt-3">
+                        <div class="col">
+                            <h1 class="mt-5"><?= $row['sp_ten'] ?></h1>
+                            <div class="row row-price">
+                                <span class="price col text-danger"><i><?= number_format($row['sp_gia'], 0, '.', ',') ?>&#8363;</i></span>
+                                <span class="price col text-muted"> <s><?= empty($row['sp_giacu']) ? 'Chưa cập nhật' : number_format($row['sp_giacu'], 0, '.', ',') . '₫' ?></s></i></span>
+                            </div>
+                            <div class="row">
+                                <span class="col"><b>Loại sản phẩm:</b> <?= $row['lsp_ten'] ?></span>
+                                <span class="col"><b>Nhà sản xuất:</b> <?= $row['nsx_ten'] ?></span>
+                            </div>
+                            <div class="km-col row mt-3">
 
-                            <label for=""> Khuyến mãi <?= $row['km_ten'] ?>
-                                <i class="fa-solid fa-fire"></i></label> </span>
-                        </div>
-                        <div class="row mt-3">
-                            <span class="row mt-3"><b>Mô tả chi tiết:</b></span>
-                            <p class="mota_chitiet" ><?=$row['sp_mota_chitiet']?></p>
-                        </div>
-                        <div class="row">
-                            <button class="col-5 btn btn-warning text-white" type="submit" name="add" id="add"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
-                            <!-- <button class="col-5 btn btn-danger text-white" type="submit" name="muangay" id="muangay" ><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button> -->
+                                <label for=""> Khuyến mãi <?= $row['km_ten'] ?>
+                                    <i class="fa-solid fa-fire"></i></label> </span>
+                            </div>
+                            <div class="row mt-3">
+                                <span class="row mt-3"><b>Mô tả chi tiết:</b></span>
+                                <p class="mota_chitiet"><?= $row['sp_mota_chitiet'] ?></p>
+                            </div>
+                            <div class="row">
+                                <form action="giohang.php" method="post">
+                                    <button class="col-5 btn btn-warning text-white" type="submit" name="add-cart" id="add-cart">
+                                        <i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
+                                    <input type="hidden" name="sp_id" value="<?= $row['sp_id'] ?>">
+                                    <input name="sp_soluong" class="quantity col-2 ms-3" min="1" value="1" type="number">
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
-            
+                <?php endforeach; ?>
+
             <?php else : ?>
 
-            <!-- Sản phẩm bình thường -->
-            <?php foreach ($arrSP as $row) : ?>
-                <div class="product row">
-                    <div class="col">
-                        <img class="img-sp" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Ảnh sản phẩm">
+                <!-- Sản phẩm bình thường -->
+                <?php foreach ($arrSP as $row) : ?>
+                    <div class="product row">
+                        <div class="col">
+                            <img class="img-sp" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Ảnh sản phẩm">
+                        </div>
+                        <div class="col">
+                            <h1 class="mt-5"><?= $row['sp_ten'] ?></h1>
+                            <div class="row row-price">
+                                <span class="price col text-danger"><i><?= number_format($row['sp_gia'], 0, '.', ',') ?>&#8363;</i></span>
+                                <span class="price col text-muted"> <s><?= empty($row['sp_giacu']) ? 'Chưa cập nhật' : number_format($row['sp_giacu'], 0, '.', ',') . '₫' ?></s></i></span>
+                            </div>
+                            <div class="row">
+                                <span class="col"><b>Loại sản phẩm:</b> <?= $row['lsp_ten'] ?></span>
+                                <span class="col"><b>Nhà sản xuất:</b> <?= $row['nsx_ten'] ?></span>
+                            </div>
+
+                            <div class="row mt-3">
+                                <span class="col"><b>Mô tả chi tiết:</b></span>
+                                <p class="mota_chitiet"><?= $row['sp_mota_chitiet'] ?></p>
+                            </div>
+                            <div class="row">
+                                <button class="col-5 btn btn-warning text-white" type="submit" name="add" id="add"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
+                                <!-- <button class="col-5 btn btn-danger text-white" type="submit" name="muangay" id="muangay" ><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button> -->
+                            </div>
+                        </div>
                     </div>
-                    <div class="col">
-                        <h1 class="mt-5"><?= $row['sp_ten'] ?></h1>
-                        <div class="row row-price">
-                            <span class="price col text-danger"><i><?= number_format($row['sp_gia'], 0, '.', ',') ?>&#8363;</i></span>
-                            <span class="price col text-muted"> <s><?= empty($row['sp_giacu']) ? 'Chưa cập nhật' : number_format($row['sp_giacu'], 0, '.', ',') . '₫' ?></s></i></span>
-                        </div>
-                        <div class="row">
-                            <span class="col"><b>Loại sản phẩm:</b> <?= $row['lsp_ten'] ?></span>
-                            <span class="col"><b>Nhà sản xuất:</b> <?= $row['nsx_ten'] ?></span>
-                        </div>
-                       
-                        <div class="row mt-3">
-                            <span class="col"><b>Mô tả chi tiết:</b></span>
-                            <p class="mota_chitiet" ><?=$row['sp_mota_chitiet']?></p>
-                        </div>
-                        <div class="row">
-                            <button class="col-5 btn btn-warning text-white" type="submit" name="add" id="add"><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
-                            <!-- <button class="col-5 btn btn-danger text-white" type="submit" name="muangay" id="muangay" ><i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button> -->
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
 
             <?php endif; ?>
         </div>

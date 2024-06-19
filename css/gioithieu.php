@@ -57,6 +57,8 @@
         }
 
         .content-text p {
+            height: 100%;
+            width: 100%;
             font-size: 13px;
             line-height: 1.6;
             margin-bottom: 10px;

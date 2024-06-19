@@ -86,10 +86,12 @@
             border: 1px solid gray;
             border-radius: 5px;
             margin: 10px;
+            padding: 5px 8px 5px 8px;
         }
 
         .gio-hang:hover {
             border: 2px solid black;
+            
         }
     </style>
 </head>
@@ -145,7 +147,7 @@
                                 <a href="/ketquatimkiem.html"><i class="fa-solid fa-magnifying-glass"></i></a>
                             </button>
                         </form>
-                        <button class="gio-hang login-btn hover-effect"><i class="fa-solid fa-cart-shopping"></i></button>
+                        <a href="/Last_Project/giohang.php" class="gio-hang login-btn hover-effect"><i class="fa-solid fa-cart-shopping"></i></a>
                         <?php
                         if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
                         ?>
