@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HT Computer - Trang chủ</title>
+    <title>HT Computer - Chi tiết sản phẩm</title>
 
     <?php
     include_once __DIR__ . '/css/style.php';
@@ -15,7 +15,7 @@ session_start();
     ?>
 
     <link rel="icon" href="./Pic/favicon.ico" type="image/x-icon">
-    
+
 </head>
 
 <body>
