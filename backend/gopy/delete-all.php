@@ -1,3 +1,4 @@
+<?php session_start() ?>
 <?php
       include_once __DIR__ . '/../../connect/connect.php';
 

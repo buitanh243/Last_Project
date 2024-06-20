@@ -70,8 +70,10 @@
     }
 
     .thongtin-muahang h5 {
+      text-align: center;
+      font-weight: 600;
       margin-bottom: 20px;
-      font-size: 18px;
+      font-size: 20px;
       color: #333;
     }
 
@@ -107,4 +109,27 @@
         width: 100%;
       }
     }
+
+    /* Nut tang giam sp_soluong */
+
+    .plus-minus-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100px; /* Độ rộng của input */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    overflow: hidden;
+  }
+  .plus-minus-button {
+    cursor: pointer;
+    padding: 5px;
+    background-color: #f0f0f0;
+    border: none;
+    outline: none;
+  }
+
+
   </style>

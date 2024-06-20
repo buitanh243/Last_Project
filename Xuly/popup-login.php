@@ -10,6 +10,12 @@ include_once __DIR__ . '/../js/js.php';
     window.onload = function() {
         const status = getQueryParam('status');
         const name = getQueryParam('name');
+        
+        if (status === "admin") {
+            showSuccessMessage("Đăng nhập với quyền quản trị thành công", "/Last_Project/backend/sanpham/");
+        } else if (status === "False") {
+            showErrorMessage("Đăng nhập thất bại", "Tài khoản hoặc mật khẩu không đúng!", "/Last_Project/login.php");
+        }
 
         if (status === "True") {
             showSuccessMessage("Đăng nhập thành công", "/Last_Project/index.php");
@@ -29,6 +35,10 @@ include_once __DIR__ . '/../js/js.php';
 
         if (name === "user") {
             showSuccessMessage("Lưu lại thành công", "/Last_Project/user/user.php");
+        }
+
+        if (name === "Error") {
+            showErrorMessage("Bạn không có quyền truy cập vào trang này!", "Vui lòng đăng nhập với tài khoản quản trị quản trị!", "/Last_Project/login.php?tab=login");
         }
 
     }

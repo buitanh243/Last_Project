@@ -13,10 +13,22 @@ if (isset($_POST['login'])) {
 
     $result = mysqli_query($conn, $sql);
     if (mysqli_num_rows($result) > 0) {
+
+        $row = mysqli_fetch_assoc($result);
+        $tk_id = $row['tk_id'];
+
         $_SESSION['username'] = $username;
-        echo '<script>
+        $_SESSION['tk_id'] = $tk_id;
+
+        if ($tk_id == 1) {
+            echo '<script>
+                location.href="popup-login.php?status=admin";
+            </script>';
+        } else {
+            echo '<script>
                 location.href="popup-login.php?status=True";
             </script>';
+        }
     } else {
         $_SESSION['status'] = 'False';
         echo '<script>
@@ -26,18 +38,18 @@ if (isset($_POST['login'])) {
 }
 
 if (isset($_POST['register'])) {
-        $sql = "SELECT * FROM taikhoan WHERE username = '$username' OR email = '$email' ;";
-        $result = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM taikhoan WHERE username = '$username' OR email = '$email' ;";
+    $result = mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($result) > 0) {
-            echo '<script>
+    if (mysqli_num_rows($result) > 0) {
+        echo '<script>
             location.href="popup-login.php?name=False";
         </script>';
-        } else {
-            $sql_register = "INSERT INTO taikhoan (username,password,email) VALUE ('$username','$password','$email');";
-            mysqli_query($conn, $sql_register);
-            echo '<script>
+    } else {
+        $sql_register = "INSERT INTO taikhoan (username,password,email) VALUE ('$username','$password','$email');";
+        mysqli_query($conn, $sql_register);
+        echo '<script>
             location.href="popup-login.php?name=True";
         </script>';
-        }
+    }
 }
