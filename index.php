@@ -113,7 +113,7 @@ session_start();
             break;
           }
         ?>
-          <a href="chitiet_sanpham.php?id=<?= $row['sp_id']?>" class="col-sm-3"><img class="ct_t4" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt=""></a>
+          <a title="Xem chi tiết" href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>" class="col-sm-3"><img class="ct_t4" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt=""></a>
         <?php
           $count++;
         endforeach; ?>
@@ -146,7 +146,7 @@ session_start();
                 <img class="card-img-top" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Cool Chair">
                 <div class="card-body">
                   <h6 class="card-title text-center text-uppercase"><b><?= $row['sp_ten'] ?></b></h6>
-                  <div class="row text-center bg-light  border mb-3">
+                  <div class="row text-center bg-light border mb-3">
                     <span class="price col-6 text-danger "><b>Giá: <br><?= number_format($row['sp_gia'], 0, '.', ',') ?>&#8363;</b></span>
                     <span class="price col-6 text-muted"><i>Giá cũ: <br> <s><?= empty($row['sp_giacu']) ? 'Rỗng' : number_format($row['sp_giacu'], 0, '.', ',') . '₫' ?></s></i></span>
                   </div>
@@ -155,6 +155,12 @@ session_start();
                   <b class="card-text mt-3 text-secondary">Mô tả ngắn: </b><label class="" for=""><?= $row['sp_motangan'] ?></label>
                   <br>
                   <p class="mt-2 text-center"><a href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>">Xem chi tiết</a></p>
+                  <form id="add-to-cart-form-<?= $row['sp_id'] ?>" action="" method="post" onsubmit="return addToCart(<?= $row['sp_id'] ?>)">
+                    <input type="hidden" id="sp_id" class="sp_id" name="sp_id" value="<?= $row['sp_id'] ?>">
+                    <input id="dh_soluong" class="dh_soluong" name="dh_soluong" min="1" value="1" type="hidden">
+                    <button type="submit" id="add-cart" name="add-cart" class="btn-add-to-cart">Thêm vào giỏ hàng</button>
+                  </form>
+                  <div id="notification-<?= $row['sp_id'] ?>" class="notification"></div>
                 </div>
               </div>
             </div>
@@ -162,17 +168,58 @@ session_start();
             $count++;
           endforeach;
           ?>
+          <script>
+            function addToCart(productId) {
+              const form = document.getElementById(`add-to-cart-form-${productId}`);
+              const formData = new FormData(form);
+              const xhr = new XMLHttpRequest();
+              xhr.open("POST", form.action, true);
+              xhr.onload = function() {
+                if (xhr.status === 200) {
+                  const notification = document.getElementById(`notification-${productId}`);
+                  notification.innerHTML = "Đã thêm vào giỏ hàng!";
+                  notification.style.display = 'block';
+                  setTimeout(() => {
+                    notification.style.display = 'none';
+                  }, 1500);
+                }
+              };
+              xhr.send(formData);
+              return false;
+            }
+
+            $(document).ready(function() {
+              $('#add-cart').click(function() {
+                var data = {
+                  sp_id: $('.sp_id').val(),
+                  dh_soluong: $('.dh_soluong').val()
+                };
+
+                $.ajax({
+                  type: 'POST',
+                  url: 'giohang.php',
+                  data: data,
+                  dataType: 'json',
+                  encode: true,
+                });
+              });
+            });
+          </script>
+
+
         </div>
       </div>
+
       <div class="row ">
-      <?php
+        <?php
         $count = 0;
         foreach ($arrSP as $row) :
           if ($count == 2) {
             break;
           }
         ?>
-        <a href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>" class="col-sm"><img class="product-bt" src="./uploads/<?=$row['hsp_url']?>" alt="" class="img-row"></a>        <?php
+          <a title="Xem chi tiết" href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>" class="col-6"><img class="product-bt" src="./uploads/<?= $row['hsp_url'] ?>" alt="" class="img-row"></a>
+        <?php
           $count++;
         endforeach; ?>
       </div>
@@ -180,7 +227,6 @@ session_start();
     </div>
 
   </main>
-
 
   <?php
   include_once __DIR__ . '/bocucchinh/footer.php';

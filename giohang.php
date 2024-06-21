@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+date_default_timezone_set('Asia/Ho_Chi_Minh');
+$ngaymua = date('Y-m-d');
+
+
 // Khởi tạo giỏ hàng 
 if (!isset($_SESSION["giohang"])) $_SESSION["giohang"] = [];
 
@@ -10,11 +14,11 @@ if (isset($_POST['del-cart']) && $_POST['del-cart'] == 1) {
 }
 
 // Lấy dữ liệu từ form Chi tiết sản phẩm
-if (isset($_POST["add-cart"])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_POST['add-cart'])) {
   include_once __DIR__ . '/connect/connect.php';
 
-  $sp_id = $_POST['sp_id'];
-  $sp_soluong = $_POST['sp_soluong'];
+  $sp_id = $_POST['sp_id'] ?? null;
+  $dh_soluong = $_POST['dh_soluong'] ?? null;
 
   $sp_id = mysqli_real_escape_string($conn, $sp_id);
 
@@ -35,7 +39,7 @@ if (isset($_POST["add-cart"])) {
       $found = false;
       foreach ($_SESSION['giohang'] as &$sp) {
         if ($sp['sp_id'] == $sp_id) {
-          $sp['sp_soluong'] += $sp_soluong;
+          $sp['dh_soluong'] += $dh_soluong;
           $found = true;
           break;
         }
@@ -49,7 +53,7 @@ if (isset($_POST["add-cart"])) {
           'hsp_url' => $hsp_url,
           'sp_ten' => $sp_ten,
           'sp_gia' => $sp_gia,
-          'sp_soluong' => $sp_soluong
+          'dh_soluong' => $dh_soluong
         ];
       }
     }
@@ -86,7 +90,7 @@ if (isset($_POST["add-cart"])) {
               <th>Số lượng</th>
               <th>Thành tiền</th>
             </tr>
-            <?php if (isset($_SESSION['giohang']) && is_array($_SESSION['giohang'])) : ?>
+            <?php if (isset($_SESSION['giohang']) && is_array($_SESSION['giohang']) && count($_SESSION['giohang']) > 0) : ?>
               <?php foreach ($_SESSION['giohang'] as $key => $sp) : ?>
                 <tr>
                   <td>
@@ -97,12 +101,20 @@ if (isset($_POST["add-cart"])) {
                     <b class="ms-5 mt-5"><?= $sp['sp_ten'] ?></b>
                   </td>
                   <td><label class="mt-5" for=""><?= number_format($sp['sp_gia'], 0, ',', '.') ?>đ </label></td>
-                  <td><label class="mt-5" for=""><?= $sp['sp_soluong'] ?></label></td>
-                  <td><label class="mt-5" for=""><?= number_format($sp['sp_gia'] * $sp['sp_soluong'], 0, ',', '.') ?>đ</label></td>
+                  <td><label class="mt-5" for=""><?= $sp['dh_soluong'] ?></label></td>
+                  <td><label class="mt-5" for=""><?= number_format($sp['sp_gia'] * $sp['dh_soluong'], 0, ',', '.') ?>đ</label></td>
                 </tr>
               <?php endforeach; ?>
+            <?php else : ?>
+              <tr>
+                <td colspan="5">
+                  <label for="">Giỏ hàng trống!</label>
+                </td>
+              </tr>
             <?php endif; ?>
           </table>
+
+
           <form method="post" action="">
             <button type="submit" name="del-cart" value="1" class="btn btn-danger">Xoá giỏ hàng</button>
           </form>
@@ -121,38 +133,40 @@ if (isset($_POST["add-cart"])) {
               <?= isset($_SESSION['giohang']) ? number_format(array_reduce(
                 $_SESSION['giohang'],
                 function ($carry, $item) {
-                  return $carry + ($item['sp_gia'] * $item['sp_soluong']);
+                  return $carry + ($item['sp_gia'] * $item['dh_soluong']);
                 },
                 0
               ), 0, ',', '.') : '0' ?>đ
             </label>
 
-            <form action="" method="post" >
-              <button type="submit" class="btn btn-danger mt-3">ĐẶT HÀNG</button>
-            </form>
+            <form action="" method="post">
+              <input name="sp_id" type="hidden" value="<?= $sp_id ?>">
+              <input name="dh_soluong" type="hidden" value="<?= $dh_soluong ?>">
+              <button type="submit" name="dathang" class="btn btn-danger mt-3">ĐẶT HÀNG</button>
+
           </div>
         </div>
 
       </div>
       <div class="container mt-3">
-      <div class="row" style="display: flex; flex-wrap: wrap;">
-        <div class="thongtin-muahang col-8">
-          <h5>THÔNG TIN MUA HÀNG</h5>
-          <label for="kh_ten">Họ và tên:</label>
-          <input placeholder="Họ và tên khách hàng..." type="text" class="form-control" id="kh_ten" name="kh_ten">
-          <label for="sp_ten">Số điện thoại:</label>
-          <input placeholder="Nhập số điện thoại..." type="text" class="form-control" id="sp_ten" name="sp_ten">
-          <label for="sp_ten">Địa chỉ giao hàng:</label>
-          <input placeholder="Địa chỉ giao hàng..." type="text" class="form-control" id="sp_ten" name="sp_ten">
-          <label for="ngay_mua">Ngày mua: </label>
-          <label for="ngay_mua">22/6/2024</label>
-          <br>
-          <label for="ghichu">Ghi chú đơn hàng (Tuỳ chọn)</label>
-          <textarea placeholder="Nhập ghi chú..." cols="100" rows="2" class="form-control" id="ghichu" name="ghichu"></textarea>
+        <div class="row" style="display: flex; flex-wrap: wrap;">
+          <div class="thongtin-muahang col-8">
+            <h5>THÔNG TIN MUA HÀNG</h5>
+            <label for="kh_ten">Họ và tên:</label>
+            <input placeholder="Họ và tên khách hàng..." type="text" class="form-control" id="kh_ten" name="kh_ten">
+            <label for="sp_ten">Số điện thoại:</label>
+            <input placeholder="Nhập số điện thoại..." type="text" class="form-control" id="kh_sdt" name="kh_sdt">
+            <label for="sp_ten">Địa chỉ giao hàng:</label>
+            <input placeholder="Địa chỉ giao hàng..." type="text" class="form-control" id="kh_diachi" name="kh_diachi">
+            <label for="ngay_mua">Ngày mua: </label>
+            <input class="form-control" readonly name="ngaymua" type="text" value="<?= date('d/m/Y', strtotime($ngaymua)) ?>"></input>
+            <br>
+            <label for="ghichu">Ghi chú đơn hàng (Tuỳ chọn)</label>
+            <textarea placeholder="Nhập ghi chú..." cols="100" rows="2" class="form-control" id="ghichu" name="ghichu"></textarea>
+          </div>
+          </form>
         </div>
-      
       </div>
-    </div>
     </div>
   </main>
   <?php

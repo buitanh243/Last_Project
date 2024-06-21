@@ -277,87 +277,118 @@
     transition: transform 0.3s ease;
   }
 
-  /* The san pham */
-  .col-card {
-    width: calc(20% - 10px); 
-    margin: 20px 0 20px 0;
-    height: 390px;
-  }
+/* The san pham */
+.col-card {
+  width: calc(20% - 10px); 
+  margin: 20px 0 20px 0;
+  height: 390px;
+}
 
-  .card {
-    position: relative;
-    height: 100%; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-    overflow: hidden; 
-    transition: transform 0.2s;
-  }
+.card {
+  position: relative;
+  height: 400px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  overflow: hidden; 
+  transition: transform 0.2s;
+}
 
-  .card:hover {
-    transform: translateY(-5px); 
-  }
+.card:hover {
+  transform: translateY(-5px); 
+}
 
-  .card::after {
-    content: "Thêm vào giỏ hàng";
-    padding: 10px;
-    
-    position: absolute;
-    left: 0;
-    bottom: -50px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    width: 100%;
-    text-align: center;
-    transition: all 0.3s ease;
-    opacity: 0;
-  }
+.card-body {
+  padding: 15px;
+  position: relative; 
+}
 
-  .card:hover::after {
-    bottom: 0;
-    opacity: 1;
-    cursor: pointer;
-  }
+.card-title {
+  height: 30px;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
 
-  .card:active::after {
-    content: "Đã thêm vào giỏ hàng !";
-    background: rgba(0, 128, 0, 0.8);
-    height: 3.125em;
-  }
+.card-img-top {
+  margin: 5px;
+  width: 100%;
+  height: 110px;
+  object-fit: cover; 
+  border-bottom: 1px solid #ddd; 
+}
 
-  .card-body {
-    padding: 15px;
-  }
+.price {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
 
-  .card-title {
-    height: 30px;
-    font-size: 15px;
-    margin-bottom: 10px;
-  }
+.price span {
+  flex: 1;
+}
 
-  .card-img-top {
-    margin: 5px;
-    width: 100%;
-    height: 110px;
-    object-fit: cover; 
-    border-bottom: 1px solid #ddd; 
-  }
+.card-text {
+  height: 20px;
+}
 
-  .price {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
-  }
+.btn-add-to-cart {
+  display: none; 
+  width: calc(100% - 20px);
+  padding: 10px;
+  background-color: gray;
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px auto 0 auto;
+  position: absolute;
+  bottom: 5px; 
+  left: 10px;
+  right: 10px;
+}
 
-  .price span {
-    flex: 1;
-  }
+.card:hover .btn-add-to-cart {
+  display: block; 
+}
 
-  .card-text {
-    height: 20px;
-  }
+.btn-add-to-cart:hover {
+  background-color: cadetblue;
+}
 
-  .product-bt {
-    margin-top: 20px;
-    height: 400px;
-    width: 630px;
-  }
+.btn-add-to-cart:active {
+  background-color: #004085;
+}
+
+.product-bt {
+  margin-top: 20px ;
+  height: 360px;
+  width: 640px;
+}
+
+.product-bt:hover {
+  transform: scale(1.1);
+}
+
+.notification {
+  display: none; 
+  width: calc(100% - 20px);
+  padding: 10px;
+  background-color: #4caf50; 
+  color: white;
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px auto 0 auto;
+  position: absolute;
+  bottom: 5px; 
+  left: 10px;
+  right: 10px;
+  z-index: 1000; 
+}
 </style>
+
+ 
