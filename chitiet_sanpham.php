@@ -115,6 +115,7 @@ session_start();
                                     <button class="col-5 btn btn-warning text-white" type="submit" name="add-cart" id="add-cart">
                                         <i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                                     <input type="hidden" name="sp_id" value="<?= $row['sp_id'] ?>">
+                                    <label class="ms-5" for="">Số lượng </label>
                                     <input name="dh_soluong" class="quantity col-2 ms-3" min="1" value="1" type="number">
                                 </form>
                             </div>
@@ -150,6 +151,7 @@ session_start();
                                     <button class="col-5 btn btn-warning text-white" type="submit" name="add-cart" id="add-cart">
                                         <i class="fa-solid fa-cart-shopping"></i> Thêm vào giỏ hàng</button>
                                     <input type="hidden" name="sp_id" value="<?= $row['sp_id'] ?>">
+                                    <label class="ms-5" for="">Số lượng </label>
                                     <input name="dh_soluong" class="quantity col-2 ms-3" min="1" value="1" type="number">
                                 </form>
                             </div>

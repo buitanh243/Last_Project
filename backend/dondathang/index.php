@@ -31,15 +31,13 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   $sql = "SELECT ddh.dh_id, ddh.dh_ngaylap, ddh.dh_ngaygiao, ddh.dh_noigiao, ddh.dh_trangthai, ddh.dh_trangthai_donhang,
                 kh.kh_ten, kh.kh_sdt, 
                 httt.httt_ten, 
-                tk.username,
                 SUM(spddh.sp_dh_soluong * spddh.sp_dh_dongia) AS thanhtien
           FROM dondathang ddh 
           JOIN khachhang kh ON ddh.kh_id = kh.kh_id
           JOIN hinhthucthanhtoan httt ON ddh.httt_id = httt.httt_id
-          JOIN taikhoan tk ON ddh.tk_id = tk.tk_id
           JOIN sanpham_dondathang spddh ON ddh.dh_id = spddh.dh_id
           GROUP BY ddh.dh_id, ddh.dh_ngaylap, ddh.dh_ngaygiao, ddh.dh_noigiao, ddh.dh_trangthai, 
-                   kh.kh_ten, kh.kh_sdt, httt.httt_ten, tk.username
+                   kh.kh_ten, kh.kh_sdt, httt.httt_ten
           ;";
 
   $data = mysqli_query($conn, $sql);
@@ -57,7 +55,6 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
       "kh_ten" => $row["kh_ten"],
       "kh_sdt" => $row["kh_sdt"],
       "httt_ten" => $row["httt_ten"],
-      "username" => $row["username"],
       "thanhtien" => $row["thanhtien"],
     );
   }
@@ -66,7 +63,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   <div class="col-3">
           <?php include_once __DIR__ . '/../bocuc/header.php'; ?>
         </div>
-    <!-- <div class="container mt-5"> -->
+    <div class="container mt-3">
       <div class="row">
         <div class="col-12 m-3">
           <table class="table table-bordered table-hover">
@@ -89,7 +86,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
               <?php foreach ($arrDDH as $ddh) : ?>
                 <tr>
                   <td><?= 'DH' . $ddh['dh_id'] ?></td>
-                  <td class="text-center"><?= $ddh['kh_ten'] ?><br><i><?= '(' . $ddh['username'] . ')' ?></i></td>
+                  <td class="text-center"><?= $ddh['kh_ten'] ?></td>
                   <td class="text-center"><?= $ddh['kh_sdt'] ?></td>
                   <td><?= date('d/m/Y', strtotime($ddh['dh_ngaylap'])) ?></td>
                   <td><?= date('d/m/Y', strtotime($ddh['dh_ngaygiao'])) ?></td>
@@ -121,9 +118,10 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
               <?php endforeach; ?>
             </tbody>
           </table>
+          <a href="./add.php" class="btn btn-info text-white "><i class="fa-solid fa-plus"></i> Thêm đơn hàng</a>
         </div>
       </div>
-    <!-- </div> -->
+    </div>
   </main>
   <?php include_once __DIR__ . '/../js/js.php'; ?>
 </body>

@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <?php
-      include_once __DIR__ . '/../../css/style.php';
-      include_once __DIR__ . '/../style.php'; //css backend
+      // include_once __DIR__ . '/../../css/style.php';
+      // include_once __DIR__ . '/../style.php'; //css backend
       include_once __DIR__ . '/../../js/js.php';
       ?>
   <link rel="icon" href="/./Pic/favicon.ico" type="image/x-icon">

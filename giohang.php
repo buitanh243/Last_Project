@@ -145,28 +145,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_POST['add-cart'])) {
               <button type="submit" name="dathang" class="btn btn-danger mt-3">ĐẶT HÀNG</button>
 
           </div>
+          <div class="container mt-3">
+            <div class="row" style="display: flex; flex-wrap: wrap;">
+              <div class="thongtin-muahang">
+                <h5>THÔNG TIN MUA HÀNG</h5>
+                <label for="kh_ten">Họ và tên:</label>
+                <input placeholder="Họ và tên khách hàng..." type="text" class="form-control" id="kh_ten" name="kh_ten">
+                <label for="sp_ten">Số điện thoại:</label>
+                <input placeholder="Nhập số điện thoại..." type="text" class="form-control" id="kh_sdt" name="kh_sdt">
+                <label for="sp_ten">Địa chỉ giao hàng:</label>
+                <input placeholder="Địa chỉ giao hàng..." type="text" class="form-control" id="kh_diachi" name="kh_diachi">
+                <label for="ngay_mua">Ngày mua: </label>
+                <input class="form-control" readonly name="ngaymua" type="text" value="<?= date('d/m/Y', strtotime($ngaymua)) ?>"></input>
+                <br>
+                <label for="ghichu">Ghi chú đơn hàng (Tuỳ chọn)</label>
+                <textarea placeholder="Nhập ghi chú..." cols="100" rows="2" class="form-control" id="ghichu" name="ghichu"></textarea>
+              </div>
+              </form>
+            </div>
+          </div>
         </div>
 
       </div>
-      <div class="container mt-3">
-        <div class="row" style="display: flex; flex-wrap: wrap;">
-          <div class="thongtin-muahang col-8">
-            <h5>THÔNG TIN MUA HÀNG</h5>
-            <label for="kh_ten">Họ và tên:</label>
-            <input placeholder="Họ và tên khách hàng..." type="text" class="form-control" id="kh_ten" name="kh_ten">
-            <label for="sp_ten">Số điện thoại:</label>
-            <input placeholder="Nhập số điện thoại..." type="text" class="form-control" id="kh_sdt" name="kh_sdt">
-            <label for="sp_ten">Địa chỉ giao hàng:</label>
-            <input placeholder="Địa chỉ giao hàng..." type="text" class="form-control" id="kh_diachi" name="kh_diachi">
-            <label for="ngay_mua">Ngày mua: </label>
-            <input class="form-control" readonly name="ngaymua" type="text" value="<?= date('d/m/Y', strtotime($ngaymua)) ?>"></input>
-            <br>
-            <label for="ghichu">Ghi chú đơn hàng (Tuỳ chọn)</label>
-            <textarea placeholder="Nhập ghi chú..." cols="100" rows="2" class="form-control" id="ghichu" name="ghichu"></textarea>
-          </div>
-          </form>
-        </div>
-      </div>
+
     </div>
   </main>
   <?php

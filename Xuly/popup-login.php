@@ -12,7 +12,7 @@ include_once __DIR__ . '/../js/js.php';
         const name = getQueryParam('name');
         
         if (status === "admin") {
-            showSuccessMessage("Đăng nhập với quyền quản trị thành công", "/Last_Project/backend/sanpham/");
+            showSuccessMessage("Đăng nhập với quyền quản trị thành công", "/Last_Project/backend/sanpham/index.php?name=sanpham");
         } else if (status === "False") {
             showErrorMessage("Đăng nhập thất bại", "Tài khoản hoặc mật khẩu không đúng!", "/Last_Project/login.php");
         }

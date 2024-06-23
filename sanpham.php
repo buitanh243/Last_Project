@@ -64,24 +64,39 @@ session_start();
             <h4>Bán chạy</h4>
             <div class="row mt-3">
                 <?php
-                $count = 0; 
+                $count = 0;
                 foreach ($arrHSP as $row) :
-                    if ($count % 5 == 0 && $count != 0) : 
-                        echo '</div><div class="row mt-3">'; 
+                    if ($count % 5 == 0 && $count != 0) :
+                        echo '</div><div class="row mt-3">';
                     endif;
                     $count++;
                 ?>
-                    <div class="col col-card">
+                    <div class="col-2 col-card">
                         <div class="card">
                             <img class="card-img-top" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Product Image">
                             <div class="card-body">
                                 <h6 class="card-title text-uppercase text-center"><b><?= $row['sp_ten'] ?></b></h6>
                                 <div class="price bg-light border mb-3">
-                                    <span class="text-danger"><b>Giá: <br><?= number_format($row['sp_gia'], 0, '.', ',') ?>&#8363;</b></span>
-                                    <span class="text-muted"><i>Giá cũ: <br><s><?= empty($row['sp_giacu']) ? 'Rỗng' : number_format($row['sp_giacu'], 0, '.', ',') . '₫' ?></s></i></span>
+                                    <span class="text-danger text-center"><b>Giá:
+                                            <br>
+                                            <label for=""><?= number_format($row['sp_gia'], 0, '.', ',') ?>&#8363;</label></b>
+                                    </span>
+                                    <span class="text-muted text-center"><i>Giá cũ:
+                                            <br><s>
+                                                <?= empty($row['sp_giacu']) ? 'Rỗng' : number_format($row['sp_giacu'], 0, '.', ',') . '₫' ?></s></i>
+                                    </span>
                                 </div>
                                 <b class="card-text text-secondary">Mô tả: </b><label><?= $row['sp_motangan'] ?></label>
-                                <p class="text-center mt-2"><a href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>">Xem chi tiết</a></p>
+                                <form id="add-to-cart-form-<?= $row['sp_id'] ?>" action="giohang.php" method="post" onsubmit="return addToCart(<?= $row['sp_id'] ?>)">
+                                    <div class="row mt-2">
+                                        <label class="col-5" for="">Số lượng </label>
+                                        <input class="col-3 dh_soluong" type="number" min="1" name="dh_soluong" value="1">
+                                    </div>
+                                    <p class="text-center mt-2"><a href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>">Xem chi tiết</a></p>
+                                    <input type="hidden" name="sp_id" value="<?= $row['sp_id'] ?>">
+                                    <button type="submit" class="btn-add-to-cart">Thêm vào giỏ hàng</button>
+                                </form>
+                                <div id="notification-<?= $row['sp_id'] ?>" class="notification"></div>
                             </div>
                         </div>
                     </div>
@@ -92,7 +107,26 @@ session_start();
         </div>
 
         </div>
-
+        <script>
+            function addToCart(productId) {
+                const form = document.getElementById(`add-to-cart-form-${productId}`);
+                const formData = new FormData(form);
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", form.action, true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        const notification = document.getElementById(`notification-${productId}`);
+                        notification.innerHTML = "Đã thêm vào giỏ hàng!";
+                        notification.style.display = 'block';
+                        setTimeout(() => {
+                            notification.style.display = 'none';
+                        }, 1500);
+                    }
+                };
+                xhr.send(formData);
+                return false;
+            }
+        </script>
     </main>
 
 

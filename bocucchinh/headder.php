@@ -7,6 +7,13 @@
     <title>Interactive Header</title>
     <?php include_once __DIR__ . '/../css/style.php'; ?>
     <style>
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
         .hover-effect {
             transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
@@ -91,7 +98,7 @@
 
         .gio-hang:hover {
             border: 2px solid black;
-            
+
         }
     </style>
 </head>
@@ -129,7 +136,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link hover-effect" href="#" tabindex="-1" aria-disabled="true">Liên hệ</a>
+                            <a class="nav-link hover-effect" href="lienhe.php" tabindex="-1" aria-disabled="true">Liên hệ</a>
                         </li>
                         <?php
                         if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {

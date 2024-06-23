@@ -69,6 +69,7 @@
             width: 60px;
             border-radius: 5px;
             border: 2px solid gray ;
+            text-align: center;
         }
 
         input[type=number]::-webkit-inner-spin-button,

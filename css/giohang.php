@@ -3,6 +3,7 @@
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      margin-top: 100px;
     }
 
     .table {
@@ -109,27 +110,5 @@
         width: 100%;
       }
     }
-
-    /* Nut tang giam sp_soluong */
-
-    .plus-minus-input {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100px; /* Độ rộng của input */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 16px;
-    overflow: hidden;
-  }
-  .plus-minus-button {
-    cursor: pointer;
-    padding: 5px;
-    background-color: #f0f0f0;
-    border: none;
-    outline: none;
-  }
-
 
   </style>

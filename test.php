@@ -1,57 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plus/Minus Input</title>
-<style>
-  .plus-minus-input {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100px; /* Độ rộng của input */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px;
-    font-size: 16px;
-    overflow: hidden;
-  }
-  .plus-minus-button {
-    cursor: pointer;
-    padding: 5px;
-    background-color: #f0f0f0;
-    border: none;
-    outline: none;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-
-<div class="plus-minus-input">
-  <button class="plus-minus-button" id="minus-btn">-</button>
-  <input type="number" id="value" value="0" style="width: 50px; text-align: center;" readonly>
-  <button class="plus-minus-button" id="plus-btn">+</button>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const minusButton = document.getElementById('minus-btn');
-    const plusButton = document.getElementById('plus-btn');
-    const valueInput = document.getElementById('value');
-
-    minusButton.addEventListener('click', function() {
-      let currentValue = parseInt(valueInput.value);
-      if (currentValue > 0) {
-        valueInput.value = currentValue - 1;
-      }
-    });
-
-    plusButton.addEventListener('click', function() {
-      let currentValue = parseInt(valueInput.value);
-      valueInput.value = currentValue + 1;
-    });
-  });
-</script>
-
+<ul class="list-group" id="itemList">
+  <a class="list-group-item" data-id="0" href="\Last_Project\backend\sanpham\">Danh sách sản phẩm</a></li>
+  <a class="list-group-item" data-id="1" href="\Last_Project\backend\loaisanpham\">Danh sách loại sản phẩm</a></li>
+  <a class="list-group-item" data-id="2" href="\Last_Project\backend\nhasanxuat\">Danh sách nhà sản xuất</a>
+  <a class="list-group-item" data-id="3" href="\Last_Project\backend\khuyenmai\">Danh sách khuyến mãi</a>
+  <a class="list-group-item" data-id="4" href="\Last_Project\backend\gopy\">Danh sách góp ý</a>
+  <a class="list-group-item" data-id="5" href="\Last_Project\backend\hinhsanpham\">Danh sách hình sản phẩm</a>
+</ul>
 </body>
 </html>

@@ -141,7 +141,7 @@ session_start();
               break;
             }
           ?>
-            <div class="col col-card">
+            <div class="col-2 col-card">
               <div class="card">
                 <img class="card-img-top" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Cool Chair">
                 <div class="card-body">
@@ -152,13 +152,14 @@ session_start();
                   </div>
                   <b>Khuyến mãi: </b><label class="badge bg-primary mb-1" for=""><?= $row['km_ten'] ?></label>
                   <br>
-                  <b class="card-text mt-3 text-secondary">Mô tả ngắn: </b><label class="" for=""><?= $row['sp_motangan'] ?></label>
+                  <b class="card-text mt-3 text-secondary">Mô tả: </b><label class="" for=""><?= $row['sp_motangan'] ?></label>
                   <br>
                   <p class="mt-2 text-center"><a href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>">Xem chi tiết</a></p>
-                  <form id="add-to-cart-form-<?= $row['sp_id'] ?>" action="" method="post" onsubmit="return addToCart(<?= $row['sp_id'] ?>)">
-                    <input type="hidden" id="sp_id" class="sp_id" name="sp_id" value="<?= $row['sp_id'] ?>">
-                    <input id="dh_soluong" class="dh_soluong" name="dh_soluong" min="1" value="1" type="hidden">
-                    <button type="submit" id="add-cart" name="add-cart" class="btn-add-to-cart">Thêm vào giỏ hàng</button>
+
+                  <form id="add-to-cart-form-<?= $row['sp_id'] ?>" action="giohang.php" method="post" onsubmit="return addToCart(<?= $row['sp_id'] ?>)">
+                    <input type="hidden" name="sp_id" value="<?= $row['sp_id'] ?>">
+                    <input type="hidden" name="dh_soluong" value="1">
+                    <button type="submit" class="btn-add-to-cart">Thêm vào giỏ hàng</button>
                   </form>
                   <div id="notification-<?= $row['sp_id'] ?>" class="notification"></div>
                 </div>
@@ -187,25 +188,7 @@ session_start();
               xhr.send(formData);
               return false;
             }
-
-            $(document).ready(function() {
-              $('#add-cart').click(function() {
-                var data = {
-                  sp_id: $('.sp_id').val(),
-                  dh_soluong: $('.dh_soluong').val()
-                };
-
-                $.ajax({
-                  type: 'POST',
-                  url: 'giohang.php',
-                  data: data,
-                  dataType: 'json',
-                  encode: true,
-                });
-              });
-            });
           </script>
-
 
         </div>
       </div>
@@ -218,7 +201,7 @@ session_start();
             break;
           }
         ?>
-          <a title="Xem chi tiết" href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>" class="col-6"><img class="product-bt" src="./uploads/<?= $row['hsp_url'] ?>" alt="" class="img-row"></a>
+          <a title="Xem chi tiết" href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>" class="col-6"><img class="col-5 product-bt " src="./uploads/<?= $row['hsp_url'] ?>" alt="" class="img-row"></a>
         <?php
           $count++;
         endforeach; ?>

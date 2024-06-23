@@ -279,7 +279,7 @@
 
 /* The san pham */
 .col-card {
-  width: calc(20% - 10px); 
+  width: 250px; 
   margin: 20px 0 20px 0;
   height: 390px;
 }
@@ -360,10 +360,53 @@
   background-color: #004085;
 }
 
+/* Kích thước cơ bản */
 .product-bt {
-  margin-top: 20px ;
-  height: 360px;
-  width: 640px;
+    margin-top: 20px;
+    height: 360px;
+    width: 640px;
+}
+
+@media (max-width: 1400px) {
+    .product-bt {
+        height: 250px;  
+        width: 550px;   
+    }
+}
+
+@media (max-width: 1200px) {
+    .product-bt {
+        height: 200px;  
+        width: 460px;   
+    }
+}
+
+@media (max-width: 1000px) {
+    .product-bt {
+        height: 200px;  
+        width: 450px;   
+    }
+}
+
+@media (max-width: 900px) {
+    .product-bt {
+        height: 180px;  
+        width: 330px;   
+    }
+}
+
+@media (max-width: 767px) {
+    .product-bt {
+        height: 180px;  
+        width: 250px;   
+    }
+}
+
+@media (max-width: 479px) {
+    .product-bt {
+        height: 150px;  
+        width: 180px;   
+    }
 }
 
 .product-bt:hover {

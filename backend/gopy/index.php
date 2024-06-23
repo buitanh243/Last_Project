@@ -81,7 +81,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
           <div class="row">
             <div class="col-3 p-2">
               
-                <a class="btn-delete-all btn btn-danger text-white btn-delete"><i class="fa-solid fa-trash"></i> Xoá tất cả</a>
+                <a class="btn-delete-all btn btn-danger text-white"><i class="fa-solid fa-trash"></i> Xoá tất cả</a>
             </div>
           </div>
         </div>

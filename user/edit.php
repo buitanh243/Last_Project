@@ -66,14 +66,6 @@ session_start();
         );
     }
 
-    if (empty($arr_KH)) {
-        $arr_KH[] = array(
-            'kh_ten' => '',
-            'kh_sdt' => '',
-            'kh_diachi' => '',
-            'email' => '',
-        );
-    }
     ?>
 
     <div class="container bg-light rounded">
@@ -99,9 +91,9 @@ session_start();
                         <div class="row mt-2">
                             <input class="form-control" value="<?= $tk['email'] ?>" name="email"></input>
                         </div>
-                        <?php endforeach; ?>
+                    <?php endforeach; ?>
 
-                        <?php foreach ($arr_KH as $kh) : ?>
+                    <?php foreach ($arr_KH as $kh) : ?>
 
                         <div class="row mt-2">
                             Tên khách hàng
@@ -140,17 +132,35 @@ session_start();
     <?php
     if (isset($_POST['save'])) {
         include_once __DIR__ . '/../connect/connect.php';
+
         $id = $_GET['id'];
         $email = $_POST['email'];
-        $kh_ten = empty($_POST['kh_ten']) ? 'NULL' : $_POST['kh_ten'];
-        $kh_sdt = empty($_POST['kh_sdt']) ? 'NULL' : $_POST['kh_sdt'];
-        $kh_diachi = empty($_POST['kh_diachi']) ? 'NULL' : $_POST['kh_diachi'];
+        $kh_ten = empty($_POST['kh_ten']) ? 'NULL' : "'" . mysqli_real_escape_string($conn, $_POST['kh_ten']) . "'";
+        $kh_sdt = empty($_POST['kh_sdt']) ? 'NULL' : "'" . mysqli_real_escape_string($conn, $_POST['kh_sdt']) . "'";
+        $kh_diachi = empty($_POST['kh_diachi']) ? 'NULL' : "'" . mysqli_real_escape_string($conn, $_POST['kh_diachi']) . "'";
 
+        $sql = "SELECT tk_id FROM khachhang WHERE tk_id = $id";
+        $result = mysqli_query($conn, $sql);
 
-        $sql_edit = "INSERT INTO khachhang (kh_ten,kh_sdt,kh_diachi,tk_id) VALUE  ('$kh_ten', '$kh_sdt', '$kh_diachi', $id); ";
-        mysqli_query($conn, $sql_edit);
-        $sql = "UPDATE taikhoan SET email = '$email' WHERE username = '$username'";
-        mysqli_query($conn, $sql);
+        if (mysqli_num_rows($result) == 0) {
+            $sql_edit = "INSERT INTO khachhang (kh_ten, kh_sdt, kh_diachi, tk_id) VALUES ($kh_ten, $kh_sdt, $kh_diachi, $id)";
+            if (!mysqli_query($conn, $sql_edit)) {
+                die('Error: ' . mysqli_error($conn));
+            }
+            $sql = "UPDATE taikhoan SET email = '$email' WHERE username = '$username'";
+            if (!mysqli_query($conn, $sql)) {
+                die('Error: ' . mysqli_error($conn));
+            }
+        } else {
+            $sql_edit = "UPDATE khachhang SET kh_ten = $kh_ten, kh_sdt = $kh_sdt, kh_diachi = $kh_diachi WHERE tk_id = $id";
+            if (!mysqli_query($conn, $sql_edit)) {
+                die('Error: ' . mysqli_error($conn));
+            }
+            $sql = "UPDATE taikhoan SET email = '$email' WHERE username = '$username'";
+            if (!mysqli_query($conn, $sql)) {
+                die('Error: ' . mysqli_error($conn));
+            }
+        }
         echo '<script>location.href = "./../Xuly/popup-login.php?name=user";</script>';
     }
 
@@ -159,10 +169,6 @@ session_start();
     }
     ?>
 
-    <?php
-    include_once __DIR__ . '/../bocucchinh/footer.php';
-    include_once __DIR__ . '/../js/js.php';
-    ?>
 
 </body>
 

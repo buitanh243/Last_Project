@@ -1,11 +1,12 @@
-<?php session_start(); 
+<?php session_start();
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
-  echo '<script>
+    echo '<script>
           location.href="/Last_project/Xuly/popup-login.php?name=Error";
         </script>';
-  exit; 
+    exit;
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,10 +22,11 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
         @page {
             size: A5
         }
-        
+
         .sheet {
             position: relative;
         }
+
         .text-sm {
             font-size: 13px;
         }
@@ -37,8 +39,9 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
             text-align: center;
         }
 
-        .table-chuan th, .table-chuan td {
-            border: 1px solid black; 
+        .table-chuan th,
+        .table-chuan td {
+            border: 1px solid black;
         }
 
         .footer {
@@ -62,15 +65,13 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
     $sql_ttdh = "SELECT  ddh.dh_id, ddh.dh_ngaylap, ddh.dh_ngaygiao, ddh.dh_noigiao, ddh.dh_trangthai, ddh.dh_trangthai_donhang,
     kh.kh_ten, kh.kh_sdt, 
     httt.httt_ten, 
-    tk.username,
     SUM(sp_dh_soluong * sp_dh_dongia) AS tongthanhtien
         FROM dondathang ddh 
         JOIN khachhang kh ON ddh.kh_id = kh.kh_id
         JOIN hinhthucthanhtoan httt ON ddh.httt_id = httt.httt_id
-        JOIN taikhoan tk ON ddh.tk_id = tk.tk_id
         JOIN sanpham_dondathang spddh ON ddh.dh_id = spddh.dh_id
         GROUP BY ddh.dh_id, ddh.dh_ngaylap, ddh.dh_ngaygiao, ddh.dh_noigiao, ddh.dh_trangthai, 
-            kh.kh_ten, kh.kh_sdt, httt.httt_ten, tk.username
+            kh.kh_ten, kh.kh_sdt, httt.httt_ten
             HAVING ddh.dh_id = $id;
         ";
 
@@ -90,8 +91,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
             "kh_ten" => $row["kh_ten"],
             "kh_sdt" => $row["kh_sdt"],
             "httt_ten" => $row["httt_ten"],
-            "username" => $row["username"],
-            "tongthanhtien"=> $row["tongthanhtien"],
+            "tongthanhtien" => $row["tongthanhtien"],
         );
     }
 
@@ -131,6 +131,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
         );
     }
     ?>
+    <?php include_once __DIR__ . '/../bocuc/header.php'; ?>
 
     <section class="sheet padding-10mm">
 
@@ -220,25 +221,27 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                 <th>Đơn giá</th>
                 <th>Thành tiền</th>
             </tr>
-            <?php foreach ($arrTDH as $index => $ct): ?>
-            <tr>
-                <td> <?= $index+1 ?></td>
-                <td><?= $ct['sp_ten'] ?></td>
-                <td><?= $ct['sp_dh_soluong']?> </td>
-                <td><?= number_format($ct['sp_dh_dongia'],0,',','.').'₫'?></td>
-                <td><?= number_format($ct['thanhtien'],0,',','.').'₫' ?> </td>
-            </tr>
+            <?php foreach ($arrTDH as $index => $ct) : ?>
+                <tr>
+                    <td> <?= $index + 1 ?></td>
+                    <td><?= $ct['sp_ten'] ?></td>
+                    <td><?= $ct['sp_dh_soluong'] ?> </td>
+                    <td><?= number_format($ct['sp_dh_dongia'], 0, ',', '.') . '₫' ?></td>
+                    <td><?= number_format($ct['thanhtien'], 0, ',', '.') . '₫' ?> </td>
+                </tr>
             <?php endforeach; ?>
             <tr>
-                <td colspan="2"><b>Tổng sản số sản phẩm:</b> <?= count($arrTDH)?></td>
-                <td colspan="2"><b>Tổng thành tiền:</b></td>
-                <?php foreach( $arrDDH as $ddh): ?>
-                <td><i><?= number_format($ddh['tongthanhtien'],0,',','.') .'₫' ?></i></td>
+                <td colspan="2"><b>Tổng sản số sản phẩm:</b> <?= count($arrTDH) ?></td>
+                
+                <td colspan="3"><b>Tổng thành tiền:</b>
+                <?php foreach ($arrDDH as $ddh) : ?>
+                    <i><?= number_format($ddh['tongthanhtien'], 0, ',', '.') . '₫' ?></i>
                 <?php endforeach; ?>
+                </td>
             </tr>
-            
+
         </table>
-        
+
         <table width="100%" class="text-sm">
             <tr>
                 <td width="350mm">Chữ ký bên giao hàng</td>
