@@ -4,10 +4,18 @@
 
 
 <style>
-
     body {
         margin-top: 100px;
+
+        body {
+            background: #f4f4f4;
+            /* Màu xám rất nhạt */
+            color: #333333;
+            /* Màu chữ tối để dễ đọc */
+        }
+
     }
+
     /* Nut back-top */
     .button {
         display: none;
@@ -66,5 +74,4 @@
         width: 100%;
         height: 100%;
     }
-
 </style>

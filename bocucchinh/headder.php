@@ -14,6 +14,11 @@
             z-index: 1000;
         }
 
+        nav {
+            background: linear-gradient(90deg, #f0f0f0 0%, #c0c0c0 100%);
+            opacity: 0.9;
+        }
+
         .hover-effect {
             transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
         }
@@ -75,6 +80,11 @@
             font-weight: 600;
         }
 
+
+        .search {
+            background-color: f0f0f0;
+        }
+
         #user-btn {
             border: 2px solid gray;
             border-radius: 15px;
@@ -106,7 +116,7 @@
 <body>
 
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">
                     <img src="/Last_Project/Pic/logo.png" alt="Logo">
@@ -149,7 +159,7 @@
                     </ul>
                     <div class="d-flex ms-auto align-items-center">
                         <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm">
+                            <input class="form-control me-2 search" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm">
                             <button class="btn btn-outline-success" type="submit">
                                 <a href="/ketquatimkiem.html"><i class="fa-solid fa-magnifying-glass"></i></a>
                             </button>

@@ -18,10 +18,9 @@
 
     <style>
         body {
-            background: linear-gradient(0deg, #fde7e7 80%, #887c7c 97%);
-        }
+            background: linear-gradient(0deg, #ffffff 17%, #ffffff 20%, #eeafaf 41%, #ffffff 93%);        }
 
-        h2 {
+        main h2 {
             padding: 4px 0;
             text-align: center;
             font-size: 2rem;
@@ -45,7 +44,6 @@
             width: 100%;
             border: 5px solid #555555;
             border-radius: 10px;
-            /* transition: transform 0.2s ease-in-out; */
         }
 
         iframe:hover {
@@ -55,7 +53,7 @@
         .banner {
             padding: 20px 0;
             text-align: center;
-            color: #fff;
+            color: gray;
         }
 
         .banner h1 {
