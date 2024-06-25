@@ -61,6 +61,11 @@ $ngaylap = date('Y-m-d');
     .custom-select::-ms-expand {
       display: none;
     }
+
+    .table td,
+    .table th {
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -104,7 +109,7 @@ $ngaylap = date('Y-m-d');
 
   <main class="container">
 
-    <form class=" form-ddh bg-light p-5 rounded border" action="" method="post" name="themmoi" id="themmoi">
+    <form class="form-ddh bg-light p-5 rounded border" action="" method="post" name="themmoi" id="themmoi">
       <div class="head mb-5">
         <h3>Thêm đơn đặt hàng</h3>
       </div>
@@ -124,7 +129,9 @@ $ngaylap = date('Y-m-d');
       <div class="row mt-2">
         <div class="col-md-4">
           <label for="ngaylap">Ngày lập</label>
-          <input readonly class="form-control mt-2" type="text" name="ngaylap" value="<?= date('d/m/Y', strtotime($ngaylap)) ?>">
+          <input readonly  class="form-control mt-2" type="text" value="<?= date('d/m/Y',  strtotime($ngaylap))  ?>" >
+          <input type="hidden" name="ngaylap" value="<?= $ngaylap ?>" >
+        
         </div>
         <div class="col-md-4">
           <label for="ngaygiao">Ngày giao</label>
@@ -208,7 +215,7 @@ $ngaylap = date('Y-m-d');
         </table>
       </div>
 
-      <button type="submit" class="btn btn-primary mt-3 me-2 btn-save" name="save" id="save">Lưu</button>
+      <button type="submit" class="btn btn-primary mt-3 me-2 btn-save" name="save" id="save">Lưu đơn hàng</button>
       <a href="index.php" class="btn btn-danger mt-3" name="exit">Huỷ</a>
     </form>
   </main>
@@ -239,7 +246,7 @@ $ngaylap = date('Y-m-d');
       handleCheckboxes('xuly');
       handleCheckboxes('thanhtoan');
 
-      //Hiển thị địa chỉ với từng khách hàng tương ứng
+      // Hiển thị địa chỉ với từng khách hàng tương ứng
       const khSelect = document.getElementById('kh_id');
       const diachiInput = document.getElementById('dh_diachi');
 
@@ -252,7 +259,7 @@ $ngaylap = date('Y-m-d');
       khSelect.dispatchEvent(new Event('change'));
     });
 
-    //Tạo bảng đơn đặt hàng ảo
+    // Tạo bảng đơn đặt hàng ảo
     $(function() {
       $('#add-cart').click(function(event) {
         event.preventDefault();
@@ -265,11 +272,11 @@ $ngaylap = date('Y-m-d');
 
         var template = '<tr>';
         template += '<td>' + sp_ten + '<input type="hidden" name="sp_id[]" value="' + sp_id + '"></td>';
-        template += '<td>' + dh_soluong + '<input type="hidden" name="dh_soluong[]" value="' + dh_soluong + '"></td>';
+        template += '<td>' + dh_soluong + '<input type="hidden" name="sp_dh_soluong[]" value="' + dh_soluong + '"></td>';
         template += '<td>' + sp_gia.toLocaleString('vi-VN', {
           style: 'currency',
           currency: 'VND'
-        }) + '<input type="hidden" name="sp_gia[]" value="' + sp_gia + '"></td>';
+        }) + '<input type="hidden" name="sp_dh_dongia[]" value="' + sp_gia + '"></td>';
         template += '<td>' + thanhtien.toLocaleString('vi-VN', {
           style: 'currency',
           currency: 'VND'
@@ -286,25 +293,103 @@ $ngaylap = date('Y-m-d');
         $(this).closest('tr').remove();
       });
     });
+
+    $('#save').click(function(event) {
+      event.preventDefault();
+      var infoData = [];
+      var orderData = [];
+      var kh_id = $('select[name="kh_id"]').val();
+      var ngaygiao = $('input[name="ngaygiao"]').val();
+      var ngaylap = $('input[name="ngaylap"]').val();
+      var dh_diachi = $('input[name="dh_diachi"]').val();
+
+      var trangthai_donhang;
+      if ($('input[name="trangthai_donhang"]').is(':checked')) {
+        trangthai_donhang = $('input[name="trangthai_donhang"]:checked').val();
+      }
+      var trangthai_thanhtoan;
+      if ($('input[name="trangthai_thanhtoan"]').is(':checked')) {
+        trangthai_thanhtoan = $('input[name="trangthai_thanhtoan"]:checked').val();
+      }
+      var httt_id = $('select[name="httt_id"]').val();
+
+      infoData.push({
+        kh_id,
+        ngaygiao,
+        ngaylap,
+        dh_diachi,
+        trangthai_donhang,
+        trangthai_thanhtoan,
+        httt_id,
+      });
+
+      $('#table-ddh tbody tr').each(function() {
+        var sp_id = $(this).find('input[name="sp_id[]"]').val();
+        var dh_soluong = $(this).find('input[name="sp_dh_soluong[]"]').val();
+        var sp_gia = $(this).find('input[name="sp_dh_dongia[]"]').val();
+
+        orderData.push({
+          sp_id: sp_id,
+          dh_soluong: dh_soluong,
+          sp_gia: sp_gia
+        });
+      });
+
+      if (orderData.length > 0) {
+        $.ajax({
+          url: './add.php',
+          type: 'POST',
+          data: JSON.stringify({
+            info: infoData,
+            orders: orderData
+          }),
+          contentType: 'application/json',
+          success: function(response) {
+            window.location.href = './../popup.php?name=dondathang';
+          },
+        });
+      } else {
+        alert("Không có sản phẩm nào!");
+      }
+    });
   </script>
 
   <?php
-  if (isset($_POST['save'])) {
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     include_once __DIR__ . '/../../connect/connect.php';
 
-    $lsp_ten = $_POST['lsp_ten'];
-    $lsp_mota = $_POST['lsp_mota'];
+    $data = json_decode(file_get_contents('php://input'), true);
 
-    $sql = "INSERT INTO loaisanpham (lsp_ten, lsp_mota) VALUES ('$lsp_ten', '$lsp_mota');";
+    // Chuẩn bị câu lệnh SQL cho đơn đặt hàng
+    $stmt = $conn->prepare("INSERT INTO dondathang (kh_id, dh_ngaygiao, dh_ngaylap, dh_noigiao, dh_trangthai, dh_trangthai_donhang, httt_id) VALUES (?, ?, ?, ?, ?, ?, ?);");
 
-    if (mysqli_query($conn, $sql)) {
-      echo '<script>setTimeout(function() { location.href = "index.php"; }, 300);</script>';
+    // Chuẩn bị câu lệnh SQL cho đơn hàng
+    $stmt_detail = $conn->prepare("INSERT INTO sanpham_dondathang (sp_id, sp_dh_soluong, sp_dh_dongia, dh_id) VALUES (?, ?, ?, ?)");
+
+    foreach ($data['info'] as $info) {
+      $ngaylap = !empty($info['ngaylap']) ? date('Y-m-d', strtotime($info['ngaylap'])) : null;
+      $ngaygiao = !empty($info['ngaygiao']) ? date('Y-m-d', strtotime($info['ngaygiao'])) : null;
+
+      // Chèn thông tin đơn hàng
+      $stmt->bind_param("isssiii", $info['kh_id'], $ngaygiao, $ngaylap, $info['dh_diachi'], $info['trangthai_thanhtoan'], $info['trangthai_donhang'], $info['httt_id']);
+      $stmt->execute();
+
+      foreach ($data['orders'] as $order) {
+
+        $dh_id = $stmt->insert_id;
+        // Chèn chi tiết đơn hàng
+        $stmt_detail->bind_param("iidi", $order['sp_id'], $order['dh_soluong'], $order['sp_gia'], $dh_id);
+        $stmt_detail->execute();
+      }
     }
+    $stmt->close();
+
+    $stmt_detail->close();
+    $conn->close();
   }
 
-  if (isset($_POST['exit'])) {
-    echo '<script>setTimeout(function() { location.href = "index.php"; }, 1000);</script>';
-  }
   ?>
 
 </body>

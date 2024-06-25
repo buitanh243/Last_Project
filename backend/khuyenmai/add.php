@@ -61,9 +61,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
     $km_ten = $_POST['km_ten'];
     $km_sta = $_POST['km_sta'];
-    date('d/m/y', strtotime($km_sta));
     $km_end = $_POST['km_end'];
-    date('d/m/y', strtotime($km_end));
     $km_mota = $_POST['km_mota'];
 
     $sql = "INSERT INTO khuyenmai (km_ten,km_sta,km_end,km_mota) VALUES ('$km_ten','$km_sta','$km_end','$km_mota');";

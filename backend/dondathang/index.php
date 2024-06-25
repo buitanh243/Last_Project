@@ -89,18 +89,18 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                   <td class="text-center"><?= $ddh['kh_ten'] ?></td>
                   <td class="text-center"><?= $ddh['kh_sdt'] ?></td>
                   <td><?= date('d/m/Y', strtotime($ddh['dh_ngaylap'])) ?></td>
-                  <td><?= date('d/m/Y', strtotime($ddh['dh_ngaygiao'])) ?></td>
+                  <td><?= empty($ddh['dh_ngaygiao']) ? 'Rỗng': date('d/m/Y', strtotime($ddh['dh_ngaygiao'])) ?></td>
                   <td><?= $ddh['dh_noigiao'] ?></td>
                   <td class="text-center"><span class="badge bg-secondary"><?= $ddh['httt_ten'] ?></span></td>
                   <td class="text-center">
-                    <?php if ($ddh['dh_trangthai'] == 1) : ?>
+                    <?php if ($ddh['dh_trangthai'] != 1) : ?>
                       <span class="badge bg-info">Đã thanh toán</span>
                     <?php else : ?>
                       <span class="badge bg-danger">Chưa thanh toán</span>
                     <?php endif; ?>
                   </td>
                   <td class="text-center">
-                    <?php if ($ddh['dh_trangthai_donhang'] == 1) : ?>
+                    <?php if ($ddh['dh_trangthai_donhang'] != 1) : ?>
                       <span class="badge bg-info">Đã xử lý</span>
                     <?php else : ?>
                       <span class="badge bg-danger">Chưa xử lý</span>
@@ -108,7 +108,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                   </td>
                   <td class="text-end"><?= number_format($ddh['thanhtien'], 0, ',', '.').'₫' ?> </td>
                   <td class="text-center">
-                    <?php if ($ddh['dh_trangthai_donhang'] == 1) : ?>
+                    <?php if ($ddh['dh_trangthai_donhang'] != 1) : ?>
                       <a href="./chitiet_dh.php?id= <?= $ddh['dh_id']?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-print"></i> In</a>
                     <?php else : ?>
                       <a href="./edit.php?id=<?= $ddh['dh_id'] ?>" class="btn btn-danger btn-sm"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
