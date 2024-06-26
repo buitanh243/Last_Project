@@ -1,61 +1,67 @@
 <?php
 session_start();
+ob_start();
 
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 $ngaymua = date('Y-m-d');
 
-
-// Khởi tạo giỏ hàng 
+//Khởi tạo giỏ hàng
 if (!isset($_SESSION["giohang"])) $_SESSION["giohang"] = [];
 
-// Xóa giỏ hàng 
+//Xoá toà bộ giỏ hàng
 if (isset($_POST['del-cart']) && $_POST['del-cart'] == 1) {
   unset($_SESSION['giohang']);
 }
 
-// Lấy dữ liệu từ form Chi tiết sản phẩm
-if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_POST['add-cart'])) {
-  include_once __DIR__ . '/connect/connect.php';
+//Xoá sản phẩm 
+if (isset($_GET['id']) && $_GET['id'] >= 0) {
+  $id = $_GET['id'];
+  if (isset($_SESSION['giohang'][$id])) {
+    unset($_SESSION['giohang'][$id]);
+    $_SESSION['giohang'] = array_values($_SESSION['giohang']);
+    header('Location: giohang.php');
+    exit;
+  }
+}
 
-  $sp_id = $_POST['sp_id'] ?? null;
-  $dh_soluong = $_POST['dh_soluong'] ?? null;
+include_once __DIR__ . '/connect/connect.php';
 
-  $sp_id = mysqli_real_escape_string($conn, $sp_id);
+$sp_id = $_POST['sp_id'] ?? null;
+$dh_soluong = $_POST['dh_soluong'] ?? null;
 
-  $sql = "SELECT hsp.hsp_url, sp.sp_ten, sp.sp_gia 
+$sp_id = mysqli_real_escape_string($conn, $sp_id);
+
+$sql = "SELECT hsp.hsp_url, sp.sp_ten, sp.sp_gia 
             FROM hinhsanpham AS hsp
             JOIN sanpham AS sp ON hsp.sp_id = sp.sp_id 
             WHERE sp.sp_id = '$sp_id';";
-  $result = mysqli_query($conn, $sql);
+$result = mysqli_query($conn, $sql);
 
-  if ($result) {
-    $arrSP = mysqli_fetch_array($result);
-    if ($arrSP) {
-      $sp_ten = $arrSP['sp_ten'];
-      $sp_gia = $arrSP['sp_gia'];
-      $hsp_url = $arrSP['hsp_url'];
+if ($result) {
+  $arrSP = mysqli_fetch_array($result);
+  if ($arrSP) {
+    $sp_ten = $arrSP['sp_ten'];
+    $sp_gia = $arrSP['sp_gia'];
+    $hsp_url = $arrSP['hsp_url'];
 
-      // Kiểm tra xem sản phẩm đã có trong giỏ hàng hay chưa
-      $found = false;
-      foreach ($_SESSION['giohang'] as &$sp) {
-        if ($sp['sp_id'] == $sp_id) {
-          $sp['dh_soluong'] += $dh_soluong;
-          $found = true;
-          break;
-        }
+    $found = false;
+    foreach ($_SESSION['giohang'] as &$sp) {
+      if ($sp['sp_id'] == $sp_id) {
+        $sp['dh_soluong'] += $dh_soluong;
+        $found = true;
+        break;
       }
-      unset($sp);
+    }
+    unset($sp);
 
-      if (!$found) {
-        // Nếu chưa có, thêm sản phẩm mới vào giỏ hàng
-        $_SESSION['giohang'][] = [
-          'sp_id' => $sp_id,
-          'hsp_url' => $hsp_url,
-          'sp_ten' => $sp_ten,
-          'sp_gia' => $sp_gia,
-          'dh_soluong' => $dh_soluong
-        ];
-      }
+    if (!$found) {
+      $_SESSION['giohang'][] = [
+        'sp_id' => $sp_id,
+        'hsp_url' => $hsp_url,
+        'sp_ten' => $sp_ten,
+        'sp_gia' => $sp_gia,
+        'dh_soluong' => $dh_soluong
+      ];
     }
   }
 }
@@ -89,6 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_POST['add-cart'])) {
               <th>Giá</th>
               <th>Số lượng</th>
               <th>Thành tiền</th>
+              <th></th>
             </tr>
             <?php if (isset($_SESSION['giohang']) && is_array($_SESSION['giohang']) && count($_SESSION['giohang']) > 0) : ?>
               <?php foreach ($_SESSION['giohang'] as $key => $sp) : ?>
@@ -105,7 +112,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_POST['add-cart'])) {
                     <label class="mt-5" for=""><?= $sp['dh_soluong'] ?></label>
                     <input type="hidden" name="sp_dh_soluong[]" value="<?= $sp['dh_soluong'] ?>">
                   </td>
-                  <td><label class="mt-5" for=""><?= number_format($sp['sp_gia'] * $sp['dh_soluong'], 0, ',', '.') ?>đ</label></td>
+                  <td>
+                    <label class="mt-5" for=""><?= number_format($sp['sp_gia'] * $sp['dh_soluong'], 0, ',', '.') ?>đ</label>
+                  </td>
+                  <td>
+                    <a href="./giohang.php?id=<?= $key ?>" class="btn btn-danger ml-2 mt-5 btn-delete"><i class="fa-solid fa-trash"></i></a>
+                  </td>
                 </tr>
               <?php endforeach; ?>
             <?php else : ?>
@@ -116,7 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_POST['add-cart'])) {
               </tr>
             <?php endif; ?>
           </table>
-
 
           <form method="post" action="">
             <button type="submit" name="del-cart" value="1" class="btn btn-danger">Xoá giỏ hàng</button>
@@ -142,11 +153,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_POST['add-cart'])) {
               ), 0, ',', '.') : '0' ?>đ
             </label>
 
-            <form action="" method="post">
-              <input name="sp_id" type="hidden" value="<?= $sp_id ?>">
-              <input name="dh_soluong" type="hidden" value="<?= $dh_soluong ?>">
-              <button type="submit" name="dathang" class="btn btn-danger mt-3">ĐẶT HÀNG</button>
-
+            <input name="sp_id" type="hidden" value="<?= $sp_id ?>">
+            <input name="dh_soluong" type="hidden" value="<?= $dh_soluong ?>">
+            <button type="submit" name="dathang" class="btn btn-danger mt-3">ĐẶT HÀNG</button>
           </div>
           <div class="container mt-3">
             <div class="row" style="display: flex; flex-wrap: wrap;">
@@ -164,19 +173,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_POST['add-cart'])) {
                 <label for="ghichu">Ghi chú đơn hàng (Tuỳ chọn)</label>
                 <textarea placeholder="Nhập ghi chú..." cols="100" rows="2" class="form-control" id="ghichu" name="ghichu"></textarea>
               </div>
-              </form>
             </div>
           </div>
         </div>
 
       </div>
-
     </div>
   </main>
   <?php
   include_once __DIR__ . '/bocucchinh/footer.php';
   include_once __DIR__ . '/js/js.php';
+
   ?>
+
 </body>
 
 </html>

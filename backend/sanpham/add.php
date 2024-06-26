@@ -1,11 +1,12 @@
-<?php session_start(); 
+<?php session_start();
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
-  echo '<script>
+    echo '<script>
           location.href="/Last_project/Xuly/popup-login.php?name=Error";
         </script>';
-  exit; 
+    exit;
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -17,9 +18,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
     include_once __DIR__ . '/../style.php'; //css backend
     ?>
     <link rel="icon" href="/./Pic/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -69,16 +68,13 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
             <div class="row mt-5">
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="sp_ten" class="form-label">Tên sản phẩm (<i
-                                class="fa-solid fa-star-of-life fa-xs"></i>)</label>
-                        <input placeholder="Nhập tên sản phẩm..." type="text" class="form-control" id="sp_ten"
-                            name="sp_ten">
+                        <label for="sp_ten" class="form-label">Tên sản phẩm (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                        <input placeholder="Nhập tên sản phẩm..." type="text" class="form-control" id="sp_ten" name="sp_ten">
                     </div>
                     <div class="mb-3">
-                        <label for="nsx_id" class="form-label">Nhà sản xuất (<i
-                                class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                        <label for="nsx_id" class="form-label">Nhà sản xuất (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
                         <select class="form-select" id="nsx_id" name="nsx_id">
-                            <?php foreach ($arrNSX as $nsx): ?>
+                            <?php foreach ($arrNSX as $nsx) : ?>
                                 <option value="<?= $nsx['nsx_id'] ?>">
                                     <?= $nsx['nsx_ten'] ?>
                                 </option>
@@ -88,24 +84,19 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
 
                     <div class="mb-3">
-                        <label for="sp_gia" class="form-label">Giá (<i
-                                class="fa-solid fa-star-of-life fa-xs"></i>)</label>
-                        <input placeholder="Nhập giá bán..." type="number" class="form-control" id="sp_gia"
-                            name="sp_gia">
+                        <label for="sp_gia" class="form-label">Giá (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                        <input placeholder="Nhập giá bán..." type="text" class="form-control sp_gia" id="sp_gia" name="sp_gia">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="sp_soluong" class="form-label">Số lượng (<i
-                                class="fa-solid fa-star-of-life fa-xs"></i>)</label>
-                        <input placeholder="Nhập số lượng..." type="number" class="form-control" id="sp_soluong"
-                            name="sp_soluong" min="1">
+                        <label for="sp_soluong" class="form-label">Số lượng (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                        <input placeholder="Nhập số lượng..." type="number" class="form-control" id="sp_soluong" name="sp_soluong" min="1">
                     </div>
                     <div class="mb-3">
-                        <label for="lsp_id" class="form-label">Loại sản phẩm (<i
-                                class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                        <label for="lsp_id" class="form-label">Loại sản phẩm (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
                         <select class="form-select" id="lsp_id" name="lsp_id">
-                            <?php foreach ($arrLSP as $lsp): ?>
+                            <?php foreach ($arrLSP as $lsp) : ?>
                                 <option value="<?= $lsp['lsp_id'] ?>">
                                     <?= $lsp['lsp_ten'] ?>
                                 </option>
@@ -115,15 +106,13 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
                     <div class="mb-3">
                         <label for="sp_giacu" class="form-label">Giá cũ</label>
-                        <input placeholder="Nhập giá cũ..." type="number" class="form-control" id="sp_giacu"
-                            name="sp_giacu">
+                        <input placeholder="Nhập giá cũ..." type="text" class="form-control sp_gia" id="sp_giacu" name="sp_giacu">
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-6">
-                    <label for="sp_ngaynhaphang" class="form-label">Ngày nhập hàng (<i
-                            class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                    <label for="sp_ngaynhaphang" class="form-label">Ngày nhập hàng (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
                     <input type="date" class="form-control" id="sp_ngaynhaphang" name="sp_ngaynhaphang">
                 </div>
                 <div class="col-6">
@@ -131,7 +120,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                     <select class="form-select" id="km_id" name="km_id">
                         <option value="">Không có khuyến mãi</option>
 
-                        <?php foreach ($arrkm as $km): ?>
+                        <?php foreach ($arrkm as $km) : ?>
                             <option value="<?= $km['km_id'] ?>">
                                 <?= $km['km_ten'] ?>
                             </option>
@@ -141,14 +130,12 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
             </div>
             <div class="mt-3">
                 <label for="sp_motangan" class="form-label">Mô tả ngắn</label>
-                <textarea placeholder="Nhập mô tả ngắn..." cols="100" rows="2" class="form-control" id="sp_motangan"
-                    name="sp_motangan"></textarea>
+                <textarea placeholder="Nhập mô tả ngắn..." cols="100" rows="2" class="form-control" id="sp_motangan" name="sp_motangan"></textarea>
 
             </div>
             <div class="mt-3">
                 <label for="sp_motangan" class="form-label">Mô tả chi tiết</label>
-                <textarea placeholder="Nhập mô tả chi tiết..." cols="100" rows="10" class="form-control"
-                    id="sp_mota_chitiet" name="sp_mota_chitiet"></textarea>
+                <textarea placeholder="Nhập mô tả chi tiết..." cols="100" rows="10" class="form-control" id="sp_mota_chitiet" name="sp_mota_chitiet"></textarea>
 
             </div>
 
@@ -164,6 +151,21 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
         </form>
     </main>
 
+    <script>
+        const sp_gia_elements = document.getElementsByClassName('sp_gia');
+        Array.from(sp_gia_elements).forEach(sp_gia => {
+            sp_gia.addEventListener("input", function(e) {
+                let value = e.target.value;
+                value = value.replace(/[^0-9]/g, ""); 
+                if (value !== "") {
+                    e.target.value = parseInt(value).toLocaleString("vi-VN");
+                } else {
+                    e.target.value = "";
+                }
+            });
+        });
+    </script>
+
     <?php
 
     if (isset($_POST['save'])) {
@@ -171,8 +173,15 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
         $sp_ten = $_POST['sp_ten'];
         $sp_soluong = $_POST['sp_soluong'];
+        
         $sp_gia = $_POST['sp_gia'];
+        $sp_gia = str_replace('.', '', $sp_gia);
+        $sp_gia = floatval($sp_gia);
+
         $sp_giacu = empty($_POST['sp_giacu']) ? 'NULL' : $_POST['sp_giacu'];
+        $sp_giacu = str_replace('.', '', $sp_giacu);
+        $sp_giacu = floatval($sp_giacu);
+
         $sp_motangan = empty($_POST['sp_motangan']) ? '' : $_POST['sp_motangan'];
         $sp_mota_chitiet = empty($_POST['sp_mota_chitiet']) ? '' : $_POST['sp_mota_chitiet'];
         $sp_ngaynhaphang = $_POST['sp_ngaynhaphang'];
@@ -183,10 +192,9 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
 
         $sql = "INSERT INTO sanpham (sp_ten, sp_soluong, sp_gia, sp_giacu, sp_ngaynhaphang, sp_motangan, sp_mota_chitiet, lsp_id, nsx_id, km_id) 
-         VALUES ('$sp_ten', $sp_soluong, $sp_gia, $sp_giacu, '$sp_ngaynhaphang', '$sp_motangan', '$sp_mota_chitiet', $lsp_id, $nsx_id, $km_id);";
+         VALUES ('$sp_ten', $sp_soluong, '$sp_gia', '$sp_giacu', '$sp_ngaynhaphang', '$sp_motangan', '$sp_mota_chitiet', $lsp_id, $nsx_id, $km_id);";
         mysqli_query($conn, $sql);
         echo '<script>location.href = "./../popup.php?name=sanpham";</script>';
-       
     }
     if (isset($_POST['exit'])) {
         echo '<script>location.href = "index.php";</script>';

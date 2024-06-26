@@ -1,11 +1,12 @@
-<?php session_start(); 
+<?php session_start();
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   echo '<script>
           location.href="/Last_project/Xuly/popup-login.php?name=Error";
         </script>';
-  exit; 
+  exit;
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,7 +26,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   include_once __DIR__ . '/../../connect/connect.php';
 
   $sql = "SELECT * FROM khuyenmai;";
- 
+
 
   $data = mysqli_query($conn, $sql);
 
@@ -44,7 +45,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
   ?>
   <main>
-  <?php include_once __DIR__ . '/../bocuc/header.php'; ?>
+    <?php include_once __DIR__ . '/../bocuc/header.php'; ?>
 
     <div class="container mt-5">
       <div class="row">
@@ -54,6 +55,14 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
           ?>
         </div>
         <div class="col-9">
+          <div class="row">
+            <div class="col-4  p-2 mt-2 ">
+              <a href="./add.php" class="btn btn-info text-white"><i class="fa-solid fa-plus"></i> Thêm khuyến mãi</a>
+            </div>
+            <div class="col-3  p-2">
+            </div>
+            <div class="col-2"></div>
+          </div>
           <div class="row">
             <div class="col-3 border rounded bg-secondary bg-gradient text-white">
               Tên khuyến mãi
@@ -69,44 +78,29 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
             </div>
           </div>
 
-          <?php foreach ($arrkm as $km): ?>
+          <?php foreach ($arrkm as $km) : ?>
             <div class="row ">
-              
               <div class="col-3 bg-light mt-2">
                 <?= $km['km_ten'] ?>
               </div>
               <div class="col-2 bg-light mt-2 text-center">
-                <?= date('d/m/Y',strtotime($km['km_sta']))  ?>
+                <?= date('d/m/Y', strtotime($km['km_sta']))  ?>
               </div>
               <div class="col-2 bg-light mt-2 text-center">
-                <?= date('d/m/Y',strtotime($km['km_end']))  ?>
+                <?= date('d/m/Y', strtotime($km['km_end']))  ?>
               </div>
-              <div class="col-2 bg-light mt-2">
+              <div class="col-3 bg-light mt-2">
                 <?= $km['km_mota'] ?>
               </div>
               <div class="col-2">
-                  <a href="./edit.php?id=<?= $km['km_id']?>" class="btn btn-warning btn-sm mt-1" ><i class="fa-solid fa-pen-to-square"></i></a>
-                  <a href="#" class="btn btn-danger btn-sm mt-1 btn-delete" data-id="<?= $km['km_id']?>"><i class="fa-solid fa-trash"></i></a>
+                <a href="./edit.php?id=<?= $km['km_id'] ?>" class="btn btn-warning btn-sm mt-1"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="#" class="btn btn-danger btn-sm mt-1 btn-delete" data-id="<?= $km['km_id'] ?>"><i class="fa-solid fa-trash"></i></a>
               </div>
             </div>
           <?php endforeach; ?>
-
-          <div class="row">
-            
-            <div class="col-4  p-2 mt-2 ">
-              <a href="./add.php" class="btn btn-info text-white"><i class="fa-solid fa-plus"></i> Thêm khuyến mãi</a>
-            </div>
-            <div class="col-3  p-2">
-
-            </div>
-            <div class="col-2"></div>
-          </div>
         </div>
-
       </div>
-
     </div>
-
   </main>
   <?php
   include_once __DIR__ . '/../js/js.php';

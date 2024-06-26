@@ -169,6 +169,7 @@ session_start();
             $count++;
           endforeach;
           ?>
+
           <script>
             function addToCart(productId) {
               const form = document.getElementById(`add-to-cart-form-${productId}`);
@@ -210,12 +211,10 @@ session_start();
     </div>
 
   </main>
-
   <?php
   include_once __DIR__ . '/bocucchinh/footer.php';
   include_once __DIR__ . '/js/js.php';
   ?>
-
 </body>
 
 </html>

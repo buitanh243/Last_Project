@@ -1,11 +1,12 @@
-<?php session_start(); 
+<?php session_start();
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
-  echo '<script>
+    echo '<script>
           location.href="/Last_project/Xuly/popup-login.php?name=Error";
         </script>';
-  exit; 
+    exit;
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -96,29 +97,25 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
     <main>
         <form class="container mt-5 bg-light p-5 rounded border" action="" method="post" id="themmoi" name="themmoi">
             <h3>Sửa sản phẩm</h3>
-            <?php foreach ($arrSP as $sp): ?>
+            <?php foreach ($arrSP as $sp) : ?>
                 <div class="row mt-5">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="sp_ten" class="form-label">Tên sản phẩm (<i
-                                class="fa-solid fa-star-of-life fa-xs"></i>)</label>
-                            <input type="text" class="form-control" id="sp_ten" value="<?= $sp['sp_ten'] ?>" name="sp_ten">
+                            <label for="sp_ten" class="form-label">Tên sản phẩm (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                            <input type="text" class="form-control " id="sp_ten" value="<?= $sp['sp_ten'] ?>" name="sp_ten">
                         </div>
                         <div class="mb-3">
-                            <label for="sp_gia" class="form-label">Giá (<i
-                                class="fa-solid fa-star-of-life fa-xs"></i>)</label>
-                            <input type="number" class="form-control" value="<?= $sp['sp_gia'] ?>" id="sp_gia"
-                                name="sp_gia">
+                            <label for="sp_gia" class="form-label">Giá (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                            <input type="text" class="form-control sp_gia" value="<?= number_format( $sp['sp_gia'],0,'.',',') ?>" id="sp_gia" name="sp_gia">
                         </div>
                         <div class="mb-3">
-                            <label for="lsp_id" class="form-label">Loại sản phẩm (<i
-                                class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                            <label for="lsp_id" class="form-label">Loại sản phẩm (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
                             <select class="form-select" id="lsp_id" name="lsp_id">
                                 <option value="<?= $sp['lsp_id'] ?>" selected>
                                     <?= $sp['lsp_ten'] ?>
                                 </option>
-                                <?php foreach ($arrLSP as $lsp): ?>
-                                    <?php if ($lsp['lsp_id'] != $sp['lsp_id']): ?>
+                                <?php foreach ($arrLSP as $lsp) : ?>
+                                    <?php if ($lsp['lsp_id'] != $sp['lsp_id']) : ?>
                                         <option value="<?= $lsp['lsp_id'] ?>">
                                             <?= $lsp['lsp_ten'] ?>
                                         </option>
@@ -129,25 +126,21 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="sp_soluong" class="form-label">Số lượng (<i
-                                class="fa-solid fa-star-of-life fa-xs"></i>)</label>
-                            <input type="number" class="form-control" id="sp_soluong" value="<?= $sp['sp_soluong'] ?>"
-                                name="sp_soluong" min="1">
+                            <label for="sp_soluong" class="form-label">Số lượng (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                            <input type="number" class="form-control" id="sp_soluong" value="<?= $sp['sp_soluong'] ?>" name="sp_soluong" min="1">
                         </div>
                         <div class="mb-3">
                             <label for="sp_giacu" class="form-label">Giá cũ</label>
-                            <input placeholder="Nhập giá cũ..." type="number" min="0" class="form-control" id="sp_giacu" value="<?= $sp['sp_giacu'] ?>"
-                                name="sp_giacu">
+                            <input placeholder="Nhập giá cũ..." type="text" min="0" class="form-control sp_gia" id="sp_giacu" value="<?= number_format($sp['sp_giacu'],0,'.',',') ?>" name="sp_giacu">
                         </div>
                         <div class="mb-3">
-                            <label for="nsx_id" class="form-label">Nhà sản xuất (<i
-                                class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                            <label for="nsx_id" class="form-label">Nhà sản xuất (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
                             <select class="form-select" id="nsx_id" name="nsx_id">
                                 <option value="<?= $sp['nsx_id'] ?>" selected>
                                     <?= $sp['nsx_ten'] ?>
                                 </option>
-                                <?php foreach ($arrNSX as $nsx): ?>
-                                    <?php if ($nsx['nsx_id'] != $sp['nsx_id']): ?>
+                                <?php foreach ($arrNSX as $nsx) : ?>
+                                    <?php if ($nsx['nsx_id'] != $sp['nsx_id']) : ?>
                                         <option value="<?= $nsx['nsx_id'] ?>">
                                             <?= $nsx['nsx_ten'] ?>
                                         </option>
@@ -159,16 +152,14 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <label for="sp_ngaynhaphang" class="form-label">Ngày nhập hàng (<i
-                                class="fa-solid fa-star-of-life fa-xs"></i>)</label>
-                        <input type="date" class="form-control" id="sp_ngaynhaphang" value="<?= $sp['sp_ngaynhaphang'] ?>"
-                            name="sp_ngaynhaphang">
+                        <label for="sp_ngaynhaphang" class="form-label">Ngày nhập hàng (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
+                        <input type="date" class="form-control" id="sp_ngaynhaphang" value="<?= $sp['sp_ngaynhaphang'] ?>" name="sp_ngaynhaphang">
                     </div>
                     <div class="col-6">
                         <label for="km_id" class="form-label">Loại khuyến mãi (nếu có) </label>
                         <select class="form-select" id="km_id" name="km_id">
                             <option value="" <?= empty($sp['km_id']) ? 'selected' : '' ?>>Không có khuyến mãi</option>
-                            <?php foreach ($arrkm as $km): ?>
+                            <?php foreach ($arrkm as $km) : ?>
                                 <option value="<?= $km['km_id'] ?>" <?= $km['km_id'] == $sp['km_id'] ? 'selected' : '' ?>>
                                     <?= $km['km_ten'] ?>
                                 </option>
@@ -178,13 +169,11 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                 </div>
                 <div class="mt-3">
                     <label for="sp_motangan" class="form-label">Mô tả ngắn</label>
-                    <textarea placeholder="Nhập mô tả ngắn..." cols="100" rows="2" class="form-control" id="sp_motangan"
-                        name="sp_motangan"><?= $sp['sp_motangan'] ?></textarea>
+                    <textarea placeholder="Nhập mô tả ngắn..." cols="100" rows="2" class="form-control" id="sp_motangan" name="sp_motangan"><?= $sp['sp_motangan'] ?></textarea>
                 </div>
                 <div class="mt-3">
                     <label for="sp_mota_chitiet" class="form-label">Mô tả chi tiết</label>
-                    <textarea placeholder="Nhập mô tả chi tiết..." cols="100" rows="10" class="form-control" id="sp_mota_chitiet"
-                        name="sp_mota_chitiet"><?= $sp['sp_mota_chitiet'] ?></textarea>
+                    <textarea placeholder="Nhập mô tả chi tiết..." cols="100" rows="10" class="form-control" id="sp_mota_chitiet" name="sp_mota_chitiet"><?= $sp['sp_mota_chitiet'] ?></textarea>
                 </div>
             <?php endforeach; ?>
             <div class="">
@@ -192,6 +181,20 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                 <button type="submit" class="btn btn-danger mt-3" name="exit">Huỷ</button>
             </div>
         </form>
+        <script>
+            const sp_gia_elements = document.getElementsByClassName('sp_gia');
+            Array.from(sp_gia_elements).forEach(sp_gia => {
+                sp_gia.addEventListener("input", function(e) {
+                    let value = e.target.value;
+                    value = value.replace(/[^0-9]/g, "");
+                    if (value !== "") {
+                        e.target.value = parseInt(value).toLocaleString("vi-VN");
+                    } else {
+                        e.target.value = "";
+                    }
+                });
+            });
+        </script>
 
         <?php
         if (isset($_POST['save'])) {
@@ -200,8 +203,15 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
             $sp_ten = $_POST['sp_ten'];
             $sp_soluong = $_POST['sp_soluong'];
+
             $sp_gia = $_POST['sp_gia'];
+            $sp_gia = str_replace('.', '', $sp_gia);
+            $sp_gia = floatval($sp_gia);
+
             $sp_giacu = empty($_POST['sp_giacu']) ? 'NULL' : $_POST['sp_giacu'];
+            $sp_giacu = str_replace('.', '', $sp_giacu);
+            $sp_giacu = floatval($sp_giacu);
+
             $sp_motangan = empty($_POST['sp_motangan']) ? '' : $_POST['sp_motangan'];
             $sp_mota_chitiet = empty($_POST['sp_mota_chitiet']) ? '' : $_POST['sp_mota_chitiet'];
             $sp_ngaynhaphang = $_POST['sp_ngaynhaphang'];
@@ -221,9 +231,9 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
         ?>
     </main>
     <?php
-  include_once __DIR__ . '/../js/js.php';
-  include_once __DIR__ . '/../../js/js.php';
-  ?>
+    include_once __DIR__ . '/../js/js.php';
+    include_once __DIR__ . '/../../js/js.php';
+    ?>
 </body>
 
 </html>
