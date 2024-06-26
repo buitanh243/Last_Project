@@ -31,11 +31,12 @@ session_start();
     <?php
     include_once __DIR__ . '/connect/connect.php';
 
-    $username = $_SESSION['username'];
+    $username = empty($_SESSION['username']) ? '' : $_SESSION['username'];
+
     $sql = "SELECT kh.kh_ten, kh.kh_id FROM khachhang AS kh
             JOIN taikhoan AS tk ON kh.tk_id = tk.tk_id 
             WHERE tk.username='$username'";
-    
+
     $result = mysqli_query($conn, $sql);
 
     $arr_KH = [];
@@ -52,22 +53,32 @@ session_start();
             <div class="col">
                 <h3 class="text-center">Góp ý khách hàng</h3>
 
-                <?php foreach ($arr_KH as $kh) : ?>
+                <?php if (!empty($arr_KH)) {
+                    foreach ($arr_KH as $kh) : ?>
+                        <div class="row mb-3">
+                            <label for="">Tên khách hàng:</label>
+                            <div class="row mt-3">
+                                <label class="col-2"><b><?= $kh['kh_ten'] ?></b></label>
+                                <a href="./user/user.php" class="col-1 btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                            </div>
+                        </div>
+                    <?php endforeach;
+                } else { ?>
                     <div class="row mb-3">
                         <label for="">Tên khách hàng:</label>
                         <div class="row mt-3">
-                            <label class="col-2"><b><?= $kh['kh_ten'] ?></b></label>
-                            <a href="./user/user.php" class="col-1 btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
+                            <input type="text" class="form-control ms-3" placeholder="Nhập tên của bạn...">
                         </div>
                     </div>
-                <?php endforeach; ?>
+                <?php }
+                ?>
 
                 <form action="" method="post">
                     <div class="mb-3">
                         <label for="gopy_noidung" class="form-label">Nội dung góp ý:</label>
                         <textarea class="form-control" id="gopy_noidung" name="gopy_noidung" rows="5" placeholder="Nhập nội dung góp ý..."></textarea>
                     </div>
-                    <button type="submit" class=" btn btn-primary btn-sm" name="submit" id="submit" >Gửi</button>
+                    <button type="submit" class=" btn btn-primary" name="submit" id="submit">Gửi</button>
                 </form>
 
                 <?php
@@ -75,7 +86,7 @@ session_start();
 
                 if (isset($_POST['submit'])) {
                     $gopy_noidung = $_POST['gopy_noidung'];
-                    $kh_id = $arr_KH[0]['kh_id'];
+                    $kh_id = empty($_POST['kh_id']) ? 'NULL' : $_POST['kh_id'];
 
                     $sql_insert = "INSERT INTO gopy (gopy_noidung, kh_id) VALUES ('$gopy_noidung', $kh_id);";
                     $result_insert = mysqli_query($conn, $sql_insert);

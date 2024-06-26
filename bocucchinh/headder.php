@@ -110,6 +110,20 @@
             border: 2px solid black;
 
         }
+
+        .btn-logout {
+            background-color:  gray;
+            border: 0px;
+            color: #fff;
+            padding: 6px;
+            border-radius: 5px;
+        }
+
+        .btn-logout:hover {
+            transform: scale(1.1);
+            background-color: rgb(150, 150, 150);
+            font-weight: 600;
+        }
     </style>
 </head>
 
@@ -148,14 +162,9 @@
                         <li class="nav-item">
                             <a class="nav-link hover-effect" href="lienhe.php" tabindex="-1" aria-disabled="true">Liên hệ</a>
                         </li>
-                        <?php
-                        if (isset($_SESSION['username']) && !empty($_SESSION['username'])) {
-                        ?>
-                            <li class="nav-item">
+                        <li class="nav-item">
                                 <a class="nav-link hover-effect" href="/Last_Project/gopy-kh.php" tabindex="-1" aria-disabled="true">Góp ý</a>
-                            </li>
-                        <?php
-                        } ?>
+                        </li>
                     </ul>
                     <div class="d-flex ms-auto align-items-center">
                         <form class="d-flex">
@@ -174,7 +183,9 @@
                         } else {
                         ?>
                             <a class="login-btn hover-effect ms-3" id="user-btn" href="/Last_Project/user/user.php"><i class="fa-regular fa-user"></i></a>
-                            <form action="/Last_Project/Xuly/xuly-logout.php" name="dangxuat" id="dangxuat"><button class="login-btn hover-effect" type="submit" name="logout" id="logout">ĐĂNG XUẤT</button></form>
+                            <form action="/Last_Project/Xuly/xuly-logout.php" name="dangxuat" id="dangxuat">
+                            <input class="ms-3 btn-logout" type="submit" name="logout" id="logout" value="ĐĂNG XUẤT" >
+                        </form>
                         <?php
                         } ?>
                     </div>

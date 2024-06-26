@@ -10,7 +10,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
     $id = $_GET['id'];
     
-    $sql = " DELETE FROM loaisanpham WHERE lsp_id=$id; ";
+    $sql = " DELETE FROM dondathang WHERE dh_id = $id; ";
 
     mysqli_query($conn,$sql);
 

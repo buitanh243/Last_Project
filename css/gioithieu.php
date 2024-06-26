@@ -76,7 +76,7 @@
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
             margin: 20px;
             padding: 20px;
-            height: 200px;
+            height: 220px;
             color: #555;
         }
 

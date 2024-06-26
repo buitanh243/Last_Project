@@ -72,7 +72,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
   $id = $_GET['id'];
   //Lấy dữ liệu đơn đặt hàng
-  $sql = "SELECT spdh.sp_dh_soluong, spdh.sp_dh_dongia, sp.sp_ten, spdh.sp_dh_id
+  $sql = "SELECT spdh.sp_dh_soluong, spdh.sp_dh_dongia, sp.sp_ten, spdh.sp_dh_id, spdh.sp_id
   FROM sanpham_dondathang AS spdh
   JOIN sanpham AS sp ON spdh.sp_id = sp.sp_id
   WHERE spdh.dh_id = $id;
@@ -84,13 +84,15 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
     $arrDDH[] = [
       "sp_dh_soluong" => $row["sp_dh_soluong"],
       "sp_dh_dongia" => $row["sp_dh_dongia"],
+      "sp_id"=> $row["sp_id"],
       "sp_ten" => $row["sp_ten"],
-      "sp_dh_id"=> $row["sp_dh_id"],
+      "sp_dh_id" => $row["sp_dh_id"],
     ];
   }
   //Lấy thông tin đơn hàng 
   $sql = "SELECT dh_ngaygiao,dh_ngaylap,dh_noigiao,dh_trangthai,dh_trangthai_donhang,ddh.dh_id,
-  httt_ten,kh_ten,kh_sdt
+  kh.kh_id,kh_ten,kh_sdt,
+  httt.httt_id,httt_ten
    FROM dondathang AS ddh
   LEFT JOIN khachhang AS kh ON ddh.kh_id = kh.kh_id
   LEFT JOIN hinhthucthanhtoan AS httt 
@@ -102,14 +104,16 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   $arr_TTDH = [];
   while ($row = mysqli_fetch_assoc($result)) {
     $arr_TTDH[] = [
-      "dh_id"=> $row["dh_id"],
+      "dh_id" => $row["dh_id"],
       "dh_ngaygiao" => $row["dh_ngaygiao"],
       "dh_ngaylap" => $row["dh_ngaylap"],
       "dh_noigiao" => $row["dh_noigiao"],
       "dh_trangthai" => $row["dh_trangthai"],
       "dh_trangthai_donhang" => $row["dh_trangthai_donhang"],
+      "kh_id" => $row["kh_id"],
       "kh_ten" => $row["kh_ten"],
       "kh_sdt" => $row["kh_sdt"],
+      "httt_id" => $row["httt_id"],
       "httt_ten" => $row["httt_ten"],
     ];
   }
@@ -153,17 +157,18 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
     <form class="form-ddh bg-light p-5 rounded border" action="" method="post" name="themmoi" id="themmoi">
       <div class="head mb-5">
-        <h3>Thêm đơn đặt hàng</h3>
+        <h3>Sửa đơn đặt hàng</h3>
       </div>
       <h5>Thông tin đặt hàng</h5>
       <div class="form-group">
         <label for="kh_id">Tên khách hàng</label>
-        <?php foreach ($arr_TTDH as $ttdh) : ?>
+    <?php foreach ($arr_TTDH as $ttdh) : ?>
 
           <select class="form-control mt-2 custom-select" name="kh_id" id="kh_id">
-            <option>
+            <option value="<?= $ttdh['kh_id'] ?>">
               <?= $ttdh['kh_ten'] ?> (<?= $ttdh['kh_sdt'] ?>)
             </option>
+
             <?php foreach ($arrKH as $kh) : ?>
               <option value="<?= $kh['kh_id'] ?>" data-address="<?= $kh['kh_diachi'] ?>">
                 <?= $kh['kh_ten'] ?> (<?= $kh['kh_sdt'] ?>)
@@ -191,11 +196,11 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
         <div class="col-md-6">
           <label class="mb-2" for="">Trạng thái đơn hàng</label>
           <div class="form-check mt-2">
-            <input class="form-check-input xuly" type="checkbox" name="trangthai_donhang" value="1" <?= ($ttdh['dh_trangthai_donhang'] == 1) ? 'checked' : '' ?>>
+            <input class="form-check-input xuly" type="checkbox" name="dh_trangthai_donhang" value="1" <?= ($ttdh['dh_trangthai_donhang'] == 1) ? 'checked' : '' ?>>
             <label class="form-check-label" for="chua_xu_ly">Chưa xử lý</label>
           </div>
           <div class="form-check mt-2">
-            <input class="form-check-input xuly" type="checkbox" name="trangthai_donhang" value="2" <?= ($ttdh['dh_trangthai_donhang'] == 2) ? 'checked' : '' ?>>
+            <input class="form-check-input xuly" type="checkbox" name="dh_trangthai_donhang" value="2" <?= ($ttdh['dh_trangthai_donhang'] == 2) ? 'checked' : '' ?>>
             <label class="form-check-label" for="da_xu_ly">Đã xử lý</label>
           </div>
         </div>
@@ -203,7 +208,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
         <div class="col-md-6">
           <label for="httt_id">Hình thức thanh toán</label>
           <select class="form-control mt-2 custom-select" name="httt_id" id="httt_id">
-            <option value="">
+            <option value="<?= $ttdh['httt_id'] ?>">
               <?= $ttdh['httt_ten'] ?>
             </option>
             <?php foreach ($arrtt as $tt) : ?>
@@ -214,11 +219,11 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
           </select>
           <div class="row ms-3 mt-2">
             <div class="col-6 form-check mt-2">
-              <input class="form-check-input thanhtoan" type="checkbox" name="trangthai_thanhtoan" value="1" <?= ($ttdh['dh_trangthai'] == 1) ? 'checked' : '' ?>>
+              <input class="form-check-input thanhtoan" type="checkbox" name="dh_trangthai_thanhtoan" value="1" <?= ($ttdh['dh_trangthai'] == 1) ? 'checked' : '' ?>>
               <label class="form-check-label" for="chua_thanh_toan">Chưa thanh toán</label>
             </div>
             <div class="col-6 form-check mt-2">
-              <input class="form-check-input thanhtoan" type="checkbox" name="trangthai_thanhtoan" value="2" <?= ($ttdh['dh_trangthai'] == 2) ? 'checked' : '' ?>>
+              <input class="form-check-input thanhtoan" type="checkbox" name="dh_trangthai_thanhtoan" value="2" <?= ($ttdh['dh_trangthai'] == 2) ? 'checked' : '' ?>>
               <label class="form-check-label" for="da_thanh_toan">Đã thanh toán</label>
             </div>
           </div>
@@ -262,9 +267,9 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
             <tr>
               <td><?= $ddh['sp_ten'] ?></td>
               <td><?= $ddh['sp_dh_soluong'] ?></td>
-              <td><?= $ddh['sp_dh_dongia'] ?></td>
-              <td><?=$ddh['sp_dh_soluong']*$ddh['sp_dh_dongia']?></td>
-              <td><a href="./xoadh.php?id=<?= $ddh['sp_dh_id'] ?>&dh_id=<?= $ttdh['dh_id'] ?>" data-id-dh="<?= $ttdh['dh_id'] ?>" class="btn btn-danger text-white"><i class="fa-solid fa-trash"></i> Xoá</a></td>
+              <td><?= number_format($ddh['sp_dh_dongia'], 0, ',', '.')  ?>&#8363</td>
+              <td><?= number_format($ddh['sp_dh_soluong'] * $ddh['sp_dh_dongia'], 0, ',', '.') ?>&#8363</td>
+              <td><a href="./xoadh.php?id=<?= $ddh['sp_dh_id'] ?>&dh_id=<?= $ttdh['dh_id'] ?>"" class="btn btn-danger text-white"><i class="fa-solid fa-trash"></i> Xoá</a></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -281,7 +286,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   include_once __DIR__ . '/../../js/js.php';
   ?>
 
-  <script>
+<script>
     // Chỉ được chọn 1 trong 2 checkbox
     document.addEventListener('DOMContentLoaded', function() {
       function handleCheckboxes(className) {
@@ -302,6 +307,17 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
       handleCheckboxes('xuly');
       handleCheckboxes('thanhtoan');
 
+      // Hiển thị địa chỉ với từng khách hàng tương ứng
+      const khSelect = document.getElementById('kh_id');
+      const diachiInput = document.getElementById('dh_diachi');
+
+      khSelect.addEventListener('change', function() {
+        const selectedOption = khSelect.options[khSelect.selectedIndex];
+        const address = selectedOption.getAttribute('data-address');
+        diachiInput.value = address;
+      });
+
+      khSelect.dispatchEvent(new Event('change'));
     });
 
     // Tạo bảng đơn đặt hàng ảo
@@ -344,28 +360,26 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
       var infoData = [];
       var orderData = [];
       var kh_id = $('select[name="kh_id"]').val();
-      var ngaygiao = $('input[name="ngaygiao"]').val();
-      var ngaylap = $('input[name="ngaylap"]').val();
-      var dh_diachi = $('input[name="dh_diachi"]').val();
+      // var dh_ngaygiao = $('input[name="dh_ngaygiao"]').val();
+      var dh_noigiao = $('input[name="dh_noigiao"]').val();
 
-      var trangthai_donhang;
-      if ($('input[name="trangthai_donhang"]').is(':checked')) {
-        trangthai_donhang = $('input[name="trangthai_donhang"]:checked').val();
+      var dh_trangthai_donhang;
+      if ($('input[name="dh_trangthai_donhang"]').is(':checked')) {
+        dh_trangthai_donhang = $('input[name="dh_trangthai_donhang"]:checked').val();
       }
-      var trangthai_thanhtoan;
-      if ($('input[name="trangthai_thanhtoan"]').is(':checked')) {
-        trangthai_thanhtoan = $('input[name="trangthai_thanhtoan"]:checked').val();
+      var dh_trangthai_thanhtoan;
+      if ($('input[name="dh_trangthai_thanhtoan"]').is(':checked')) {
+        dh_trangthai_thanhtoan = $('input[name="dh_trangthai_thanhtoan"]:checked').val();
       }
       var httt_id = $('select[name="httt_id"]').val();
 
       infoData.push({
-        kh_id,
-        ngaygiao,
-        ngaylap,
-        dh_diachi,
-        trangthai_donhang,
-        trangthai_thanhtoan,
-        httt_id,
+        kh_id: kh_id,
+        // dh_ngaygiao: dh_ngaygiao,
+        dh_noigiao: dh_noigiao,
+        dh_trangthai_donhang: dh_trangthai_donhang,
+        dh_trangthai_thanhtoan: dh_trangthai_thanhtoan,
+        httt_id: httt_id,
       });
 
       $('#table-ddh tbody tr').each(function() {
@@ -390,12 +404,16 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
           }),
           contentType: 'application/json',
           success: function(response) {
-            //window.location.href = './../popup.php?name=dondathang';
+            window.location.href = './../popup.php?name=dondathang';
           },
         });
+      } else {
+        alert("Không có sản phẩm nào!");
       }
     });
   </script>
+
+
 
   <?php
 
@@ -405,36 +423,46 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
     $data = json_decode(file_get_contents('php://input'), true);
 
-    // Chuẩn bị câu lệnh SQL cho đơn đặt hàng
-    $stmt = $conn->prepare("INSERT INTO dondathang (kh_id, dh_ngaygiao, dh_ngaylap, dh_noigiao, dh_trangthai, dh_trangthai_donhang, httt_id) VALUES (?, ?, ?, ?, ?, ?, ?);");
+    if (json_last_error() !== JSON_ERROR_NONE) {
+      die("Lỗi khi phân tích dữ liệu JSON: " . json_last_error_msg());
+    }
 
-    // Chuẩn bị câu lệnh SQL cho đơn hàng
+    // Chuẩn bị câu lệnh SQL cho đơn đặt hàng
+    $stmt = $conn->prepare("UPDATE dondathang SET dh_noigiao = ?, dh_trangthai = ?, dh_trangthai_donhang = ?, httt_id = ?, kh_id = ? WHERE dh_id = ?");
+    if (!$stmt) {
+      die("Chuẩn bị câu lệnh SQL thất bại: " . $conn->error);
+    }
+
+    // Chuẩn bị câu lệnh SQL cho chi tiết đơn hàng
     $stmt_detail = $conn->prepare("INSERT INTO sanpham_dondathang (sp_id, sp_dh_soluong, sp_dh_dongia, dh_id) VALUES (?, ?, ?, ?)");
+    if (!$stmt_detail) {
+      die("Chuẩn bị câu lệnh SQL thất bại: " . $conn->error);
+    }
 
     foreach ($data['info'] as $info) {
-      $ngaylap = !empty($info['ngaylap']) ? date('Y-m-d', strtotime($info['ngaylap'])) : null;
-      $ngaygiao = !empty($info['ngaygiao']) ? date('Y-m-d', strtotime($info['ngaygiao'])) : null;
+      // $ngaygiao = !empty($info['dh_ngaygiao']) ? date('Y-m-d', strtotime($info['dh_ngaygiao'])) : null;
 
-      // Chèn thông tin đơn hàng
-      $stmt->bind_param("isssiii", $info['kh_id'], $ngaygiao, $ngaylap, $info['dh_diachi'], $info['trangthai_thanhtoan'], $info['trangthai_donhang'], $info['httt_id']);
-      $stmt->execute();
-
-      foreach ($data['orders'] as $order) {
-
-        $dh_id = $stmt->insert_id;
-        // Chèn chi tiết đơn hàng
-        $stmt_detail->bind_param("iidi", $order['sp_id'], $order['dh_soluong'], $order['sp_gia'], $dh_id);
-        $stmt_detail->execute();
+      // Cập nhật thông tin đơn hàng
+      $stmt->bind_param("siiiii", $info['dh_noigiao'], $info['dh_trangthai'], $info['dh_trangthai_donhang'], $info['httt_id'], $info['kh_id'], $id);
+      if (!$stmt->execute()) {
+        die("Cập nhật đơn đặt hàng thất bại: " . $stmt->error);
       }
     }
-    $stmt->close();
 
+    foreach ($data['orders'] as $order) {
+      // Chèn chi tiết đơn hàng
+      $stmt_detail->bind_param("iidi", $order['sp_id'], $order['dh_soluong'], $order['sp_gia'], $id);
+      if (!$stmt_detail->execute()) {
+        die("Chèn chi tiết đơn đặt hàng thất bại: " . $stmt_detail->error);
+      }
+    }
+
+    $stmt->close();
     $stmt_detail->close();
     $conn->close();
   }
 
   ?>
-
 </body>
 
 </html>

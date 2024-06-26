@@ -1,11 +1,12 @@
-<?php session_start(); 
+<?php session_start();
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   echo '<script>
           location.href="/Last_project/Xuly/popup-login.php?name=Error";
         </script>';
-  exit; 
+  exit;
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -60,9 +61,9 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   }
   ?>
   <main>
-  <div class="col-3">
-          <?php include_once __DIR__ . '/../bocuc/header.php'; ?>
-        </div>
+    <div class="col-3">
+      <?php include_once __DIR__ . '/../bocuc/header.php'; ?>
+    </div>
     <div class="container mt-3">
       <div class="row">
         <div class="col-12 m-3">
@@ -89,7 +90,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                   <td class="text-center"><?= $ddh['kh_ten'] ?></td>
                   <td class="text-center"><?= $ddh['kh_sdt'] ?></td>
                   <td><?= date('d/m/Y', strtotime($ddh['dh_ngaylap'])) ?></td>
-                  <td><?= empty($ddh['dh_ngaygiao']) ? 'Rỗng': date('d/m/Y', strtotime($ddh['dh_ngaygiao'])) ?></td>
+                  <td><?= empty($ddh['dh_ngaygiao']) ? 'Rỗng' : date('d/m/Y', strtotime($ddh['dh_ngaygiao'])) ?></td>
                   <td><?= $ddh['dh_noigiao'] ?></td>
                   <td class="text-center"><span class="badge bg-secondary"><?= $ddh['httt_ten'] ?></span></td>
                   <td class="text-center">
@@ -106,13 +107,14 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                       <span class="badge bg-danger">Chưa xử lý</span>
                     <?php endif; ?>
                   </td>
-                  <td class="text-end"><?= number_format($ddh['thanhtien'], 0, ',', '.').'₫' ?> </td>
+                  <td class="text-end"><?= number_format($ddh['thanhtien'], 0, ',', '.') . '₫' ?> </td>
                   <td class="text-center">
                     <?php if ($ddh['dh_trangthai_donhang'] != 1) : ?>
-                      <a href="./chitiet_dh.php?id= <?= $ddh['dh_id']?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-print"></i> In</a>
+                      <a href="./chitiet_dh.php?id= <?= $ddh['dh_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-print"></i> </a>
                     <?php else : ?>
-                      <a href="./edit.php?id=<?= $ddh['dh_id'] ?>" class="btn btn-danger btn-sm"><i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+                      <a href="./edit.php?id=<?= $ddh['dh_id'] ?>" class="btn btn-danger btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                     <?php endif; ?>
+                    <a href="#" class="btn btn-danger btn-sm mt-1 btn-delete" data-id="<?= $ddh['dh_id'] ?>"><i class="fa-solid fa-trash"></i></a>
                   </td>
                 </tr>
               <?php endforeach; ?>

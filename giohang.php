@@ -101,7 +101,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_POST['add-cart'])) {
                     <b class="ms-5 mt-5"><?= $sp['sp_ten'] ?></b>
                   </td>
                   <td><label class="mt-5" for=""><?= number_format($sp['sp_gia'], 0, ',', '.') ?>đ </label></td>
-                  <td><label class="mt-5" for=""><?= $sp['dh_soluong'] ?></label></td>
+                  <td>
+                    <label class="mt-5" for=""><?= $sp['dh_soluong'] ?></label>
+                    <input type="hidden" name="sp_dh_soluong[]" value="<?= $sp['dh_soluong'] ?>">
+                  </td>
                   <td><label class="mt-5" for=""><?= number_format($sp['sp_gia'] * $sp['dh_soluong'], 0, ',', '.') ?>đ</label></td>
                 </tr>
               <?php endforeach; ?>
