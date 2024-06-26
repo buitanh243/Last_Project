@@ -64,7 +64,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
     <div class="col-3">
       <?php include_once __DIR__ . '/../bocuc/header.php'; ?>
     </div>
-    <div class="container mt-3">
+   
       <div class="row">
         <div class="col-12 m-3">
           <table class="table table-bordered table-hover">
@@ -86,7 +86,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
             <tbody>
               <?php foreach ($arrDDH as $ddh) : ?>
                 <tr>
-                  <td><?= 'DH' . $ddh['dh_id'] ?></td>
+                  <td class="text-center"><b><?= 'DH' . $ddh['dh_id'] ?></b></td>
                   <td class="text-center"><?= $ddh['kh_ten'] ?></td>
                   <td class="text-center"><?= $ddh['kh_sdt'] ?></td>
                   <td><?= date('d/m/Y', strtotime($ddh['dh_ngaylap'])) ?></td>
@@ -123,7 +123,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
           <a href="./add.php" class="btn btn-info text-white "><i class="fa-solid fa-plus"></i> Thêm đơn hàng</a>
         </div>
       </div>
-    </div>
+    
   </main>
   <?php include_once __DIR__ . '/../js/js.php'; ?>
 </body>

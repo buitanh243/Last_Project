@@ -22,6 +22,8 @@ if (isset($_GET['id']) && $_GET['id'] >= 0) {
     header('Location: giohang.php');
     exit;
   }
+} else {
+  
 }
 
 include_once __DIR__ . '/connect/connect.php';
@@ -29,7 +31,16 @@ include_once __DIR__ . '/connect/connect.php';
 $sp_id = $_POST['sp_id'] ?? null;
 $dh_soluong = $_POST['dh_soluong'] ?? null;
 
-$sp_id = mysqli_real_escape_string($conn, $sp_id);
+if (is_array($sp_id)) {
+  // Nếu $sp_id là một mảng, xử lý từng phần tử của mảng
+  $escaped_sp_ids = array_map(function ($item) use ($conn) {
+    return mysqli_real_escape_string($conn, $item);
+  }, $sp_id);
+} else {
+  // Nếu $sp_id là một chuỗi, xử lý như bình thường
+  $sp_id = mysqli_real_escape_string($conn, $sp_id);
+}
+
 
 $sql = "SELECT hsp.hsp_url, sp.sp_ten, sp.sp_gia 
             FROM hinhsanpham AS hsp
@@ -66,6 +77,7 @@ if ($result) {
   }
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,48 +109,46 @@ if ($result) {
               <th>Thành tiền</th>
               <th></th>
             </tr>
-            <?php if (isset($_SESSION['giohang']) && is_array($_SESSION['giohang']) && count($_SESSION['giohang']) > 0) : ?>
-              <?php foreach ($_SESSION['giohang'] as $key => $sp) : ?>
+            <form action="/Last_project/Xuly/xuly_giohang.php" method="post">
+              <?php if (isset($_SESSION['giohang']) && is_array($_SESSION['giohang']) && count($_SESSION['giohang']) > 0) : ?>
+                  <?php foreach ($_SESSION['giohang'] as $key => $sp) : ?>
+                    <tr>
+                      <td><label class="mt-5" for=""><?= $key + 1 ?></label></td>
+                      <td class="sp">
+                        <img src="/Last_project/uploads/<?= $sp['hsp_url'] ?>" alt="">
+                        <b class="ms-5 mt-5"><?= $sp['sp_ten'] ?></b>
+                        <input type="hidden" name="sp_id[]" value="<?= $sp['sp_id'] ?>">
+                        <input type="hidden" name="sp_ten[]" value="<?= $sp['sp_ten'] ?>">
+                        <input type="hidden" name="sp_gia[]" value="<?= $sp['sp_gia'] ?>">
+                      </td>
+                      <td><label class="mt-5" for=""><?= number_format($sp['sp_gia'], 0, ',', '.') ?>đ </label></td>
+                      <td>
+                        <label class="mt-5" for=""><?= $sp['dh_soluong'] ?></label>
+                        <input type="hidden" name="dh_soluong[]" value="<?= $sp['dh_soluong'] ?>">
+                      </td>
+                      <td><label class="mt-5" for=""><?= number_format($sp['sp_gia'] * $sp['dh_soluong'], 0, ',', '.') ?>đ</label></td>
+                      <td>
+                        <a href="./giohang.php?id=<?= $key ?>" class="btn btn-danger ml-2 mt-5 btn-delete"><i class="fa-solid fa-trash"></i></a>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+              <?php else : ?>
                 <tr>
-                  <td>
-                    <label class="mt-5" for=""><?= $key + 1 ?></label>
-                  </td>
-                  <td class="sp">
-                    <img src="/Last_project/uploads/<?= $sp['hsp_url'] ?>" alt="">
-                    <b class="ms-5 mt-5"><?= $sp['sp_ten'] ?></b>
-                  </td>
-                  <td><label class="mt-5" for=""><?= number_format($sp['sp_gia'], 0, ',', '.') ?>đ </label></td>
-                  <td>
-                    <label class="mt-5" for=""><?= $sp['dh_soluong'] ?></label>
-                    <input type="hidden" name="sp_dh_soluong[]" value="<?= $sp['dh_soluong'] ?>">
-                  </td>
-                  <td>
-                    <label class="mt-5" for=""><?= number_format($sp['sp_gia'] * $sp['dh_soluong'], 0, ',', '.') ?>đ</label>
-                  </td>
-                  <td>
-                    <a href="./giohang.php?id=<?= $key ?>" class="btn btn-danger ml-2 mt-5 btn-delete"><i class="fa-solid fa-trash"></i></a>
+                  <td colspan="5">
+                    <label for="">Giỏ hàng trống!</label>
                   </td>
                 </tr>
-              <?php endforeach; ?>
-            <?php else : ?>
-              <tr>
-                <td colspan="5">
-                  <label for="">Giỏ hàng trống!</label>
-                </td>
-              </tr>
-            <?php endif; ?>
+              <?php endif; ?>
+
           </table>
 
-          <form method="post" action="">
-            <button type="submit" name="del-cart" value="1" class="btn btn-danger">Xoá giỏ hàng</button>
-          </form>
         </div>
         <div class="col-4">
           <div class="tamtinh">
             <h5 class="text-center"><b>TẠM TÍNH</b></h5>
             <label for="">Tổng số mặt hàng: <i><?= isset($_SESSION['giohang']) ? count($_SESSION['giohang']) : 0 ?> mặt hàng</i></label>
             <label for=""><i>Phương thức thanh toán</i></label>
-            <select class="form-select mt-3" name="" id="">
+            <select class="form-select mt-3" name="httt_id" id="httt_id">
               <option value="1">Thanh toán khi nhận hàng</option>
               <option value="2">Chuyển khoản</option>
             </select>
@@ -153,8 +163,6 @@ if ($result) {
               ), 0, ',', '.') : '0' ?>đ
             </label>
 
-            <input name="sp_id" type="hidden" value="<?= $sp_id ?>">
-            <input name="dh_soluong" type="hidden" value="<?= $dh_soluong ?>">
             <button type="submit" name="dathang" class="btn btn-danger mt-3">ĐẶT HÀNG</button>
           </div>
           <div class="container mt-3">
@@ -176,7 +184,10 @@ if ($result) {
             </div>
           </div>
         </div>
-
+        </form>
+        <form method="post" action="">
+            <button type="submit" name="del-cart" value="1" class="btn btn-danger">Xoá giỏ hàng</button>
+          </form>
       </div>
     </div>
   </main>
@@ -185,7 +196,6 @@ if ($result) {
   include_once __DIR__ . '/js/js.php';
 
   ?>
-
 </body>
 
 </html>

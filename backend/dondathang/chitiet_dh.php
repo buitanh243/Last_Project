@@ -1,11 +1,3 @@
-<?php session_start();
-if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
-    echo '<script>
-          location.href="/Last_project/Xuly/popup-login.php?name=Error";
-        </script>';
-    exit;
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,8 +123,6 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
         );
     }
     ?>
-    <?php include_once __DIR__ . '/../bocuc/header.php'; ?>
-
     <section class="sheet padding-10mm">
 
         <!-- Write HTML just like a web page -->
@@ -201,7 +191,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                         <b>Trạng thái đơn hàng:</b>
                     </td>
                     <td>
-                        <?php if ($ddh['dh_trangthai'] == 1) : ?>
+                        <?php if ($ddh['dh_trangthai'] != 1) : ?>
                             <span><i>Đã thanh toán</i></span>
                         <?php else : ?>
                             <span><i>Chưa thanh toán</i></span>
