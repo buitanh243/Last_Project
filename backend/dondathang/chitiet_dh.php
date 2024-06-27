@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +16,14 @@
             size: A5
         }
 
+        .container {
+            width: 800px;
+            height: 1000px;
+        }
+
+
         .sheet {
+            height: 100%;
             position: relative;
         }
 
@@ -47,7 +55,7 @@
 
 </head>
 
-<body class="A5">
+<body>
     <?php
     include_once __DIR__ . '/../../connect/connect.php';
 
@@ -123,128 +131,142 @@
         );
     }
     ?>
-    <section class="sheet padding-10mm">
+    <?php if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) :
+        include_once __DIR__ . '/../../bocucchinh/headder.php';
+    ?>
+    <?php elseif (isset($_SESSION['tk_id']) || $_SESSION['tk_id'] == 1) :
+        include_once __DIR__ . '/../bocuc/header.php';
+    ?>
+    <?php endif; ?>
+    <div class="A5 container">
+        <section class="sheet padding-20mm">
+            <!-- Write HTML just like a web page -->
+            <table width="100%">
+                <tr>
+                    <td width="50mm">
+                        <img src="\Last_Project\Pic\logo.png" width="160px" alt="Logo H&T Computer">
+                    </td>
+                    <td class="text-center" style="vertical-align: top;">
+                        <label for="">
+                            <h4 style="color: red;"><i>H&T Computer</i></h4>
+                        </label><br>
+                        <label for="" style="font-size: 12px;"><i>Công ty H&T Computer là địa chỉ uy tín chuyên cung cấp máy tính <br> và linh kiện máy tính chất lượng cao, đáp ứng nhu cầu đa dạng của khách hàng.</i></label>
+                    </td>
+                </tr>
+            </table>
 
-        <!-- Write HTML just like a web page -->
-        <table width="100%">
-            <tr>
-                <td width="30mm">
-                    <img src="\Last_Project\Pic\logo.png" width="100px" alt="Logo H&T Computer">
-                </td>
-                <td class="text-center" style="text-align: left; vertical-align: top;">
-                    <label for="">
-                        <h4 style="color: red;"><i>H&T Computer</i></h4>
-                    </label><br>
-                    <label for="" style="font-size: 9px;"><i>Công ty H&T Computer là địa chỉ uy tín chuyên cung cấp máy tính và linh kiện máy tính chất lượng cao, đáp ứng nhu cầu đa dạng của khách hàng.</i></label>
-                </td>
-            </tr>
-        </table>
+            <p class="mt-3"><i style="font-family: 'Times New Roman', Times, serif; font-size: 15px;" class="text-sm">Thông tin khách hàng</i></p>
 
-        <p class="mt-3"><i style="font-family: 'Times New Roman', Times, serif;" class="text-sm">Thông tin khách hàng</i></p>
-
-        <table style="margin-top: 5px;" class="text-sm">
-            <?php
-            foreach ($arrDDH as $ddh) :
-            ?>
-                <tr>
-                    <td width="220mm">
-                        <b>Khách hàng:</b>
-                    </td>
-                    <td><?= $ddh['kh_ten']  ?></td>
-                </tr>
-                <tr>
-                    <td>
-                        <b>Số điện thoại:</b>
-                    </td>
-                    <td><?= $ddh['kh_sdt']  ?></td>
-                </tr>
-                <tr>
-                    <td><b>Địa chỉ:</b></td>
-                    <td><?= $ddh['dh_noigiao']  ?></td>
-                </tr>
-                <tr>
-                    <td>
-                        <b>Mã đơn hàng:</b>
-                    </td>
-                    <td>DH<?= $ddh['dh_id']  ?></td>
-                </tr>
-                <tr>
-                    <td>
-                        <b>Ngày lập:</b>
-                    </td>
-                    <td><?= date('d/m/Y', strtotime($ddh['dh_ngaylap']))  ?></td>
-                </tr>
-                <tr>
-                    <td>
-                        <b>Ngày giao:</b>
-                    </td>
-                    <td><?= date('d/m/Y', strtotime($ddh['dh_ngaygiao']))  ?></td>
-                </tr>
-                <tr>
-                    <td>
-                        <b>Hình thức thanh toán:</b>
-                    </td>
-                    <td><i><?= $ddh['httt_ten']  ?></i></td>
-                </tr>
-                <tr>
-                    <td>
-                        <b>Trạng thái đơn hàng:</b>
-                    </td>
-                    <td>
-                        <?php if ($ddh['dh_trangthai'] != 1) : ?>
-                            <span><i>Đã thanh toán</i></span>
-                        <?php else : ?>
-                            <span><i>Chưa thanh toán</i></span>
-                        <?php endif; ?>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-
-        <p class="mt-3"><i style=" font-family: 'Times New Roman', Times, serif;" class="text-sm">Thông tin đơn hàng</i></p>
-
-        <table class="table-chuan" border="1" style="margin-top: 5px;" class="text-sm">
-            <tr>
-                <th>STT</th>
-                <th>Sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th>Thành tiền</th>
-            </tr>
-            <?php foreach ($arrTDH as $index => $ct) : ?>
-                <tr>
-                    <td> <?= $index + 1 ?></td>
-                    <td><?= $ct['sp_ten'] ?></td>
-                    <td><?= $ct['sp_dh_soluong'] ?> </td>
-                    <td><?= number_format($ct['sp_dh_dongia'], 0, ',', '.') . '₫' ?></td>
-                    <td><?= number_format($ct['thanhtien'], 0, ',', '.') . '₫' ?> </td>
-                </tr>
-            <?php endforeach; ?>
-            <tr>
-                <td colspan="2"><b>Tổng sản số sản phẩm:</b> <?= count($arrTDH) ?></td>
-                
-                <td colspan="3"><b>Tổng thành tiền:</b>
-                <?php foreach ($arrDDH as $ddh) : ?>
-                    <i><?= number_format($ddh['tongthanhtien'], 0, ',', '.') . '₫' ?></i>
+            <table style="margin-top: 5px; font-size: 15px;" class="text-sm">
+                <?php
+                foreach ($arrDDH as $ddh) :
+                ?>
+                    <tr>
+                        <td width="220mm">
+                            <b>Khách hàng:</b>
+                        </td>
+                        <td><?= $ddh['kh_ten']  ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Số điện thoại:</b>
+                        </td>
+                        <td><?= $ddh['kh_sdt']  ?></td>
+                    </tr>
+                    <tr>
+                        <td><b>Địa chỉ:</b></td>
+                        <td><?= $ddh['dh_noigiao']  ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Mã đơn hàng:</b>
+                        </td>
+                        <td>DH<?= $ddh['dh_id']  ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Ngày lập:</b>
+                        </td>
+                        <td><?= date('d/m/Y', strtotime($ddh['dh_ngaylap']))  ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Ngày giao:</b>
+                        </td>
+                        <td><?= date('d/m/Y', strtotime($ddh['dh_ngaygiao']))  ?></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Hình thức thanh toán:</b>
+                        </td>
+                        <td><i><?= $ddh['httt_ten']  ?></i></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Trạng thái đơn hàng:</b>
+                        </td>
+                        <td>
+                            <?php if ($ddh['dh_trangthai'] != 1) : ?>
+                                <span><i>Đã thanh toán</i></span>
+                            <?php else : ?>
+                                <span><i>Chưa thanh toán</i></span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
                 <?php endforeach; ?>
-                </td>
-            </tr>
+            </table>
 
-        </table>
+            <p class="mt-3"><i style=" font-family: 'Times New Roman', Times, serif; font-size: 15px;" class="text-sm">Thông tin đơn hàng</i></p>
 
-        <table width="100%" class="text-sm">
-            <tr>
-                <td width="350mm">Chữ ký bên giao hàng</td>
-                <td>Chữ ký bên nhận hàng</td>
-            </tr>
-            <tr>
-                <td><i>(Ký và ghi rõ họ tên)</i></td>
-                <td><i>(Ký và ghi rõ họ tên)</i></td>
-            </tr>
-        </table>
+            <table class="table-chuan" border="1" style="margin-top: 5px; font-size: 15px;" class="text-sm">
+                <tr>
+                    <th>STT</th>
+                    <th>Sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+                <?php foreach ($arrTDH as $index => $ct) : ?>
+                    <tr>
+                        <td> <?= $index + 1 ?></td>
+                        <td><?= $ct['sp_ten'] ?></td>
+                        <td><?= $ct['sp_dh_soluong'] ?> </td>
+                        <td><?= number_format($ct['sp_dh_dongia'], 0, ',', '.') . '₫' ?></td>
+                        <td><?= number_format($ct['thanhtien'], 0, ',', '.') . '₫' ?> </td>
+                    </tr>
+                <?php endforeach; ?>
+                <tr>
+                    <td colspan="2"><b>Tổng sản số sản phẩm:</b> <?= count($arrTDH) ?></td>
 
-        <p class="footer text-sm text-center"><i>H&T Computer xin chân thành cảm ơn quý khách hàng đã ủng hộ</i></p>
-    </section>
+                    <td colspan="3"><b>Tổng thành tiền:</b>
+                        <?php foreach ($arrDDH as $ddh) : ?>
+                            <i><?= number_format($ddh['tongthanhtien'], 0, ',', '.') . '₫' ?></i>
+                        <?php endforeach; ?>
+                    </td>
+                </tr>
+
+            </table>
+
+            <table width="100%" style="font-size: 15px;" class="text-sm">
+                <tr>
+                    <td width="470mm">Chữ ký bên giao hàng</td>
+                    <td>Chữ ký bên nhận hàng</td>
+                </tr>
+                <tr>
+                    <td><i>(Ký và ghi rõ họ tên)</i></td>
+                    <td><i>(Ký và ghi rõ họ tên)</i></td>
+                </tr>
+            </table>
+
+            <p class="footer text-sm text-center"><i>H&T Computer xin chân thành cảm ơn quý khách hàng đã ủng hộ</i></p>
+        </section>
+        <?php if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) : ?>
+            <a class="btn btn-info mb-5 text-white" href="/Last_Project/">Quay về trang chủ</a>
+        <?php elseif (isset($_SESSION['tk_id']) || $_SESSION['tk_id'] == 1) : ?>
+            <a class="btn btn-info mb-5 text-white" href="/Last_Project/backend/dondathang/">Quay về trang chủ</a>
+        <?php endif; ?>
+    </div>
+
 
     <?php include_once __DIR__ . '/../js/js.php'; ?>
 </body>

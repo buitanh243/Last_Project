@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HT Computer - Trang chủ</title>
+    <title>HT Computer - Sản phẩm</title>
 
     <?php
     include_once __DIR__ . '/css/style.php';
@@ -32,7 +32,6 @@ session_start();
 
     $result = mysqli_query($conn, $sql);
 
-    $arrSPKM = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $arrHSP[] = array(
             "sp_id" => $row["sp_id"],
@@ -40,20 +39,6 @@ session_start();
             'sp_gia' => $row['sp_gia'],
             'sp_giacu' => $row['sp_giacu'],
             'sp_motangan' => $row['sp_motangan'],
-            'hsp_url' => $row['hsp_url'],
-
-        );
-    }
-
-    $sql_sp = "SELECT hsp_url,sp_id FROM hinhsanpham
-   ;";
-
-    $result_SP = mysqli_query($conn, $sql_sp);
-
-    $arrSP = [];
-    while ($row = mysqli_fetch_assoc($result_SP)) {
-        $arrSP[] = array(
-            "sp_id" => $row["sp_id"],
             'hsp_url' => $row['hsp_url'],
         );
     }

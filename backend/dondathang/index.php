@@ -12,7 +12,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loại sản phẩm</title>
+  <title>Đơn đặt hàng</title>
   <?php
   include_once __DIR__ . '/../../css/style.php';
   include_once __DIR__ . '/../style.php'; //css backend
@@ -67,7 +67,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
    
       <div class="row">
         <div class="col-12 m-3">
-          <table class="table table-bordered table-hover">
+          <table border=1  class="table table-hover">
             <thead class="thead-dark">
               <tr>
                 <th scope="col">Mã đơn hàng</th>
@@ -107,7 +107,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                       <span class="badge bg-danger">Chưa xử lý</span>
                     <?php endif; ?>
                   </td>
-                  <td class="text-end"><?= number_format($ddh['thanhtien'], 0, ',', '.') . '₫' ?> </td>
+                  <td class="text-end"><?= number_format($ddh['thanhtien'], 0, '.', ',') . '₫' ?> </td>
                   <td class="text-center">
                     <?php if ($ddh['dh_trangthai_donhang'] != 1) : ?>
                       <a href="./chitiet_dh.php?id= <?= $ddh['dh_id'] ?>" class="btn btn-warning btn-sm"><i class="fa-solid fa-print"></i> </a>
@@ -120,7 +120,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
               <?php endforeach; ?>
             </tbody>
           </table>
-          <a href="./add.php" class="btn btn-info text-white "><i class="fa-solid fa-plus"></i> Thêm đơn hàng</a>
+          <a href="./add.php" class="btn btn-info text-white ms-3 "><i class="fa-solid fa-plus"></i> Thêm đơn hàng</a>
         </div>
       </div>
     

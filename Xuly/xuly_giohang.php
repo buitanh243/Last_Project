@@ -1,9 +1,17 @@
 <?php
 include_once __DIR__ . '/../connect/connect.php';
+session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     date_default_timezone_set('Asia/Ho_Chi_Minh');
+
     $ngaymua = date('Y-m-d');
+    $ngaymuaDate = new DateTime($ngaymua);
+
+    $ngaymuaDate->modify('+5 days');
+
+    $ngaygiao = $ngaymuaDate->format('Y-m-d'); //Tự định nghĩa ngày giao = ngaymua + 5
+
     $httt_id = $_POST['httt_id'];
     $dh_noigiao = $_POST['kh_diachi'];
     $kh_ten = $_POST['kh_ten'];
@@ -22,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $kh_id = $stmt_detail->insert_id;
 
-    $stmt = $conn->prepare("INSERT INTO dondathang (kh_id, dh_ngaylap, dh_noigiao, dh_trangthai, dh_trangthai_donhang, httt_id) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("issiii", $kh_id, $ngaymua, $dh_noigiao, $trangthai_thanhtoan, $trangthai_donhang, $httt_id);
+    $stmt = $conn->prepare("INSERT INTO dondathang (kh_id, dh_ngaylap, dh_ngaygiao, dh_noigiao, dh_trangthai, dh_trangthai_donhang, httt_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("isssiii", $kh_id, $ngaymua, $ngaygiao, $dh_noigiao, $trangthai_thanhtoan, $trangthai_donhang, $httt_id);
     $stmt->execute();
 
     $dh_id = $stmt->insert_id;
@@ -43,9 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt_product->close();
     $conn->close();
 
+
     unset($_SESSION['giohang']);
 
-    header('Location: /Last_project/backend/dondathang/chitiet_dh.php?id='.$dh_id);
+    header('Location: /Last_project/backend/dondathang/chitiet_dh.php?id=' . $dh_id);
     exit;
 }
-?>

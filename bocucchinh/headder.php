@@ -167,10 +167,10 @@
                         </li>
                     </ul>
                     <div class="d-flex ms-auto align-items-center">
-                        <form class="d-flex">
-                            <input class="form-control me-2 search" type="search" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm">
+                        <form method="post" action="/Last_project/Xuly/ketqua_timkiem.php" class="d-flex">
+                            <input class="form-control me-2 search" type="search" name="search" placeholder="Tìm kiếm sản phẩm" aria-label="Tìm kiếm">
                             <button class="btn btn-outline-success" type="submit">
-                                <a href="/ketquatimkiem.html"><i class="fa-solid fa-magnifying-glass"></i></a>
+                                <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
                             </button>
                         </form>
                         <a href="/Last_Project/giohang.php" class="gio-hang login-btn hover-effect"><i class="fa-solid fa-cart-shopping"></i></a>
