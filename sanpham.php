@@ -14,7 +14,7 @@ session_start();
     include_once __DIR__ . '/css/sanpham.php';
     ?>
 
-    <link rel="icon" href="./Pic/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
 </head>
 
 <body>

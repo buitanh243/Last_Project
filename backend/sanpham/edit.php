@@ -18,6 +18,8 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
     include_once __DIR__ . '/../style.php'; // css backend
     include_once __DIR__ . '/../../js/js.php';
     ?>
+        <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
+
 </head>
 
 <body>

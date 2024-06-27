@@ -1,11 +1,12 @@
-<?php session_start(); 
+<?php session_start();
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   echo '<script>
           location.href="/Last_project/Xuly/popup-login.php?name=Error";
         </script>';
-  exit; 
+  exit;
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,6 +17,8 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   include_once __DIR__ . '/../../css/style.php';
   include_once __DIR__ . '/../style.php'; //css backend
   ?>
+  <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
+
 </head>
 
 <body>
@@ -61,26 +64,26 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
       <div class="row mb-4">
         <h3 class="col-12 ">Chỉnh sửa khuyến mãi</h3>
       </div>
-      <?php foreach ($arrkm as $km): ?>
+      <?php foreach ($arrkm as $km) : ?>
         <div class="row mb-3">
           <div class="col-md-6">
             <label class="form-label" for="km_ten">Tên khuyến mãi (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
-            <input class="form-control" value="<?= $km['km_ten'] ?>" type="text" name="km_ten" id="km_ten" >
+            <input class="form-control" value="<?= $km['km_ten'] ?>" type="text" name="km_ten" id="km_ten">
           </div>
 
           <div class="col-md-6">
             <label class="form-label" for="km_mota">Mô tả</label>
-            <input class="form-control" value="<?= $km['km_mota'] ?>" type="text" name="km_mota" id="km_mota" >
+            <input class="form-control" value="<?= $km['km_mota'] ?>" type="text" name="km_mota" id="km_mota">
           </div>
         </div>
         <div class="row mb-3">
           <div class="col-md-6">
             <label class="form-label" for="km_end">Ngày bắt đầu (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
-            <input class="form-control" value="<?= $km['km_sta'] ?>" type="date" name="km_sta" id="km_sta" >
+            <input class="form-control" value="<?= $km['km_sta'] ?>" type="date" name="km_sta" id="km_sta">
           </div>
           <div class="col-md-6">
             <label class="form-label" for="km_end">Ngày kết thúc (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
-            <input class="form-control" value="<?= $km['km_end'] ?>" type="date" name="km_end" id="km_end" >
+            <input class="form-control" value="<?= $km['km_end'] ?>" type="date" name="km_end" id="km_end">
           </div>
         </div>
       <?php endforeach; ?>
@@ -105,17 +108,16 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
       mysqli_query($conn, $sql_edit);
 
       echo '<script>location.href = "./../popup.php?name=khuyenmai";</script>';
-
     }
 
     if (isset($_POST['exit'])) {
       echo '<script>location.href = "index.php";</script>';
     }
     ?>
-     <?php
-  include_once __DIR__ . '/../js/js.php';
-  include_once __DIR__ . '/../../js/js.php';
-  ?>
+    <?php
+    include_once __DIR__ . '/../js/js.php';
+    include_once __DIR__ . '/../../js/js.php';
+    ?>
   </main>
 </body>
 

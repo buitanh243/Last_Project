@@ -11,7 +11,7 @@
 	?>
 	<script src="/./js/main.js" defer></script>
 	<?php include_once __DIR__ . '/css/login.php' ?>
-	<link rel="icon" href="/Pic/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
 
 </head>
 

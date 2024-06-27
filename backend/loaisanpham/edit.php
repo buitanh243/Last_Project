@@ -1,11 +1,12 @@
-<?php session_start(); 
+<?php session_start();
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   echo '<script>
           location.href="/Last_project/Xuly/popup-login.php?name=Error";
         </script>';
-  exit; 
+  exit;
 }
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,6 +17,8 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   include_once __DIR__ . '/../../css/style.php';
   include_once __DIR__ . '/../style.php'; //css backend
   ?>
+  <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
+
 </head>
 
 <body>
@@ -52,16 +55,16 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
       <div class="row">
         <div class="col-3"></div>
         <div class="col-3">
-          <?php foreach ($arrlsp as $lsp): ?>
+          <?php foreach ($arrlsp as $lsp) : ?>
             <label class="mt-5  p-1" for="">Tên loại sản phẩm (<i class="fa-solid fa-star-of-life fa-xs"></i>)</label>
             <input class="form-control mt-2" value="<?= $lsp['lsp_ten'] ?>" type="text" name="lsp_ten" id="lsp_ten">
-          </div>
+        </div>
 
-          <div class="col-4">
-            <label class="mt-5  p-1" for="">Mô tả </label>
-            <input class="form-control mt-2" type="text" value="<?= $lsp['lsp_mota'] ?>" name="lsp_mota" id="lsp_mota">
-          </div>
-        <?php endforeach; ?>
+        <div class="col-4">
+          <label class="mt-5  p-1" for="">Mô tả </label>
+          <input class="form-control mt-2" type="text" value="<?= $lsp['lsp_mota'] ?>" name="lsp_mota" id="lsp_mota">
+        </div>
+      <?php endforeach; ?>
       </div>
       <div class="row">
         <div class="col-3 ms-1"></div>
@@ -70,7 +73,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
       </div>
     </form>
 
-   
+
     <?php
 
     if (isset($_POST['save'])) {
@@ -83,17 +86,16 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
       mysqli_query($conn, $sql_edit);
 
       echo '<script>location.href = "./../popup.php?name=loaisanpham";</script>';
-
     }
 
     if (isset($_POST['exit'])) {
       echo '<script>location.href = "index.php";</script>';
     }
     ?>
-  <?php
-  include_once __DIR__ . '/../js/js.php';
-  include_once __DIR__ . '/../../js/js.php';
-  ?>
+    <?php
+    include_once __DIR__ . '/../js/js.php';
+    include_once __DIR__ . '/../../js/js.php';
+    ?>
 
   </main>
 </body>

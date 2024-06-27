@@ -17,14 +17,13 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
     include_once __DIR__ . '/../../css/style.php';
     include_once __DIR__ . '/../style.php'; //css backend
     ?>
-    <link rel="icon" href="/./Pic/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
     <?php
     include_once __DIR__ . '/../../connect/connect.php';
-
+    
     $sql_lsp = "SELECT lsp_id , lsp_ten FROM loaisanpham";
 
     $data_lsp = mysqli_query($conn, $sql_lsp);

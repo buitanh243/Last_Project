@@ -10,7 +10,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HT Computer - Góp ý khách hàng</title>
     <?php include_once __DIR__ . '/css/style.php'; ?>
-    <link rel="icon" href="./Pic/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
     <style>
         .col {
             width: 600px;
