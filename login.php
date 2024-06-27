@@ -49,7 +49,7 @@
 							<a href="#forgot" class="fogot-pass">Quên mật khẩu?</a>
 						</div>
 					</form>
-					<form class="sign-up-htm" id="register" name="register" method="post" action="./Xuly/xuly-login.php">
+					<form class="sign-up-htm" name="register" method="post" action="./Xuly/xuly-login.php">
 						<div class="group">
 							<label for="user-register" class="label">Tài khoản</label>
 							<input id="user-register" type="text" class="input" name="username" required>
@@ -72,7 +72,7 @@
 						</div>
 
 						<div class="group">
-							<input type="submit" class="button-form" value="Đăng ký" name="register">
+							<input type="submit" class="button-form" value="Đăng ký" name="register" id="register">
 						</div>
 						<div class="group text-center">
 							<label for="tab-1" class="tab-1">Đã có tài khoản?</label>
@@ -189,6 +189,7 @@
 			passConfirmInput.addEventListener('input', validatePasswords);
 			passInput.addEventListener('input', validatePasswords);
 			emailInput.addEventListener('input', validateEmail);
+
 			registerForm.addEventListener('submit', validateForm);
 		}
 	</script>

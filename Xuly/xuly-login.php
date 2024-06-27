@@ -3,10 +3,10 @@ session_start();
 include_once __DIR__ . "/../connect/connect.php";
 
 
-$username = $_POST['username'];
-$password = $_POST['password'] ?? '';
-$email = $_POST['email'] ?? '';
-$password_confirm = $_POST['password_confirm'] ?? '';
+$username = addslashes($_POST['username']);
+$password = addslashes($_POST['password']);
+$email = addslashes($_POST['email']) ?? null;
+$password_confirm = addslashes($_POST['password_confirm']) ?? null;
 
 if (isset($_POST['login'])) {
     $sql = "SELECT * FROM taikhoan WHERE username = '$username' AND password = '$password';";
@@ -21,7 +21,7 @@ if (isset($_POST['login'])) {
         $_SESSION['tk_id'] = $tk_id;
 
         if ($tk_id == 1) {
-            echo '<script>
+            echo '<script>  
                 location.href="popup-login.php?status=admin";
             </script>';
         } else {

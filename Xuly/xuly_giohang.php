@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ngaygiao = $ngaymuaDate->format('Y-m-d'); //Tự định nghĩa ngày giao = ngaymua + 5
 
     $httt_id = $_POST['httt_id'];
-    $dh_noigiao = $_POST['kh_diachi'];
-    $kh_ten = $_POST['kh_ten'];
-    $kh_sdt = $_POST['kh_sdt'];
+    $dh_noigiao = htmlentities($_POST['kh_diachi']);
+    $kh_ten = htmlentities($_POST['kh_ten']);
+    $kh_sdt = htmlentities($_POST['kh_sdt']);
 
     $sp_ids = $_POST['sp_id'];
     $sp_gias = $_POST['sp_gia'];

@@ -93,29 +93,52 @@ session_start();
                         </div>
                     <?php endforeach; ?>
 
-                    <?php foreach ($arr_KH as $kh) : ?>
-
+                    <?php if (empty($arr_KH)) : ?>
                         <div class="row mt-2">
                             Tên khách hàng
                         </div>
                         <div class="row mt-2">
-                            <input class="form-control" value="<?= $kh['kh_ten'] ?>" placeholder="Nhập họ tên..." name="kh_ten"></input>
+                            <input class="form-control" value="" placeholder="Nhập họ tên..." name="kh_ten"></input>
                         </div>
 
                         <div class="row mt-2">
                             Số điện thoại
                         </div>
                         <div class="row mt-2">
-                            <input class="form-control" placeholder="Nhập số điện thoại..." value="<?= $kh['kh_sdt'] ?>" name="kh_sdt"></input>
+                            <input class="form-control" placeholder="Nhập số điện thoại..." value="" name="kh_sdt"></input>
                         </div>
 
                         <div class="row mt-2">
                             Địa chỉ
                         </div>
                         <div class="row mt-2">
-                            <input class="form-control" value="<?= $kh['kh_diachi'] ?>" name="kh_diachi" placeholder="Nhập email..."></input>
+                            <input class="form-control" value="" name="kh_diachi" placeholder="Nhập địa chỉ..."></input>
                         </div>
-                    <?php endforeach; ?>
+                    <?php else : ?>
+                        <?php foreach ($arr_KH as $kh) : ?>
+                            <div class="row mt-2">
+                                Tên khách hàng
+                            </div>
+                            <div class="row mt-2">
+                                <input class="form-control" value="<?= $kh['kh_ten'] ?>" placeholder="Nhập họ tên..." name="kh_ten"></input>
+                            </div>
+
+                            <div class="row mt-2">
+                                Số điện thoại
+                            </div>
+                            <div class="row mt-2">
+                                <input class="form-control" placeholder="Nhập số điện thoại..." value="<?= $kh['kh_sdt'] ?>" name="kh_sdt"></input>
+                            </div>
+
+                            <div class="row mt-2">
+                                Địa chỉ
+                            </div>
+                            <div class="row mt-2">
+                                <input class="form-control" value="<?= $kh['kh_diachi'] ?>" name="kh_diachi" placeholder="Nhập địa chỉ..."></input>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
                     <div class="row mb-3">
                         <div class="col-1"> <button type="submit" class="btn btn-primary mt-3 me-2" name="save" id="save">Lưu</button>
                         </div>
@@ -134,6 +157,7 @@ session_start();
         include_once __DIR__ . '/../connect/connect.php';
 
         $id = $_GET['id'];
+
         $email = $_POST['email'];
         $kh_ten = empty($_POST['kh_ten']) ? 'NULL' : "'" . mysqli_real_escape_string($conn, $_POST['kh_ten']) . "'";
         $kh_sdt = empty($_POST['kh_sdt']) ? 'NULL' : "'" . mysqli_real_escape_string($conn, $_POST['kh_sdt']) . "'";

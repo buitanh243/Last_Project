@@ -67,7 +67,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
           <?php foreach ($arrgopy as $gopy) : ?>
             <div class="row ">
               <div class="col-3 bg-light mt-2">
-                <?= $gopy['kh_ten'] ?>
+                <?= empty($gopy['kh_ten']) ? 'Ẩn danh' : $gopy['kh_ten'] ?>
               </div>
               <div class="col-3 bg-light mt-2">
                 <?= $gopy['gopy_noidung'] ?>
