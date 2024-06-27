@@ -18,14 +18,13 @@ session_start();
 </head>
 
 <body>
-
     <?php
     include_once __DIR__ . '/../bocucchinh/headder.php';
     ?>
 
     <?php
     include_once __DIR__ . '/../connect/connect.php';
-    $search = $_POST['search'];
+    $search = $_POST['search'] ?? null;
 
     $sql = "SELECT * FROM sanpham AS sp 
     JOIN hinhsanpham AS hsp ON sp.sp_id = hsp.sp_id
@@ -74,7 +73,7 @@ session_start();
                                         </span>
                                     </div>
                                     <b class="card-text text-secondary">Mô tả: </b><label><?= $row['sp_motangan'] ?></label>
-                                    <form id="add-to-cart-form-<?= $row['sp_id'] ?>" action="giohang.php" method="post" onsubmit="return addToCart(<?= $row['sp_id'] ?>)">
+                                    <form id="add-to-cart-form-<?= $row['sp_id'] ?>" action="/Last_project/giohang.php" method="post" onsubmit="return addToCart(<?= $row['sp_id'] ?>)">
                                         <div class="row mt-2">
                                             <label class="col-5" for="">Số lượng </label>
                                             <input class="col-3 dh_soluong" type="number" min="1" name="dh_soluong" value="1">
@@ -92,7 +91,9 @@ session_start();
                     ?>
             </div>
         <?php } else { ?>
-            <div class="div">Không tìm thấy kết quả</div>
+            <div class="row text-center ">
+                <span>Không tìm thấy kết quả phù hợp</span>
+            </div>
         <?php } ?>
         </div>
 
