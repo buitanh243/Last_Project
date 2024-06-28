@@ -2,6 +2,7 @@
 <script src="/Last_Project\vendor\fontawesome\js\all.min.js"></script>
 <script src="/Last_Project\vendor\jquery\jquery-3.7.1.min.js"></script>
 <script src="/Last_Project\vendor\sweetalert2\sweetalert2@11.js"></script>
+<script src="/Last_Project\vendor\chartjs\chart.min.js"></script>
 
 
 

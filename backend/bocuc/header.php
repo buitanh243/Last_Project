@@ -50,7 +50,7 @@
             </li>
             
             <li class="nav-item">
-              <a class="nav-link" href="#">Thống kê doanh số</a>
+              <a class="nav-link" href="./../thongke/">Danh mục thống kê</a>
             </li>
           </ul>
         </div>

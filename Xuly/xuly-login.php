@@ -5,8 +5,7 @@ include_once __DIR__ . "/../connect/connect.php";
 
 $username = addslashes($_POST['username']);
 $password = addslashes($_POST['password']);
-$email = addslashes($_POST['email']) ?? null;
-$password_confirm = addslashes($_POST['password_confirm']) ?? null;
+
 
 if (isset($_POST['login'])) {
     $sql = "SELECT * FROM taikhoan WHERE username = '$username' AND password = '$password';";
@@ -38,6 +37,9 @@ if (isset($_POST['login'])) {
 }
 
 if (isset($_POST['register'])) {
+    $email = addslashes($_POST['email']) ;
+    $password_confirm = addslashes($_POST['password_confirm']);
+
     $sql = "SELECT * FROM taikhoan WHERE username = '$username' OR email = '$email' ;";
     $result = mysqli_query($conn, $sql);
 
