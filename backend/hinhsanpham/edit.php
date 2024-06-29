@@ -27,7 +27,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
 <body class="">
   <?php
-  include_once __DIR__ . '/../..//connect/connect.php';
+  include_once __DIR__ . '/../../connect/connect.php';
 
   $id = $_GET['id'];
   $sql = "SELECT * FROM hinhsanpham AS hsp LEFT JOIN sanpham AS sp ON hsp.sp_id = sp.sp_id WHERE hsp_id  = $id ;";

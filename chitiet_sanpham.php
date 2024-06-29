@@ -89,7 +89,7 @@ session_start();
                 <?php foreach ($arrSPKM as $row) : ?>
                     <div class="product row">
                         <div class="col">
-                            <img class="img-sp" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Ảnh sản phẩm">
+                            <img class="img-sp" src="./uploads/<?= $row['hsp_url'] ?>" alt="Ảnh sản phẩm">
                         </div>
                         <div class="col">
                             <h1 class="mt-5"><?= $row['sp_ten'] ?></h1>
@@ -129,7 +129,7 @@ session_start();
                 <?php foreach ($arrSP as $row) : ?>
                     <div class="product row">
                         <div class="col">
-                            <img class="img-sp" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Ảnh sản phẩm">
+                            <img class="img-sp" src="./uploads/<?= $row['hsp_url'] ?>" alt="Ảnh sản phẩm">
                         </div>
                         <div class="col">
                             <h1 class="mt-5"><?= $row['sp_ten'] ?></h1>

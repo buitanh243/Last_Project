@@ -54,6 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     unset($_SESSION['giohang']);
 
-    header('Location: /Last_project/backend/dondathang/chitiet_dh.php?id=' . $dh_id);
+    header('Location: ./../backend/dondathang/chitiet_dh.php?id=' . $dh_id);
     exit;
 }

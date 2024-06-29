@@ -144,7 +144,7 @@
             <table width="100%">
                 <tr>
                     <td width="50mm">
-                        <img src="\Last_Project\Pic\logo.png" width="160px" alt="Logo H&T Computer">
+                        <img src=".\..\..\Pic\logo.png" width="160px" alt="Logo H&T Computer">
                     </td>
                     <td class="text-center" style="vertical-align: top;">
                         <label for="">
@@ -261,9 +261,9 @@
             <p class="footer text-sm text-center"><i>H&T Computer xin chân thành cảm ơn quý khách hàng đã ủng hộ</i></p>
         </section>
         <?php if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) : ?>
-            <a class="btn btn-info mb-5 text-white" href="/Last_Project/">Quay về trang chủ</a>
+            <a class="btn btn-info mb-5 text-white" href="./../../">Quay về trang chủ</a>
         <?php elseif (isset($_SESSION['tk_id']) || $_SESSION['tk_id'] == 1) : ?>
-            <a class="btn btn-info mb-5 text-white" href="/Last_Project/backend/dondathang/">Quay về trang chủ</a>
+            <a class="btn btn-info mb-5 text-white" href="index.php">Quay về trang chủ</a>
         <?php endif; ?>
     </div>
 

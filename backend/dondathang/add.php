@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   echo '<script>
-            location.href="/Last_project/Xuly/popup-login.php?name=Error";
+            location.href="./../../Xuly/popup-login.php?name=Error";
           </script>';
   exit;
 }
@@ -21,7 +21,7 @@ $ngaylap = date('Y-m-d');
   include_once __DIR__ . '/../../css/style.php';
   include_once __DIR__ . '/../style.php'; // CSS backend
   ?>
-  <link rel="icon" href="/Last_project/Pic/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="./../../Pic/favicon.ico" type="image/x-icon">
 
   <style>
     input[type=number]::-webkit-inner-spin-button,

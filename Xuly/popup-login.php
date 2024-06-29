@@ -1,6 +1,11 @@
 <?php
 include_once __DIR__ . '/../js/js.php';
 ?>
+<?php
+$rootDirectory = dirname(__DIR__); 
+$projectName = basename($rootDirectory); 
+define('BASE_URL', '/' . $projectName); 
+?>
 <script>
     function getQueryParam(param) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -12,33 +17,37 @@ include_once __DIR__ . '/../js/js.php';
         const name = getQueryParam('name');
         
         if (status === "admin") {
-            showSuccessMessage("Đăng nhập với quyền quản trị thành công", "/Last_Project/backend/sanpham/index.php?name=sanpham");
+            showSuccessMessage("Đăng nhập với quyền quản trị thành công", "<?php echo BASE_URL; ?>/backend/sanpham/index.php?name=sanpham");
         } else if (status === "False") {
-            showErrorMessage("Đăng nhập thất bại", "Tài khoản hoặc mật khẩu không đúng!", "/Last_Project/login.php");
+            showErrorMessage("Đăng nhập thất bại", "Tài khoản hoặc mật khẩu không đúng!", "<?php echo BASE_URL; ?>/login.php");
         }
 
         if (status === "True") {
-            showSuccessMessage("Đăng nhập thành công", "/Last_Project/index.php");
+            showSuccessMessage("Đăng nhập thành công", "<?php echo BASE_URL; ?>/index.php");
         } else if (status === "False") {
-            showErrorMessage("Đăng nhập thất bại", "Tài khoản hoặc mật khẩu không đúng!", "/Last_Project/login.php");
+            showErrorMessage("Đăng nhập thất bại", "Tài khoản hoặc mật khẩu không đúng!", "<?php echo BASE_URL; ?>/login.php");
         }
 
         if (name === "False") {
-            showErrorMessage("Đăng ký thất bại", "Tài khoản hoặc email đã tồn tại!", "/Last_Project/login.php?tab=register");
+            showErrorMessage("Đăng ký thất bại", "Tài khoản hoặc email đã tồn tại!", "<?php echo BASE_URL; ?>/login.php?tab=register");
         } else if (name === "True") {
-            showSuccessMessage("Đăng ký thành công", "/Last_Project/login.php?tab=login");
+            showSuccessMessage("Đăng ký thành công", "<?php echo BASE_URL; ?>/login.php?tab=login");
         }
 
         if (name === "logout") {
-            showSuccessMessage("Đăng xuất thành công", "/Last_Project/login.php");
+            showSuccessMessage("Đăng xuất thành công", "<?php echo BASE_URL; ?>/login.php");
         }
 
         if (name === "user") {
-            showSuccessMessage("Lưu lại thành công", "/Last_Project/user/user.php");
+            showSuccessMessage("Lưu lại thành công", "<?php echo BASE_URL; ?>/user/user.php");
         }
 
         if (name === "Error") {
-            showErrorMessage("Bạn không có quyền truy cập vào trang này!", "Vui lòng đăng nhập với tài khoản quản trị quản trị!", "/Last_Project/login.php?tab=login");
+            showErrorMessage("Bạn không có quyền truy cập vào trang này!", "Vui lòng đăng nhập với tài khoản quản trị quản trị!", "<?php echo BASE_URL; ?>/login.php?tab=login");
+        }
+
+        if (name === "Error-img") {
+            showErrorMessage("Hình ảnh sản phẩm đã tồn tại!", "Vui lòng chọn sản phẩm khác!", "./../backend/hinhsanpham/add.php");
         }
 
     }

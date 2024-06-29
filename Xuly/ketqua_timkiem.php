@@ -59,7 +59,7 @@ session_start();
                 ?>
                         <div class="col-2 col-card">
                             <div class="card">
-                                <img class="card-img-top" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Product Image">
+                                <img class="card-img-top" src=".\..\uploads\<?= $row['hsp_url'] ?>" alt="Product Image">
                                 <div class="card-body">
                                     <h6 class="card-title text-uppercase text-center"><b><?= $row['sp_ten'] ?></b></h6>
                                     <div class="price bg-light border mb-3">
@@ -73,7 +73,7 @@ session_start();
                                         </span>
                                     </div>
                                     <b class="card-text text-secondary">Mô tả: </b><label><?= $row['sp_motangan'] ?></label>
-                                    <form id="add-to-cart-form-<?= $row['sp_id'] ?>" action="/Last_project/giohang.php" method="post" onsubmit="return addToCart(<?= $row['sp_id'] ?>)">
+                                    <form id="add-to-cart-form-<?= $row['sp_id'] ?>" action="./../giohang.php" method="post" onsubmit="return addToCart(<?= $row['sp_id'] ?>)">
                                         <div class="row mt-2">
                                             <label class="col-5" for="">Số lượng </label>
                                             <input class="col-3 dh_soluong" type="number" min="1" name="dh_soluong" value="1">
