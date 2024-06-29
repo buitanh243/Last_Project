@@ -76,4 +76,10 @@
         width: 100%;
         height: 100%;
     }
+
+    .button:hover::before {
+        font-size: 12px;
+        /* Adjust font size as needed */
+        transition-duration: 0.3s;
+    }
 </style>
