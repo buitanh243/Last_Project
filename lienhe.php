@@ -14,7 +14,7 @@
     ?>
 
     <!-- Favicon -->
-    <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./Pic/favicon.ico" type="image/x-icon">
 
     
 </head>
@@ -97,7 +97,7 @@
                     <div class="col-8 row ms-2 text-center">
                         <h5>Người quản trị</h5>
                         <div class="col-6 text-center ">
-                            <img src="/Last_Project/Pic/user1.jpg" alt="Ảnh minh hoạ" width="150px" class="img-nv">
+                            <img src="./Pic/user1.jpg" alt="Ảnh minh hoạ" width="150px" class="img-nv">
                             <p class="mo-ta">Mr.A</p>
                             <ul class="infomation">
                                 <li>Tel: 0123-456-789</li>
@@ -106,7 +106,7 @@
                             </ul>
                         </div>
                         <div class="col-6 text-center">
-                            <img src="/Last_Project/Pic/user2.png" alt="Ảnh minh hoạ" width="150px" class="img-nv">
+                            <img src="./Pic/user2.png" alt="Ảnh minh hoạ" width="150px" class="img-nv">
                             <p class="mo-ta">Ms.B</p>
                             <ul class="infomation">
                                 <li>Tel: 0123-888-999</li>

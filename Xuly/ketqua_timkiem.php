@@ -59,7 +59,9 @@ session_start();
                 ?>
                         <div class="col-2 col-card">
                             <div class="card">
-                                <img class="card-img-top" src=".\..\uploads\<?= $row['hsp_url'] ?>" alt="Product Image">
+                                <div class="img_card">
+                                    <img class="card-img-top ms-5" src="./../uploads/<?= $row['hsp_url'] ?>" alt="Product Image">
+                                </div>
                                 <div class="card-body">
                                     <h6 class="card-title text-uppercase text-center"><b><?= $row['sp_ten'] ?></b></h6>
                                     <div class="price bg-light border mb-3">

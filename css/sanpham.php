@@ -29,9 +29,13 @@
     margin-bottom: 10px;
   }
 
+  .img_card {
+    height: 110px;
+  }
+
   .card-img-top {
     margin: 5px;
-    width: 100%;
+    width: 65%;
     height: 110px;
     object-fit: cover;
     border-bottom: 1px solid #ddd;

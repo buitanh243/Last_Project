@@ -95,7 +95,7 @@ if ($result) {
   ?>
   <main>
     <div class="container">
-      <form action="/Last_project/Xuly/xuly_giohang.php" method="post" id="dathang" name="dathang">
+      <form action="./Xuly/xuly_giohang.php" method="post" id="dathang" name="dathang">
         <div class="row">
           <div class="col-4">
             <div class="tamtinh">
@@ -153,7 +153,7 @@ if ($result) {
                   <tr>
                     <td><label class="mt-5" for=""><?= $key + 1 ?></label></td>
                     <td class="sp">
-                      <img src="/Last_project/uploads/<?= $sp['hsp_url'] ?>" alt="">
+                      <img src="./uploads/<?= $sp['hsp_url'] ?>" alt="">
                       <b class="ms-5 mt-5"><?= $sp['sp_ten'] ?></b>
                       <input type="hidden" class="sp_id" name="sp_id[]" value="<?= $sp['sp_id'] ?>">
                       <input type="hidden" name="sp_ten[]" value="<?= $sp['sp_ten'] ?>">

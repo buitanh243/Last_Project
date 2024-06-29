@@ -14,7 +14,7 @@ session_start();
   include_once __DIR__ . '/css/trangchu.php';
   ?>
 
-<link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
+<link rel="icon" href="./Pic/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -113,7 +113,7 @@ session_start();
             break;
           }
         ?>
-          <a title="Xem chi tiết" href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>" class="col-sm-3"><img class="ct_t4" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt=""></a>
+          <a title="Xem chi tiết" href="chitiet_sanpham.php?id=<?= $row['sp_id'] ?>" class="col-sm-3"><img class="ct_t4" src=".\uploads\<?= $row['hsp_url'] ?>" alt=""></a>
         <?php
           $count++;
         endforeach; ?>
@@ -143,7 +143,7 @@ session_start();
           ?>
             <div class="col-2 col-card">
               <div class="card">
-                <img class="card-img-top" src="\Last_Project\uploads\<?= $row['hsp_url'] ?>" alt="Cool Chair">
+                <img class="card-img-top" src=".\uploads\<?= $row['hsp_url'] ?>" alt="Cool Chair">
                 <div class="card-body">
                   <h6 class="card-title text-center text-uppercase"><b><?= $row['sp_ten'] ?></b></h6>
                   <div class="row text-center bg-light border mb-3">
