@@ -158,10 +158,10 @@ session_start();
 
         $id = $_GET['id'];
 
-        $email = $_POST['email'];
-        $kh_ten = empty($_POST['kh_ten']) ? 'NULL' : "'" . mysqli_real_escape_string($conn, $_POST['kh_ten']) . "'";
-        $kh_sdt = empty($_POST['kh_sdt']) ? 'NULL' : "'" . mysqli_real_escape_string($conn, $_POST['kh_sdt']) . "'";
-        $kh_diachi = empty($_POST['kh_diachi']) ? 'NULL' : "'" . mysqli_real_escape_string($conn, $_POST['kh_diachi']) . "'";
+        $email = htmlentities($_POST['email']);
+        $kh_ten = empty($_POST['kh_ten']) ? 'NULL' : "'" . htmlentities(mysqli_real_escape_string($conn, $_POST['kh_ten']), ENT_QUOTES, 'UTF-8') . "'";
+        $kh_sdt = empty($_POST['kh_sdt']) ? 'NULL' : "'" . htmlentities(mysqli_real_escape_string($conn, $_POST['kh_sdt']), ENT_QUOTES, 'UTF-8') . "'";
+        $kh_diachi = empty($_POST['kh_diachi']) ? 'NULL' : "'" . htmlentities(mysqli_real_escape_string($conn, $_POST['kh_diachi']), ENT_QUOTES, 'UTF-8') . "'";
 
         $sql = "SELECT tk_id FROM khachhang WHERE tk_id = $id";
         $result = mysqli_query($conn, $sql);

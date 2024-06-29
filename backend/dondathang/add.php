@@ -185,7 +185,7 @@ $ngaylap = date('Y-m-d');
           <select class="form-control mt-2 custom-select" name="sp_id" id="sp_id">
             <?php foreach ($arrSP as $sp) : ?>
               <option value="<?= $sp['sp_id'] ?>" data-sp_gia="<?= $sp['sp_gia'] ?>">
-                <?= $sp['sp_ten'] ?> (Giá: <?= number_format($sp['sp_gia'], 0, ',', '.') . '₫' ?>)
+                <?= $sp['sp_ten'] ?> (Giá: <?= number_format($sp['sp_gia'], 0, '.', ',') . '₫' ?>)
               </option>
             <?php endforeach; ?>
           </select>

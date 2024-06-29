@@ -85,7 +85,7 @@ session_start();
                 include_once __DIR__ . '/connect/connect.php';
 
                 if (isset($_POST['submit'])) {
-                    $ten_kh = empty(htmlentities($_POST['ten_kh'])) ? 'Ẩn danh' : htmlentities($_POST['ten_kh']);
+                    $ten_kh = empty($_POST['ten_kh']) ? 'Ẩn danh' : htmlentities($_POST['ten_kh']);
                     $gopy_noidung = htmlentities($_POST['gopy_noidung']);
                     $kh_id = empty($_POST['kh_id']) ? 'NULL' : $_POST['kh_id'];
 

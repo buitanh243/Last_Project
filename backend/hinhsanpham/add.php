@@ -1,7 +1,7 @@
 <?php session_start(); 
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   echo '<script>
-          location.href="/Last_project/Xuly/popup-login.php?name=Error";
+          location.href="./../../Xuly/popup-login.php?name=Error";
         </script>';
   exit; 
 }
@@ -16,12 +16,12 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   include_once __DIR__ . '/../../css/style.php';
   include_once __DIR__ . '/../style.php'; //css backend
   ?>
-    <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./../../Pic/favicon.ico" type="image/x-icon">
 </head>
 
 <body class="">
   <?php
-  include_once __DIR__ . '/../..//connect/connect.php';
+  include_once __DIR__ . '/../../connect/connect.php';
   $sql = "SELECT * FROM sanpham;";
 
   $data_select = mysqli_query($conn, $sql);

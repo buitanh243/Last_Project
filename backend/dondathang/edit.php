@@ -18,7 +18,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   include_once __DIR__ . '/../../css/style.php';
   include_once __DIR__ . '/../style.php'; // CSS backend
   ?>
-  <link rel="icon" href="/Last_project/Pic/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="./../../Pic/favicon.ico" type="image/x-icon">
 
   <style>
     input[type=number]::-webkit-inner-spin-button,
@@ -70,9 +70,9 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   <?php
   include_once __DIR__ . '/../../connect/connect.php';
 
-  $id = $_GET['id'];
+  $id = $_GET['id']; //Lấy id đơn hàng
   //Lấy dữ liệu đơn đặt hàng
-  $sql = "SELECT spdh.sp_dh_soluong, spdh.sp_dh_dongia, sp.sp_ten, spdh.sp_dh_id, spdh.sp_id
+  $sql = "SELECT spdh.sp_dh_soluong, spdh.sp_dh_dongia, sp.sp_ten, spdh.sp_dh_id, spdh.sp_id,sp.sp_gia
   FROM sanpham_dondathang AS spdh
   JOIN sanpham AS sp ON spdh.sp_id = sp.sp_id
   WHERE spdh.dh_id = $id;
@@ -84,7 +84,8 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
     $arrDDH[] = [
       "sp_dh_soluong" => $row["sp_dh_soluong"],
       "sp_dh_dongia" => $row["sp_dh_dongia"],
-      "sp_id"=> $row["sp_id"],
+      "sp_id" => $row["sp_id"],
+      "sp_gia" => $row["sp_gia"],
       "sp_ten" => $row["sp_ten"],
       "sp_dh_id" => $row["sp_dh_id"],
     ];
@@ -162,7 +163,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
       <h5>Thông tin đặt hàng</h5>
       <div class="form-group">
         <label for="kh_id">Tên khách hàng</label>
-    <?php foreach ($arr_TTDH as $ttdh) : ?>
+        <?php foreach ($arr_TTDH as $ttdh) : ?>
 
           <select class="form-control mt-2 custom-select" name="kh_id" id="kh_id">
             <option value="<?= $ttdh['kh_id'] ?>">
@@ -265,11 +266,11 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
         <tbody>
           <?php foreach ($arrDDH as $ddh) : ?>
             <tr>
-              <td><?= $ddh['sp_ten'] ?></td>
+              <td><?= $ddh['sp_ten'] ?> (<?= number_format($ddh['sp_gia'], 0, ',', '.') ?>&#8363)</td>
               <td><?= $ddh['sp_dh_soluong'] ?></td>
               <td><?= number_format($ddh['sp_dh_dongia'], 0, ',', '.')  ?>&#8363</td>
               <td><?= number_format($ddh['sp_dh_soluong'] * $ddh['sp_dh_dongia'], 0, ',', '.') ?>&#8363</td>
-              <td><a href="./xoadh.php?id=<?= $ddh['sp_dh_id'] ?>&dh_id=<?= $ttdh['dh_id'] ?>"" class="btn btn-danger text-white"><i class="fa-solid fa-trash"></i> Xoá</a></td>
+              <td><a href="./xoadh.php?id=<?= $ddh['sp_dh_id'] ?>&dh_id=<?= $ttdh['dh_id'] ?>"" class=" btn btn-danger text-white"><i class="fa-solid fa-trash"></i> Xoá</a></td>
             </tr>
           <?php endforeach; ?>
         </tbody>
@@ -286,7 +287,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   include_once __DIR__ . '/../../js/js.php';
   ?>
 
-<script>
+  <script>
     // Chỉ được chọn 1 trong 2 checkbox
     document.addEventListener('DOMContentLoaded', function() {
       function handleCheckboxes(className) {
@@ -396,7 +397,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
       if (orderData.length > 0) {
         $.ajax({
-          url: './edit.php',
+          url: './test.php',
           type: 'POST',
           data: JSON.stringify({
             info: infoData,
@@ -404,7 +405,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
           }),
           contentType: 'application/json',
           success: function(response) {
-            window.location.href = './../popup.php?name=dondathang';
+            //window.location.href = './../popup.php?name=dondathang';
           },
         });
       } else {
@@ -413,13 +414,13 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
     });
   </script>
 
-
-
   <?php
+include_once __DIR__ . '/../../connect/connect.php';
 
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    include_once __DIR__ . '/../../connect/connect.php';
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    
 
     $data = json_decode(file_get_contents('php://input'), true);
 
@@ -433,12 +434,6 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
       die("Chuẩn bị câu lệnh SQL thất bại: " . $conn->error);
     }
 
-    // Chuẩn bị câu lệnh SQL cho chi tiết đơn hàng
-    $stmt_detail = $conn->prepare("INSERT INTO sanpham_dondathang (sp_id, sp_dh_soluong, sp_dh_dongia, dh_id) VALUES (?, ?, ?, ?)");
-    if (!$stmt_detail) {
-      die("Chuẩn bị câu lệnh SQL thất bại: " . $conn->error);
-    }
-
     foreach ($data['info'] as $info) {
       // $ngaygiao = !empty($info['dh_ngaygiao']) ? date('Y-m-d', strtotime($info['dh_ngaygiao'])) : null;
 
@@ -449,16 +444,24 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
       }
     }
 
-    foreach ($data['orders'] as $order) {
-      // Chèn chi tiết đơn hàng
-      $stmt_detail->bind_param("iidi", $order['sp_id'], $order['dh_soluong'], $order['sp_gia'], $id);
-      if (!$stmt_detail->execute()) {
-        die("Chèn chi tiết đơn đặt hàng thất bại: " . $stmt_detail->error);
-      }
+    // Chuẩn bị câu lệnh SQL cho chi tiết đơn hàng
+    $stmt_detail = $conn->prepare("INSERT INTO sanpham_dondathang (sp_id, sp_dh_soluong, sp_dh_dongia, dh_id) VALUES (?, ?, ?, ?)");
+    if (!$stmt_detail) {
+      die("Chuẩn bị câu lệnh SQL thất bại: " . $conn->error);
     }
 
+    if (!empty($data['orders'])) {
+      foreach ($data['orders'] as $order) {
+        // Chèn chi tiết đơn hàng
+        $stmt_detail->bind_param("iidi", $order['sp_id'], $order['dh_soluong'], $order['sp_gia'], $id);
+        if (!$stmt_detail->execute()) {
+          die("Chèn chi tiết đơn đặt hàng thất bại: " . $stmt_detail->error);
+        }
+      }
+    }
+ 
     $stmt->close();
-    $stmt_detail->close();
+    // $stmt_detail->close();
     $conn->close();
   }
 

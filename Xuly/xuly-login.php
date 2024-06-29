@@ -38,7 +38,6 @@ if (isset($_POST['login'])) {
 
 if (isset($_POST['register'])) {
     $email = addslashes($_POST['email']) ;
-    $password_confirm = addslashes($_POST['password_confirm']);
 
     $sql = "SELECT * FROM taikhoan WHERE username = '$username' OR email = '$email' ;";
     $result = mysqli_query($conn, $sql);

@@ -1,7 +1,7 @@
 <?php session_start(); 
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   echo '<script>
-          location.href="/Last_project/Xuly/popup-login.php?name=Error";
+          location.href="./../../Xuly/popup-login.php?name=Error";
         </script>';
   exit; 
 }
@@ -16,7 +16,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   include_once __DIR__ . '/../../css/style.php';
   include_once __DIR__ . '/../style.php'; //css backend
   ?>
-    <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="./../../Pic/favicon.ico" type="image/x-icon">
   <style>
     .img-pro-edit {
       width: 100%;
@@ -80,7 +80,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
           <label for="">Hình ảnh cũ</label>
         </div>
         <div class="col-6">
-          <img class="img-pro-edit " src="\Last_Project\uploads\<?= $hsp['hsp_url'] ?>" alt="">
+          <img class="img-pro-edit " src=".\..\..\uploads\<?= $hsp['hsp_url'] ?>" alt="">
         </div>
       </div>
     <?php endforeach; ?>

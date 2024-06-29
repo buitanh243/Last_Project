@@ -1,7 +1,7 @@
 <?php session_start();
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   echo '<script>
-          location.href="/Last_project/Xuly/popup-login.php?name=Error";
+          location.href="./../../Xuly/popup-login.php?name=Error";
         </script>';
   exit;
 }
@@ -17,7 +17,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
   include_once __DIR__ . '/../../css/style.php';
   include_once __DIR__ . '/../style.php'; //css backend
   ?>
-  <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="./../../Pic/favicon.ico" type="image/x-icon">
   <style>
     .img-product {
       width: 220px;
@@ -82,7 +82,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
               <div class="col-3 bg-light p-1 pe-3 pt-5 text-center">
                 <i><?= number_format($hsp['sp_gia'], 0, '.', ',')  ?>&#8363;</i>
               </div>
-              <div class="col-3 bg-light p-1 "><img class="img-product" src="\Last_Project\uploads\<?= $hsp['hsp_url'] ?>" alt=""></div>
+              <div class="col-3 bg-light p-1 "><img class="img-product" src=".\..\..\uploads\<?= $hsp['hsp_url'] ?>" alt=""></div>
               <div class="col-2">
                 <a href="./edit.php?id=<?= $hsp['hsp_id'] ?>" class="btn btn-warning btn-sm mt-1"><i class="fa-solid fa-pen-to-square"></i></a>
                 <a href="#" class="btn btn-danger btn-sm mt-1 btn-delete" data-id="<?= $hsp['hsp_id'] ?>"><i class="fa-solid fa-trash"></i></a>

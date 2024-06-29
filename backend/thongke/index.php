@@ -1,7 +1,7 @@
 <?php session_start();
 if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
     echo '<script>
-          location.href="/Last_project/Xuly/popup-login.php?name=Error";
+          location.href="./../../Xuly/popup-login.php?name=Error";
         </script>';
     exit;
 }
@@ -17,107 +17,93 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
     include_once __DIR__ . '/../../css/style.php';
     include_once __DIR__ . '/../style.php'; //css backend
     ?>
-    <link rel="icon" href="/Last_Project/Pic/favicon.ico" type="image/x-icon">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="icon" href="./../../Pic/favicon.ico" type="image/x-icon">
     <style>
+        .card {
+            transition: transform 0.3s ease-in-out;
+        }
 
+        .card:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 
 <body>
     <?php include_once __DIR__ . '/../bocuc/header.php'; ?>
-    <main>
-        <div class="container">
-            <h3>Danh mục thống kê</h3>
-            <div class="bg-light p-3 rounded ">
-                <div class="row  mt-3">
-                    <div class="col-4">
-                        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Tổng số đơn đặt hàng</div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Số lượng: <h5 id="baocao_ddh"></h5> đơn hàng</h5>
-                                <div class="card-text">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Tổng số khách hàng</div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Số lượng: <h5 id="baocao_kh"></h5> khách hàng</h5>
-                                <div class="card-text">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Tổng số góp ý</div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Số lượng: <h5 id="baocao_gy"></h5> góp ý</h5>
-                                <div class="card-text">
-                                </div>
-                            </div>
+    <main class="container mt-5">
+        <h3 class="mb-4">Danh mục thống kê</h3>
+        <div class="bg-light p-3 rounded mb-4">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card text-white bg-primary">
+                        <div class="card-header">Tổng số đơn đặt hàng</div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Số lượng: <span id="baocao_ddh"></span> đơn hàng</h5>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4">
-                        <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Tổng số sản phẩm</div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Số lượng: <h5 id="baocao_sp"></h5>sản phẩm</h5>
-                                <div class="card-text">
-                                </div>
-                            </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card text-white bg-secondary">
+                        <div class="card-header">Tổng số khách hàng</div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Số lượng: <span id="baocao_kh"></span> khách hàng</h5>
                         </div>
                     </div>
-
-                    <div class="col-4">
-                        <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Tổng số nhà sản xuất</div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Số lượng: <h5 id="baocao_nsx"></h5> nhà sản xuất</h5>
-                                <div class="card-text">
-                                </div>
-                            </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card text-white bg-warning">
+                        <div class="card-header">Tổng số góp ý</div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Số lượng: <span id="baocao_gy"></span> góp ý</h5>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
-                            <div class="card-header">Tổng số khuyến mãi</div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Số lượng: <h5 id="baocao_km"></h5> khuyến mãi</h5>
-                                <div class="card-text">
-                                </div>
-                            </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card text-white bg-success">
+                        <div class="card-header">Tổng số sản phẩm</div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Số lượng: <span id="baocao_sp"></span> sản phẩm</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card text-white bg-info">
+                        <div class="card-header">Tổng số nhà sản xuất</div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Số lượng: <span id="baocao_nsx"></span> nhà sản xuất</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card text-white bg-danger">
+                        <div class="card-header">Tổng số khuyến mãi</div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Số lượng: <span id="baocao_km"></span> khuyến mãi</h5>
                         </div>
                     </div>
                 </div>
             </div>
-            <button id="btn_re" class="btn btn-light mt-3">Cập nhật dữ liệu</button>
+        </div>
+        <button id="btn_re" class="btn btn-info text-white mb-4">Cập nhật dữ liệu</button>
 
-            <!-- Biểu đồ thống kê loại sản phẩm -->
-            <div class="row mb-5 mt-5">
-                <div class="col-6">
-                    <canvas style="max-height: 300px;" id="chartOfobjChartThongKeLoaiSanPham"></canvas>
-                    <button class="btn btn-outline-primary btn-sm form-control mt-3 mb-3" id="refreshThongKeLoaiSanPham">Refresh dữ liệu</button>
-                </div>
-                <div class="col-6">
-                    <!-- Biểu đồ thống kê sản phẩm tồn kho -->
-                    <canvas style="max-height: 300px;" id="chartOfobjChartThongKeSanPhamTonKho"></canvas>
-                    <button class="btn btn-outline-primary btn-sm form-control mt-3 mb-3" id="refreshThongKeSanPhamTonKho">Refresh dữ liệu</button>
-                </div>
+        <!-- Biểu đồ thống kê loại sản phẩm -->
+        <div class="row mb-4">
+            <div class="col-md-6 mb-3">
+                <canvas id="chartOfobjChartThongKeLoaiSanPham"></canvas>
+                <button class="btn btn-primary btn-sm form-control mt-3 mb-3" id="refreshThongKeLoaiSanPham">Cập nhật dữ liệu</button>
             </div>
-
+            <div class="col-md-6 mb-3">
+                <canvas id="chartOfobjChartThongKeSanPhamTonKho"></canvas>
+                <button class="btn btn-primary btn-sm form-control mt-3 mb-3" id="refreshThongKeSanPhamTonKho">Cập nhật dữ liệu</button>
+            </div>
+        </div>
     </main>
     <script type="module" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?php include_once __DIR__ . '/../js/js.php'; ?>
     <script>
         $(document).ready(function() {
-            $.ajax('/Last_Project/backend/api/api_dondathang.php', {
+            $.ajax('./../../backend/api/api_dondathang.php', {
                 success: function(data) {
                     data_ob = JSON.parse(data);
                     var htmlString = `<h5>${data_ob.Soluong}</h5>`;
@@ -126,7 +112,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                 error: function(jqXHR, textStatus, error) {}
             });
 
-            $.ajax('/Last_Project/backend/api/api_khachhang.php', {
+            $.ajax('./../../backend/api/api_khachhang.php', {
                 success: function(data) {
                     data_ob = JSON.parse(data);
                     var htmlString = `<h5>${data_ob.Soluong}</h5>`;
@@ -135,7 +121,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                 error: function(jqXHR, textStatus, error) {}
             });
 
-            $.ajax('/Last_Project/backend/api/api_gopy.php', {
+            $.ajax('./../../backend/api/api_gopy.php', {
                 success: function(data) {
                     data_ob = JSON.parse(data);
                     var htmlString = `<h5>${data_ob.Soluong}</h5>`;
@@ -144,7 +130,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                 error: function(jqXHR, textStatus, error) {}
             });
 
-            $.ajax('/Last_Project/backend/api/api_sanpham.php', {
+            $.ajax('./../../backend/api/api_sanpham.php', {
                 success: function(data) {
                     data_ob = JSON.parse(data);
                     var htmlString = `<h5>${data_ob.Soluong}</h5>`;
@@ -153,7 +139,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                 error: function(jqXHR, textStatus, error) {}
             });
 
-            $.ajax('/Last_Project/backend/api/api_nhasanxuat.php', {
+            $.ajax('./../../backend/api/api_nhasanxuat.php', {
                 success: function(data) {
                     data_ob = JSON.parse(data);
                     var htmlString = `<h5>${data_ob.Soluong}</h5>`;
@@ -162,7 +148,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
                 error: function(jqXHR, textStatus, error) {}
             });
 
-            $.ajax('/Last_Project/backend/api/api_khuyenmai.php', {
+            $.ajax('./../../backend/api/api_khuyenmai.php', {
                 success: function(data) {
                     data_ob = JSON.parse(data);
                     var htmlString = `<h5>${data_ob.Soluong}</h5>`;
@@ -195,7 +181,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
         function renderChartThongKeLoaiSanPham() {
             $.ajax({
-                url: '/Last_Project/backend/api/api_loaisanpham.php',
+                url: './../../backend/api/api_loaisanpham.php',
                 type: "GET",
                 success: function(response) {
                     console.log("API Response:", response); // Ghi lại phản hồi từ API
@@ -260,7 +246,7 @@ if (!isset($_SESSION['tk_id']) || $_SESSION['tk_id'] != 1) {
 
         function renderChartThongKeSanPhamTonKho() {
             $.ajax({
-                url: '/Last_Project/backend/api/api_sp_tonkho.php',
+                url: './../../backend/api/api_sp_tonkho.php',
                 type: "GET",
                 success: function(response) {
                     console.log("API Response:", response); // Ghi lại phản hồi từ API

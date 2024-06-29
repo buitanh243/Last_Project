@@ -10,7 +10,7 @@
   include_once __DIR__ . '/../style.php'; //css backend
   include_once __DIR__ . '/../../js/js.php';
   ?>
-  <link rel="icon" href="/./Pic/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="./../../Pic/favicon.ico" type="image/x-icon">
   <style>
     header {
       position: fixed;

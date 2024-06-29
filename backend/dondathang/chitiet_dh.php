@@ -10,7 +10,7 @@
     include_once __DIR__ . '/../../css/style.php';
     include_once __DIR__ . '/../style.php'; //css backend
     ?>
-    <link rel="icon" href="\Last_Project\Pic\favicon.ico" type="image/x-icon">
+    <link rel="icon" href=".\..\..\Pic\favicon.ico" type="image/x-icon">
     <style>
         @page {
             size: A5
