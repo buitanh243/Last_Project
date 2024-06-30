@@ -20,6 +20,7 @@
 
 <body>
     <?php
+    include_once __DIR__ . '/loader.php';
     include_once __DIR__ . '/connect/connect.php';
 
     $sql = "SELECT * FROM khuyenmai;";

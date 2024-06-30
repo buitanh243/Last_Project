@@ -19,7 +19,10 @@
 </head>
 <body>
 
-    <?php include_once __DIR__ . '/bocucchinh/headder.php'; ?>
+    <?php 
+    include_once __DIR__ . '/loader.php';
+    include_once __DIR__ . '/bocucchinh/headder.php'; 
+    ?>
 
     <div class="container">
         <div class="img-bg">

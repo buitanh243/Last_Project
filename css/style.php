@@ -1,7 +1,13 @@
-<link href="\Last_Project\vendor\bootstrap\css\bootstrap.min.css" type="text/css" rel="stylesheet" />
-<link href="\Last_Project\vendor\fontawesome\css\all.min.css" type="text/css" rel="stylesheet" />
-<link href="\Last_Project\vendor\parpercss\paper.min.css" type="text/css" rel="stylesheet" />
-<link href="\Last_Project\vendor\chartjs\charts.min.css" type="text/css" rel="stylesheet" />
+<?php
+$rootDirectory = dirname(__DIR__); 
+$projectName = basename($rootDirectory); 
+define('Folder', '/' . $projectName); 
+?>
+
+<link href="<?= Folder; ?>\vendor\bootstrap\css\bootstrap.min.css" type="text/css" rel="stylesheet" />
+<link href="<?= Folder; ?>\vendor\fontawesome\css\all.min.css" type="text/css" rel="stylesheet" />
+<link href="<?= Folder; ?>\vendor\parpercss\paper.min.css" type="text/css" rel="stylesheet" />
+<link href="<?= Folder; ?>\vendor\chartjs\charts.min.css" type="text/css" rel="stylesheet" />
 
 
 

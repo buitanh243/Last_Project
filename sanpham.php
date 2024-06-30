@@ -20,6 +20,7 @@ session_start();
 <body>
 
     <?php
+    include_once __DIR__ . '/loader.php';
     include_once __DIR__ . '/bocucchinh/headder.php';
     ?>
     <?php

@@ -14,16 +14,17 @@ session_start();
   include_once __DIR__ . '/css/trangchu.php';
   ?>
 
-<link rel="icon" href="./Pic/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="./Pic/favicon.ico" type="image/x-icon">
+
 </head>
 
 <body>
 
   <?php
+  include_once __DIR__ . '/loader.php';
   include_once __DIR__ . '/bocucchinh/headder.php';
   ?>
   <?php
-
   include_once __DIR__ . '/connect/connect.php';
 
   $sql = "SELECT sp.*, km_ten, hsp_url FROM sanpham AS sp 

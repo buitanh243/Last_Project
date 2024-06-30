@@ -1,7 +1,13 @@
-<script src="/Last_Project\vendor\bootstrap\js\bootstrap.min.js"></script>
-<script src="/Last_Project\vendor\fontawesome\js\all.min.js"></script>
-<script src="/Last_Project\vendor\jquery\jquery-3.7.1.min.js"></script>
-<script src="/Last_Project\vendor\sweetalert2\sweetalert2@11.js"></script>
+<?php
+$rootDirectory = dirname(__DIR__); 
+$projectName = basename($rootDirectory); 
+define('URL', '/' . $projectName); 
+?>
+
+<script src="<?=URL?>\vendor\bootstrap\js\bootstrap.min.js"></script>
+<script src="<?=URL?>\vendor\fontawesome\js\all.min.js"></script>
+<script src="<?=URL?>\vendor\jquery\jquery-3.7.1.min.js"></script>
+<script src="<?=URL?>\vendor\sweetalert2\sweetalert2@11.js"></script>
 
 
 

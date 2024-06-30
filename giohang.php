@@ -2,6 +2,7 @@
 session_start();
 ob_start();
 
+
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 $ngaymua = date('Y-m-d');
 
@@ -91,6 +92,7 @@ if ($result) {
 
 <body>
   <?php
+  include_once __DIR__ . '/loader.php';
   include_once __DIR__ . '/bocucchinh/headder.php';
   ?>
   <main>
