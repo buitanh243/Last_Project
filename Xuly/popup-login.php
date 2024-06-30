@@ -35,7 +35,7 @@ define('Main', '/' . $projectName);
         }
 
         if (name === "logout") {
-            showSuccessMessage("Đăng xuất thành công", "<?php echo Main; ?>/login.php");
+            showSuccessMessage("Đăng xuất thành công", "<?php echo Main; ?>/index.php");
         }
 
         if (name === "user") {

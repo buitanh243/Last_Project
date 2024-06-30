@@ -26,10 +26,7 @@ session_start();
 </head>
 
 <body>
-    <?php 
-    include_once __DIR__ . '/loader.php';
-    include_once __DIR__ . '/bocucchinh/headder.php'; 
-    ?>
+    <?php include_once __DIR__ . '/bocucchinh/headder.php'; ?>
 
     <?php
     include_once __DIR__ . '/connect/connect.php';
@@ -62,6 +59,7 @@ session_start();
                                 <label for="">Tên khách hàng:</label>
                                 <div class="row mt-3">
                                     <label class="col-2"><b><?= $kh['kh_ten'] ?></b></label>
+                                    <input type="hidden" name="kh_id" value="<?=$kh['kh_id']?>" >
                                     <a href="./user/user.php" class="col-1 btn btn-warning btn-sm"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </div>
                             </div>
